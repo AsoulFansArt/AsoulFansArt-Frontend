@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="18c6e999-b149-491e-bb6b-ce8689668ccd" name="更改" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/Header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +135,8 @@
       <workItem from="1630936637311" duration="1416000" />
       <workItem from="1630938089775" duration="165000" />
       <workItem from="1630987825298" duration="3251000" />
-      <workItem from="1631002374988" duration="2512000" />
+      <workItem from="1631002374988" duration="6130000" />
+      <workItem from="1631009908820" duration="1846000" />
     </task>
     <task id="LOCAL-00001" summary="更改">
       <created>1630935445022</created>
@@ -179,7 +180,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630989761812</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="update">
+      <created>1631004977219</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1631004977219</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
