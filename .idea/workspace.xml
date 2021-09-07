@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18c6e999-b149-491e-bb6b-ce8689668ccd" name="更改" comment="update" />
+    <list default="true" id="18c6e999-b149-491e-bb6b-ce8689668ccd" name="更改" comment="update">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/Header.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -131,7 +134,8 @@
       <workItem from="1630936449086" duration="170000" />
       <workItem from="1630936637311" duration="1416000" />
       <workItem from="1630938089775" duration="165000" />
-      <workItem from="1630987825298" duration="2653000" />
+      <workItem from="1630987825298" duration="3251000" />
+      <workItem from="1631002374988" duration="2512000" />
     </task>
     <task id="LOCAL-00001" summary="更改">
       <created>1630935445022</created>

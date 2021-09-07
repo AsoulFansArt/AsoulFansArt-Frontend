@@ -1,11 +1,21 @@
 <template>
   <div class="header">
+    <button
+        class="nav-menu-button"
+        @click="isCollapse = !isCollapse">
+      <svg viewBox="0 0 24 24" class="nav-menu-icon"><path d="M4 7C4 6.44772 4.44772 6 5 6H19C19.5523 6 20 6.44772 20 7C20
+           7.55228 19.5523 8 19 8H5C4.44772 8 4 7.55228 4 7ZM4 12C4 11.4477 4.44772 11
+           5 11H19C19.5523 11 20 11.4477 20 12C20 12.5523 19.5523 13 19 13H5C4.44772
+           13 4 12.5523 4 12ZM5 16C4.44772 16 4 16.4477 4 17C4 17.5523 4.44772 18 5
+           18H19C19.5523 18 20 17.5523 20 17C20 16.4477 19.5523 16 19 16H5Z"></path>
+      </svg>
+    </button>
+
     <img
         class="head-menu"
-        src="../../../public/1.gif"
+        src="../../../public/logo.png"
         alt=""
-        style="width: 4rem"
-        @click="isCollapse = !isCollapse"
+        style="width: 16rem"
     >
 
 </div>
@@ -145,28 +155,36 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .header{
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   margin-bottom: 5px;
-  background: #f8f8f8;
-  box-shadow:0 15px 15px -15px rgba(0,0,0,0.1);
-}
-.head-pic{
-  margin-right: 10px;
+  background: #fff;
 }
 .head-menu{
-  margin-left: 10px;
-}
-.draw{
-  height: 100%;
+  padding: .5rem;
 }
 .aside{
   position: absolute;
   z-index: 90;
   height: 100%;
+}
+.nav-menu-icon{
+  color: grey;
+  fill:currentColor;
+  width: 28px;
+  height: 28px;
+  line-height: 0;
+  margin-left: 12px;
+  border-radius:50%;
+}
+.nav-menu-button{
+  border: none;
+  background-color: rgba(0,0,0,0);
+  :hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+  }
 }
 </style>
