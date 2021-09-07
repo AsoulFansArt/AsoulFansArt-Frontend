@@ -4,7 +4,7 @@
 站内视频需跳转原地址,图片为缩略图,永远不会提供批量下载功能  
 互动是对UP们最大的支持, 看到喜欢的作品请给原作者支持(关注,点赞,投币,分享,评论等等)
 ***
-###关于A-SOUL
+**关于A-SOUL**  
 A-SOUL是乐华娱乐于2020年11月23日公开的其旗下首个虚拟偶像团体，由5名成员组成。
 
 A-SOUL_Official：https://space.bilibili.com/703007996  
@@ -14,10 +14,10 @@ A-SOUL_Official：https://space.bilibili.com/703007996
 贝拉：https://space.bilibili.com/672353429  
 向晚：https://space.bilibili.com/672346917  
 ***
-###技术栈:
+**技术栈:**  
 vue/cli4.5+vue3.0+element-plus+bootstrap 响应式布局,后期准备改为电脑端,手机端双页面
 ***
-###声明:
+**声明:**  
 如网站侵犯了您的版权,请联系B站项目官号[@A-SoulFansArt](https://space.bilibili.com/291072226)
 确认后我会第一时间撤下内容
 ***
