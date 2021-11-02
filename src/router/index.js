@@ -38,11 +38,6 @@ const routes = [
     name:'Article',
     component:() => import('../views/Article')
   },
-  {
-    path: '/show',
-    name: 'show',
-    component:() => import('../views/Show')
-  },
 ]
 
 const router = createRouter({

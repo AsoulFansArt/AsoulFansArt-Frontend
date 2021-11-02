@@ -69,6 +69,10 @@
       <el-image src="./img/asjp.ico" style="margin: 9px;width: 32px;height: 32px"></el-image>
       <div class="icon-desc">AsoulJP</div>
     </a>
+    <a class="icon-card" href="https://github.com/XiaoMiku01/bili-live-heart" target="_blank">
+      <el-image src="./img/github.png" style="margin: 9px;width: 32px;height: 32px"></el-image>
+      <div class="icon-desc">B站粉丝牌助手</div>
+    </a>
     <a class="icon-card" href="https://jiawanfan.cn/" target="_blank">
       <el-image src="./img/jwf.jpg" style="margin: 9px;width: 32px;height: 32px"></el-image>
       <div class="icon-desc">嘉晚饭</div>
