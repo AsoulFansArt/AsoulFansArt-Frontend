@@ -108,25 +108,6 @@ export default {
   },
   mounted() {
     window.scrollTo(0, 0)
-    Api._getNotification().then((res)=>{
-          if(res.data.length > 0){
-            for (let item of res.data){
-              console.log(item)
-              setTimeout(()=>{
-                this.$notify({
-                  title: '公告',
-                  dangerouslyUseHTMLString: true,
-                  message:  item.content,
-                  duration: 0
-                },1000);
-              })
-
-
-            }
-          }
-
-        }
-    )
     let fullWidth = this.$refs.container.clientWidth;
     if (g._isMobile()){
       this.isMobile = true

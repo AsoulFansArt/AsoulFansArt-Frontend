@@ -3,7 +3,14 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    redirect:'/pic'
+    name:'MainPage',
+    component:() => import('../views/MainPage')
+  },
+  {
+
+    path: '/qa',
+    name:'QA',
+    component:() => import('../views/QA')
   },
   {
 
@@ -20,6 +27,21 @@ const routes = [
     path: '/pic',
     name:'Pic',
     component:() => import('../views/Pic')
+  },
+  {
+    path: '/meme',
+    name:'Meme',
+    component:() => import('../views/Meme')
+  },
+  {
+    path: '/article',
+    name:'Article',
+    component:() => import('../views/Article')
+  },
+  {
+    path: '/show',
+    name: 'show',
+    component:() => import('../views/Show')
   },
 ]
 

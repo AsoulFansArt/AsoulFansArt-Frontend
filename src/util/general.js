@@ -11,6 +11,19 @@ const _timestampToTime = (timestamp) =>{
     }
 }
 
+const _timestampToTimeY = (timestamp) =>{
+    let today = new Date();
+    let date = new Date(timestamp * 1000);
+    let Y = date.getFullYear() + '-';
+    let M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+    let D = (date.getDate() < 10 ? '0'+date.getDate() : date.getDate())
+    if (date.getFullYear() != today.getFullYear()){
+        return Y+M+D;
+    }else{
+        return M+D;
+    }
+}
+
 const _changeBillionToCN = (c) =>{
     if(typeof(c) != "string") {
         c = c.toString();
@@ -32,5 +45,6 @@ const _isMobile = () => {
 export default {
     _timestampToTime,
     _changeBillionToCN,
-    _isMobile
+    _isMobile,
+    _timestampToTimeY
 }

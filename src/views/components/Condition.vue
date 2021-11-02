@@ -2,79 +2,10 @@
   <div class="container-fluid" :style="{display: 'flex', justifyContent: 'center'}">
     <div class="row justify-content-center" :style="{width:'80rem', overflow:'hidden'}">
 
-      <div class="col" :style="{marginBottom: '5px'}">
-        <el-card>
+      <div class="col" :style="{marginBottom: '5px'}"  v-if="type !== 'meme'">
+        <el-card shadow="never">
           <template #header>
-            <span>排序</span>
-          </template>
-          <div class="col-sel m-1" :style="{textAlign:'center'}">
-            <el-select v-model="sortValue" placeholder="默认排序" size="mini" @change ="onSelectedSort" >
-              <el-option
-                  v-for="item in sortOptions"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-              >
-              </el-option>
-            </el-select>
-
-            <el-select v-model="rankValue" placeholder="榜单" size="mini" @change ="onSelectedRank" >
-              <el-option
-                  v-for="item in rankOptions"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-              >
-              </el-option>
-            </el-select>
-
-            <el-date-picker
-                size="mini"
-                v-model="value1"
-                type="datetime"
-                placeholder="日期"
-                @change ="onSelectedTime"
-            >
-            </el-date-picker>
-
-          </div>
-          <div :style="{textAlign:'center'}" v-if="type==='video'">
-            <el-check-tag
-                class="m-1"
-                v-for="(item) in tags"
-                :key="item.id"
-                :checked="item.checked"
-                @change="onChange(item.id,item)"
-            >
-              {{item.name}}
-            </el-check-tag>
-
-<!--            <el-switch v-model="showOfficial" active-color="#13ce66" inactive-color="#ff4949" active-text="不显示官号" @change="showChange">-->
-<!--            </el-switch>-->
-          </div>
-          <div :style="{textAlign:'center'}">
-            <el-tooltip
-                v-for="item in asouls"
-                v-bind:key="item.uid"
-                class="item" effect="dark" :content="item.name" placement="bottom-start">
-              <el-avatar
-
-                  :size="50"
-                  shape="square"
-                  @click="clickAvatar(item)"
-                  :src="item.pic">
-              </el-avatar>
-            </el-tooltip>
-          </div>
-
-        </el-card>
-      </div>
-
-
-      <div class="col" :style="{marginBottom: '5px'}">
-        <el-card>
-          <template #header>
-            <span>全部分区</span>
+            <h3 class="card-title">全部分区</h3>
           </template>
           <el-scrollbar height="8rem">
             <el-check-tag
@@ -85,11 +16,109 @@
                 @change="onVideoTagChange(index,item)"
 
             >{{`${item.tname?item.tname:item.tag_title}`}}
-            <span v-if="type==='video'">{{`${item.num?'('+item.num+')':''}`}}</span></el-check-tag>
+              <span v-if="type==='video'">{{`${item.num?'('+item.num+')':''}`}}</span></el-check-tag>
           </el-scrollbar>
 
         </el-card>
       </div>
+
+
+
+      <div class="col" :style="{marginBottom: '5px'}">
+        <el-card shadow="never">
+          <template #header>
+            <h3 class="card-title">排序</h3>
+          </template>
+
+
+          <div v-if="type === 'qa'" :style="{marginBottom: '5px'}">
+            <div>
+              <el-input
+                  v-model="keyword"
+                  type="text"
+                  placeholder="请输入关键字"
+                  maxlength="10"
+                  show-word-limit
+              >
+                <template #append>
+                  <el-button icon="el-icon-search" type="primary" @click="searchQ"></el-button>
+                </template>
+              </el-input>
+            </div>
+          </div>
+
+          <div
+              :style="{textAlign:'center',display: 'flex', alignItems:'center', flexWrap:'wrap', justifyContent:'center'}">
+            <div class="col-sel m-1" :style="{textAlign:'center'}" v-if="type !== 'qa'">
+              <el-select v-model="sortValue" placeholder="默认排序" size="mini" @change ="onSelectedSort" class="me-1">
+                <el-option
+                    v-for="item in sortOptions"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                >
+                </el-option>
+              </el-select>
+
+              <el-select v-model="rankValue" placeholder="榜单" size="mini" @change ="onSelectedRank" class="me-1">
+                <el-option
+                    v-for="item in rankOptions"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                >
+                </el-option>
+              </el-select>
+
+              <el-date-picker
+                  size="mini"
+                  v-model="value1"
+                  type="datetime"
+                  placeholder="日期"
+                  @change ="onSelectedTime"
+                  v-if="type !== 'meme'"
+              >
+              </el-date-picker>
+
+            </div>
+
+            <div :style="{textAlign:'center'}" v-if="type==='video'">
+              <el-check-tag
+                  class="m-1"
+                  v-for="(item) in tags"
+                  :key="item.id"
+                  :checked="item.checked"
+                  @change="onChange(item.id,item)"
+              >
+                {{item.name}}
+              </el-check-tag>
+
+              <!--            <el-switch v-model="showOfficial" active-color="#13ce66" inactive-color="#ff4949" active-text="不显示官号" @change="showChange">-->
+              <!--            </el-switch>-->
+            </div>
+            <div class="py-2" style="width: 100%;" v-if="type==='pic'">
+
+            </div>
+
+            <div class="col mx-5 px-5" :style="{display: 'flex', alignItems:'center', justifyContent: 'space-around'}">
+              <el-tooltip
+                  v-for="item in asouls"
+                  v-bind:key="item.uid"
+                  class="item" effect="dark" :content="item.name" placement="bottom-start">
+                <el-avatar
+                    :size="50"
+                    shape="square"
+                    @click="clickAvatar(item)"
+                    :src="item.pic">
+                </el-avatar>
+              </el-tooltip>
+            </div>
+          </div>
+
+
+        </el-card>
+      </div>
+
 
     </div>
   </div>
@@ -97,8 +126,9 @@
 
 <script>
 import Api from "../../util/http";
+import { defineComponent, ref } from 'vue'
 
-export default {
+export default defineComponent({
   name: "Condition",
   props:{
     type:{
@@ -109,6 +139,7 @@ export default {
   },
   data() {
     return {
+      keyword: ref(''),
       asouls:[
         {
           name:"A-SOUL_Official",
@@ -213,6 +244,18 @@ export default {
     }
   },
   methods:{
+    searchQ(){
+      Api._searchOfficialQA(
+          {
+            "keyword": this.keyword
+          }).then((res)=>{
+        this.$emit('changeLoad', false)
+        this.$emit('changeQA', {
+          response: res.data,
+        })
+      })
+      this.keyword = ""
+    },
     clickAvatar(item){
       window.open("https://space.bilibili.com/" + item.uid)
     },
@@ -240,30 +283,74 @@ export default {
               ctime:this.ctime,
             },
           })})
-      }
-      return Api._getBV({
-        page:this.cPage,
-        tag_id: this.tagIndex,
-        sort: this.sortIndex,
-        part: this.partIndex,
-        rank: this.rankIndex,
-        ctime:this.ctime,
-        show_official: this.showOfficial
-      }).then((res) => {
-        this.$emit('changeLoad', false)
-        this.$emit('changeMs', {
-          response: res.data,
-          load_params:{
-            page:this.cPage,
-            tag_id: this.tagIndex,
-            sort: this.sortIndex,
-            part: this.partIndex,
-            rank:  this.rankIndex,
-            ctime:this.ctime,
-            show_official: this.showOfficial
-          },
+      }else if (this.type === "video") {
+        return Api._getBV({
+          page: this.cPage,
+          tag_id: this.tagIndex,
+          sort: this.sortIndex,
+          part: this.partIndex,
+          rank: this.rankIndex,
+          ctime: this.ctime,
+          show_official: this.showOfficial
+        }).then((res) => {
+          this.$emit('changeLoad', false)
+          this.$emit('changeMs', {
+            response: res.data,
+            load_params: {
+              page: this.cPage,
+              tag_id: this.tagIndex,
+              sort: this.sortIndex,
+              part: this.partIndex,
+              rank: this.rankIndex,
+              ctime: this.ctime,
+              show_official: this.showOfficial
+            },
+          })
         })
-      })
+      }else if (this.type === "qa") {
+        if (this.partIndex === 0){
+          this.$emit('changeLoad', false)
+          this.$emit('changeQA', {
+            response: [],
+            load_params: {
+              sort: this.partIndex,
+            },
+          })
+          return
+        }
+        Api._sortGetOfficialQA({ sort: this.partIndex}).then((res) => {
+          this.$emit('changeLoad', false)
+          this.$emit('changeQA', {
+            response: res.data,
+            load_params: {
+              sort: this.partIndex,
+            },
+          })
+        })
+      }else if (this.type === "meme") {
+
+        return Api._getMeme({
+              page:this.cPage,
+              tag_id: this.tagIndex,
+              sort: this.sortIndex,
+              part: this.partIndex,
+              rank: this.rankIndex,
+              ctime:this.ctime,
+        }).then((res) => {
+          this.$emit('changeLoad', false)
+          this.$emit('changePic', {
+            response: res.data,
+            load_params:{
+              page:this.cPage,
+              tag_id: this.tagIndex,
+              sort: this.sortIndex,
+              part: this.partIndex,
+              rank:  this.rankIndex,
+              ctime:this.ctime,
+            },
+          })
+        })
+      }
     },
     onVideoTagChange(index,item){
       this.partIndex = item.tid ? item.tid : item.tag_id
@@ -304,7 +391,7 @@ export default {
     }
   },
   mounted() {
-    if (this.type === "pic"){
+    if (this.type === "pic" || this.type === "meme"){
       this.sortOptions=[
         {
           value: '1',
@@ -328,20 +415,38 @@ export default {
         console.log(e)
       }
       return
+    }else if(this.type === "video"){
+      try {
+        Api._getVideoPart().then((res)=>{
+          this.videoTagOptions = res.data
+          for(let item of res.data)item['checked'] = false;
+        })
+      }catch (e){
+        console.log(e)
+      }
+    }else if(this.type === "qa"){
+      this.videoTagOptions = [
+        {"tag_title": "A-SOUL", "tag_id": 57},
+        {"tag_title": "直播", "tag_id": 58},
+        {"tag_title": "向晚", "tag_id": 59},
+        {"tag_title": "贝拉", "tag_id": 60},
+        {"tag_title": "珈乐", "tag_id": 61},
+        {"tag_title": "嘉然", "tag_id": 62},
+        {"tag_title": "乃琳", "tag_id": 63},
+      ]
     }
-    try {
-      Api._getVideoPart().then((res)=>{
-        this.videoTagOptions = res.data
-        for(let item of res.data)item['checked'] = false;
-      })
-    }catch (e){
-      console.log(e)
-    }
+
+
+
   },
-}
+})
 </script>
 
 <style scoped>
+.card-title{
+  font-size: 1.0625rem;
+  font-weight: bold;
+}
 .el-card{
   height: 100%;
 }

@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-const hosts = 'https://asoulfansart-1209144-1306812141.ap-shanghai.run.tcloudbase.com'
+let hosts = 'https://api.asoul.cloud:8000'
 
 Axios.defaults.headers = {
     'Cache-Control': 'no-cache',
@@ -83,6 +83,76 @@ const _submit = (params) =>{
     })
 }
 
+const _getOfficialQA = (params) =>{
+    return Axios({
+        url:hosts +"/getOfficialQA",
+        method: "get",
+        params:params
+    })
+}
+
+const _getOfficialQADetail = (params) =>{
+    return Axios({
+        url:hosts +"/getOfficialQADetail",
+        method: "get",
+        params:params
+    })
+}
+
+const _searchOfficialQA = (params) =>{
+    return Axios({
+        url:hosts +"/searchOfficialQA",
+        method: "get",
+        params:params
+    })
+}
+
+const _sortGetOfficialQA = (params) =>{
+    return Axios({
+        url:hosts +"/sortGetOfficialQA",
+        method: "get",
+        params:params
+    })
+}
+
+const _getArticleSorts = (params) =>{
+    return Axios({
+        url:hosts +"/getArticleSorts",
+        method: "get",
+        params:params
+    })
+}
+
+const _submitArticle = (params) =>{
+    return Axios({
+        url:hosts +"/submitArticle",
+        method: "get",
+        params:params
+    })
+}
+
+const _getMeme = (params) =>{
+    params.tag_id = params.tag_id || 0
+    if (params.tag_id == 0 || params.rank == 4){
+        params.type = 1
+    }else{
+        params.type = 2
+    }
+    return Axios({
+        url:hosts +"/getMeme" + '?nocache=' + new Date().getTime(),
+        method: "get",
+        params:params
+    })
+}
+
+const _getArticleList = (params) =>{
+    return Axios({
+        url:hosts +"/getArticleList" + '?nocache=' + new Date().getTime(),
+        method: "get",
+        params:params
+    })
+}
+
 export default {
     _getBV,
     _getVideoPart,
@@ -91,7 +161,15 @@ export default {
     _getPic,
     _getPicTags,
     _getNotification,
-    _submit
+    _submit,
+    _getOfficialQA,
+    _getOfficialQADetail,
+    _sortGetOfficialQA,
+    _searchOfficialQA,
+    _getArticleSorts,
+    _submitArticle,
+    _getMeme,
+    _getArticleList
 }
 
 

@@ -1,0 +1,19 @@
+{
+  "name": "一个魂的二创",
+  "short_name": "一个魂的二创",
+  "start_url": ".",
+  "icon": [
+    {
+      "src": "/public/img/icons/android-icon-144x144.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/public/img/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }],
+  "background_color": "white",
+  "theme_color": "white",
+  "display": "standalone"
+}

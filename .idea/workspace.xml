@@ -4,70 +4,52 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18c6e999-b149-491e-bb6b-ce8689668ccd" name="更改" comment="update">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="5b411b24-9c57-49e5-aa8a-d76076f9f11e" name="更改" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ChangesViewManager" show_ignored="true">
-    <option name="groupingKeys">
-      <option value="directory" />
-    </option>
-  </component>
-  <component name="ExportToHTMLSettings">
-    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../AsoulFansArt-Frontend\exportToHTML" />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JavaScript File" />
+        <option value="SCSS File" />
         <option value="Vue Single File Component" />
       </list>
     </option>
   </component>
-  <component name="Git.Settings">
-    <option name="PUSH_TAGS">
-      <GitPushTagMode>
-        <option name="argument" value="--tags" />
-        <option name="title" value="All" />
-      </GitPushTagMode>
-    </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="ed689d35-2ef6-499a-954d-4d341678bafb" />
-        <option name="url" value="https://github.com/AsoulFansArt/AsoulFansArt-Frontend.git" />
-      </UrlAndAccount>
-    </option>
-  </component>
-  <component name="ProjectId" id="1whANIHSMotA75ep6v6hWYPA6ao" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1yNnOsmzOSH0QgCAMRl3eskWYEO" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ChangesTree.GroupingKeys" value="directory" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../Program Files/nodejs/node.exe" />
+    <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path" value="$PROJECT_DIR$/../../../../../Program Files/nodejs/node" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
-    <property name="ts.external.directory.path" value="D:\WebStorm 2021.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\asoul_share\test\last" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\asoul.cloud\AsoulFansArt-Frontend\src\views" />
     </key>
   </component>
   <component name="RunManager">
@@ -77,7 +59,8 @@
       <scripts>
         <script value="serve" />
       </scripts>
-      <node-interpreter value="project" />
+      <node-interpreter value="$PROJECT_DIR$/../../../../../Program Files/nodejs/node" />
+      <package-manager value="npm" />
       <envs />
       <method v="2" />
     </configuration>
@@ -85,174 +68,37 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
-      <changelist id="18c6e999-b149-491e-bb6b-ce8689668ccd" name="更改" comment="" />
-      <created>1628900407811</created>
+      <changelist id="5b411b24-9c57-49e5-aa8a-d76076f9f11e" name="更改" comment="" />
+      <created>1632100887544</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1628900407811</updated>
-      <workItem from="1628900409743" duration="94000" />
-      <workItem from="1628900620501" duration="2000" />
-      <workItem from="1628900657610" duration="18000" />
-      <workItem from="1628902045500" duration="249000" />
-      <workItem from="1628925875796" duration="4910000" />
-      <workItem from="1628938871472" duration="1951000" />
-      <workItem from="1629105069852" duration="6055000" />
-      <workItem from="1629164435698" duration="299000" />
-      <workItem from="1629185047478" duration="426000" />
-      <workItem from="1629187785781" duration="8397000" />
-      <workItem from="1629283032229" duration="1360000" />
-      <workItem from="1629331355294" duration="6167000" />
-      <workItem from="1629419508166" duration="1219000" />
-      <workItem from="1629420910937" duration="7884000" />
-      <workItem from="1629429022055" duration="13992000" />
-      <workItem from="1629512031832" duration="535000" />
-      <workItem from="1629520200084" duration="2279000" />
-      <workItem from="1629594489646" duration="925000" />
-      <workItem from="1629600934420" duration="107000" />
-      <workItem from="1629601416574" duration="859000" />
-      <workItem from="1629687432950" duration="2000" />
-      <workItem from="1629687444403" duration="3458000" />
-      <workItem from="1629885936359" duration="152000" />
-      <workItem from="1629886451979" duration="595000" />
-      <workItem from="1629936436474" duration="3393000" />
-      <workItem from="1629975053879" duration="3285000" />
-      <workItem from="1629985421017" duration="722000" />
-      <workItem from="1630048443379" duration="203000" />
-      <workItem from="1630049992328" duration="13614000" />
-      <workItem from="1630137480309" duration="1182000" />
-      <workItem from="1630205588103" duration="7006000" />
-      <workItem from="1630231367361" duration="1115000" />
-      <workItem from="1630319078072" duration="2863000" />
-      <workItem from="1630397499094" duration="2927000" />
-      <workItem from="1630926476792" duration="30000" />
-      <workItem from="1630926788789" duration="6362000" />
-      <workItem from="1630934212452" duration="20000" />
-      <workItem from="1630934238861" duration="779000" />
-      <workItem from="1630935057592" duration="8000" />
-      <workItem from="1630935082010" duration="211000" />
-      <workItem from="1630935302944" duration="1129000" />
-      <workItem from="1630936449086" duration="170000" />
-      <workItem from="1630936637311" duration="1416000" />
-      <workItem from="1630938089775" duration="165000" />
-      <workItem from="1630987825298" duration="3251000" />
-      <workItem from="1631002374988" duration="6130000" />
-      <workItem from="1631009908820" duration="2180000" />
+      <updated>1632100887544</updated>
+      <workItem from="1632100889522" duration="8430000" />
+      <workItem from="1632182807812" duration="749000" />
+      <workItem from="1632297994240" duration="4499000" />
+      <workItem from="1632451081239" duration="382000" />
+      <workItem from="1632474130357" duration="9111000" />
+      <workItem from="1632559142338" duration="9735000" />
+      <workItem from="1632631022579" duration="8551000" />
+      <workItem from="1632814681403" duration="6271000" />
+      <workItem from="1632920377945" duration="1977000" />
+      <workItem from="1632986485369" duration="8519000" />
+      <workItem from="1633057015333" duration="11234000" />
+      <workItem from="1633159103278" duration="9482000" />
+      <workItem from="1633239731538" duration="12846000" />
+      <workItem from="1633499853252" duration="2510000" />
+      <workItem from="1634978400005" duration="7387000" />
+      <workItem from="1635132768493" duration="1342000" />
+      <workItem from="1635566326390" duration="3230000" />
+      <workItem from="1635826572934" duration="88000" />
     </task>
-    <task id="LOCAL-00001" summary="更改">
-      <created>1630935445022</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1630935445022</updated>
-    </task>
-    <task id="LOCAL-00002" summary="更改">
-      <created>1630988425166</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1630988425166</updated>
-    </task>
-    <task id="LOCAL-00003" summary="更改">
-      <created>1630988702182</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1630988702182</updated>
-    </task>
-    <task id="LOCAL-00004" summary="更改">
-      <created>1630988805623</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1630988805623</updated>
-    </task>
-    <task id="LOCAL-00005" summary="更改">
-      <created>1630989593419</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1630989593419</updated>
-    </task>
-    <task id="LOCAL-00006" summary="update">
-      <created>1630989761812</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1630989761812</updated>
-    </task>
-    <task id="LOCAL-00007" summary="update">
-      <created>1631004977219</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1631004977219</updated>
-    </task>
-    <task id="LOCAL-00008" summary="update">
-      <created>1631011778617</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1631011778617</updated>
-    </task>
-    <task id="LOCAL-00009" summary="update">
-      <created>1631011857310</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1631011857310</updated>
-    </task>
-    <task id="LOCAL-00010" summary="update">
-      <created>1631011948696</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1631011948696</updated>
-    </task>
-    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ID_ORDER">
-      <list>
-        <option value="Default.Root" />
-        <option value="Default.Author" />
-        <option value="Default.Date" />
-        <option value="Default.Subject" />
-      </list>
-    </option>
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="main" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <ignored-roots>
-      <path value="$PROJECT_DIR$" />
-    </ignored-roots>
-    <MESSAGE value="update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update" />
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

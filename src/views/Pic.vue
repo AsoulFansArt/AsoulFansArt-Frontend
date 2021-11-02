@@ -3,6 +3,7 @@
     <Condition type="pic" @changePic="getResult" @changeLoad="getLoadStatus"></Condition>
   </div>
 
+
   <el-container :style="{height:maxHeight + 'px'}">
     <div class="container-fluid" ref="container">
         <div class="v-waterfall-content"
@@ -10,7 +11,16 @@
              infinite-scroll-disabled="disabled"
              infinite-scroll-distance="10"
         >
-          <Waterfall class="relative" :isload="isload" :waterfallList="waterfallList" :imageWidth="imageWidth"></Waterfall>
+<!--          <div class="row justify-content-flex-end">
+            <div>
+              <i class="el-icon-s-grid" style="font-size: x-large;color: grey;float: right"></i>
+            </div>
+            <div>
+              <PicGrid style="position: relative" :isload="isload" :waterfallList="waterfallList"></PicGrid>
+            </div>
+          </div> -->
+
+          <Waterfall class="relative" :isload="isload" :waterfallList="waterfallList" :imageWidth="imageWidth"/>
         </div>
       <div v-if="isload" style="text-align: center"><i class="el-icon-loading"></i></div>
     </div>
@@ -23,12 +33,14 @@ import {ElMessage} from "element-plus";
 
 import Condition from "./components/Condition";
 import Waterfall from "./components/Waterfall";
+import PicGrid from "./components/PicGrid"
 
 export default {
   name: 'v-waterfall',
   components: {
     Condition,
-    Waterfall
+    Waterfall,
+    PicGrid
   },
   data() {
     return {
@@ -37,7 +49,7 @@ export default {
       //存放计算好的数据
       waterfallList: [],
       //每一列的宽度
-      imageWidth: 200,
+      imageWidth: 280,
       //多少列
       waterfallImgCol: 5,
       //右边距
@@ -70,12 +82,13 @@ export default {
   },
   mounted() {
     window.scrollTo(0, 0)
-
+    /*
     this.$notify({
       title: '提示',
       dangerouslyUseHTMLString: true,
-      message:  '<p>图片来源bilibili.com</p>图片右下角为原作者B站ID'
-    });
+      message:  '<p>图片来源bilibili.com</p>图片右下角为原作者B站ID',
+      duration:2000,
+    });*/
 
     //计算可视区域能够容纳的最大列数,向下取整
     let fullWidth = this.$refs.container.clientWidth;
