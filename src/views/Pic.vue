@@ -188,8 +188,8 @@ export default {
            continue;
          }*/
         this.waterfallList = [...this.waterfallList,imgData];
-        let webp_w = parseInt(this.imageWidth * 1.5) ;
-        let webp_h =parseInt(imgData.height * 1.5) ;
+        let webp_w = Math.round(this.imageWidth * 1.5) ;
+        let webp_h =Math.round(imgData.height * 1.5) ;
 
         if (webp_w < 200){
           webp_w = webp_w * 2
