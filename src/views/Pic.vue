@@ -53,7 +53,7 @@ export default {
       //多少列
       waterfallImgCol: 5,
       //右边距
-      waterfallImgRight: 20,
+      waterfallImgRight: 10,
       //下边距
       waterfallImgBottom: 10,
       //存放瀑布流各个列的高度
@@ -99,6 +99,7 @@ export default {
       this.imageWidth = 160;
     }
     let maxColNum = Math.floor(fullWidth / (this.imageWidth + this.waterfallImgRight));
+    this.imageWidth = (fullWidth - 24 - this.waterfallImgRight * (maxColNum-1))/(maxColNum)
     //console.log('可视宽度：' + fullWidth + ',列数：' + maxColNum);
     if (maxColNum == 0) {
       maxColNum = 1;
@@ -110,7 +111,8 @@ export default {
     }
     //console.log('计算列数：' + maxColNum);
     //获取左边距
-    this.colLeft = (fullWidth - contentWhith) / 2;
+    //this.colLeft = (fullWidth - contentWhith) / 2;
+    this.colLeft = 0
     if (maxColNum == 1) {
       maxColNum = 2;
     }
