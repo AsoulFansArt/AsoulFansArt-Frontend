@@ -204,7 +204,7 @@ export default defineComponent({
           label: '热门'
         }],
       sortValue: '',
-      sortIndex: 0,
+      sortIndex: 3,
       videoTagOptions:[],
       partOptions:[
         {
