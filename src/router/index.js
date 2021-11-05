@@ -38,6 +38,11 @@ const routes = [
     name:'Article',
     component:() => import('../views/Article')
   },
+  {
+    path:'/new',
+    name:'New',
+    component:() => import('../views/New')
+  },
 ]
 
 const router = createRouter({

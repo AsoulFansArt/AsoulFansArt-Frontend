@@ -2,11 +2,13 @@
   <div class="v-waterfall">
 
     <ImageCard
+        :mode="mode"
+        :owner="owner"
         v-for="img in waterfallList"
         :img="img"
         :key="img.key"
+        :imageWidth = "imageWidth"
         class="v-waterfall-item"
-        @click="jumpBili(img)"
         :style="{top:img.top+'px',left:img.left+'px',width:imageWidth+'px',height:img.height+'px', bottom:0, position:'absolute'}">
     >
 
@@ -43,6 +45,15 @@ export default {
       type:Number,
       description: "图片宽度"
     },
+    mode:{
+      type:String,
+      description:"样式"
+    },
+    owner: {
+      type:Boolean,
+      description:"显示作者",
+      default:true,
+    }
   },
   components:{
     ImageCard

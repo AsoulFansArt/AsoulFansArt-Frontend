@@ -1,0 +1,62 @@
+[
+  {
+  "name": "枝网查重",
+  "link": "https://asoulcnki.asia/",
+  "icon": "./img/zwcc.svg"
+  },
+  {
+    "name": "AsoulWorld",
+    "link": "https://www.asoulworld.com/",
+    "icon": "./img/aswd.png"
+  },
+  {
+    "name": "AsoulFan",
+    "link": "https://asoulfan.com/",
+    "icon": "./img/asf.ico"
+  },
+  {
+    "name": "AsoulDB",
+    "link": "https://asdb.live/",
+    "icon": "./img/asdb.ico"
+  },
+  {
+    "name": "小作文",
+    "link": "https://asoul.icu/#/",
+    "icon": "./img/xzw.ico"
+  },
+  {
+    "name": "AsoulWIKI",
+    "link": "https://asoulwiki.com/",
+    "icon": "./img/asdb.ico"
+  },
+  {
+    "name": "枝江大学",
+    "link": "https://zhijiang.university/",
+    "icon": "./img/zj.png"
+  },
+  {
+    "name": "AsoulJP",
+    "link": "https://asoul.jp/",
+    "icon": "./img/asjp.ico"
+  },
+  {
+    "name": "B站粉丝牌助手",
+    "link": "https://github.com/XiaoMiku01/bili-live-heart",
+    "icon": "./img/github.png"
+  },
+  {
+    "name": "嘉晚饭",
+    "link": "https://jiawanfan.cn/",
+    "icon": "./img/jwf.jpg"
+  },
+  {
+    "name": "枝江异闻录",
+    "link": "https://h.bilibili.com/156259680",
+    "icon": "./img/asdb.ico"
+  },
+  {
+    "name": "A-SOUL鼓励师",
+    "link": "https://marketplace.visualstudio.com/items?itemName=AS042971.asoul",
+    "icon": "./img/asdb.ico"
+  }
+]
