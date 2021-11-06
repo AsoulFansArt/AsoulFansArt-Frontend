@@ -82,7 +82,7 @@ export default {
   mounted() {
 
     //this.load_params.uid = this.uid
-    console.log(this.load_params)
+    //console.log(this.load_params)
     window.scrollTo(0, 0)
     /*
     this.$notify({
@@ -93,38 +93,42 @@ export default {
     });*/
 
     //计算可视区域能够容纳的最大列数,向下取整
-    let fullWidth = this.$refs.container.clientWidth;
-    if (fullWidth > 1500) {
-      this.imageWidth = 280;
-    } else if (fullWidth < 800) {
-      this.isMobile= true;
-      this.imageWidth = 160;
-    }
-    let maxColNum = Math.floor(fullWidth / (this.imageWidth + this.waterfallImgRight));
-    this.imageWidth = (fullWidth - 24 - this.waterfallImgRight * (maxColNum-1))/(maxColNum)
-    //console.log('可视宽度：' + fullWidth + ',列数：' + maxColNum);
-    if (maxColNum == 0) {
-      maxColNum = 1;
-    }
-    let contentWhith = (this.imageWidth + this.waterfallImgRight) * maxColNum;
-    if ((fullWidth - contentWhith) < (this.imageWidth * 0.8)) {
+    this.$nextTick(()=>{
+      let fullWidth = this.$refs.container.clientWidth;
+      if (fullWidth > 1500) {
+        this.imageWidth = 280;
+      } else if (fullWidth < 800) {
+        this.isMobile= true;
+        this.imageWidth = 160;
+      }
+      let maxColNum = Math.floor(fullWidth / (this.imageWidth + this.waterfallImgRight));
+      this.imageWidth = (fullWidth - 24 - this.waterfallImgRight * (maxColNum-1))/(maxColNum)
+      console.log('可视宽度：' + fullWidth + ',列数：' + maxColNum);
+      if (maxColNum == 0) {
+        maxColNum = 1;
+      }
+      let contentWhith = (this.imageWidth + this.waterfallImgRight) * maxColNum;
+      if ((fullWidth - contentWhith) < (this.imageWidth * 0.8)) {
 
-      contentWhith = (this.imageWidth + this.waterfallImgRight) * maxColNum;
-    }
-    //console.log('计算列数：' + maxColNum);
-    //获取左边距
-    //this.colLeft = (fullWidth - contentWhith) / 2;
-    this.colLeft = 0
-    if (maxColNum == 1) {
-      maxColNum = 2;
-    }
-    this.waterfallImgCol = maxColNum;
-    //console.log('总宽度：' + fullWidth + ',内容宽度：' + contentWhith + '左偏移：' + this.colLeft);
-    //初始化偏移高度数组
-    this.waterfallColHeight = new Array(this.waterfallImgCol);
-    for (let i = 0; i < this.waterfallColHeight.length; i++) {
-      this.waterfallColHeight[i] = 0;
-    }
+        contentWhith = (this.imageWidth + this.waterfallImgRight) * maxColNum;
+      }
+      //console.log('计算列数：' + maxColNum);
+      //获取左边距
+      //this.colLeft = (fullWidth - contentWhith) / 2;
+      this.colLeft = 0
+      if (maxColNum == 1) {
+        maxColNum = 2;
+      }
+      this.waterfallImgCol = maxColNum;
+      //console.log('总宽度：' + fullWidth + ',内容宽度：' + contentWhith + '左偏移：' + this.colLeft);
+      //初始化偏移高度数组
+      this.waterfallColHeight = new Array(this.waterfallImgCol);
+      for (let i = 0; i < this.waterfallColHeight.length; i++) {
+        this.waterfallColHeight[i] = 0;
+      }
+    })
+
+
   },
   methods: {
     getLoadStatus(bool){
@@ -229,7 +233,7 @@ export default {
   },
   computed: {
     disabled() {
-      console.log(this.noMore)
+      //console.log(this.noMore)
       return this.noMore;
     },
   },

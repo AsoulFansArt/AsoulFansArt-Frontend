@@ -23,7 +23,14 @@
               <i class="el-icon-trophy"></i>当前排行榜第{{item.now_rank}}名
             </div>
 
-            <div><span><i class="el-icon-user-solid"></i>{{item.owner_name}}</span></div>
+            <div>
+              <a class="picowner"  @click="jumpSpace($event)" :href="`space/${item.uid}`" target="_blank">
+                  <div style="display: flex; align-items: center" >
+                    <el-image style="width: 20px; height: 20px; border-radius: .75rem;margin-right: 1px;: " :src="`${item.face}@32w_32h_1e_1c.webp`"></el-image>
+                    {{item.name}}
+                  </div>
+              </a>
+            </div>
             <span><i class="el-icon-video-play"></i>{{g._changeBillionToCN(item.stat_view)}}</span>
             <span class="col-data-item"><i class="el-icon-postcard"></i>{{g._changeBillionToCN(item.stat_danmaku)}}</span>
             <span class="col-data-item"><i class="el-icon-time"></i>{{g._timestampToTime(item.pubdate)}}</span>
@@ -54,6 +61,10 @@ export default {
     jumpBili(bvid){
       window.open(`https://www.bilibili.com/video/${bvid}`)
     },
+    jumpSpace(event){
+      event.stopPropagation()
+      console.log(event)
+    },
   },
   props:{
     item:{
@@ -68,11 +79,16 @@ export default {
       type:Boolean,
       description:"是否手机"
     }
-  }
+  },
+
 }
 </script>
 
 <style lang="scss" scoped>
+a{
+  text-decoration: none;
+  color: black;
+}
 .el-card{
   height: 100%;
 }

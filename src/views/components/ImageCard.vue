@@ -7,10 +7,12 @@
     </div>
     <!-- 作者卡片 -->
     <a class="picowner" v-if="owner" :href="`space/${img.uid}`" target="_blank">
-      <div style="display: flex; align-items: center" >
-        <el-image style="width: 16px; height: 16px; border-radius: .75rem;margin-right: 1px;: " :src="`${img.face}@32w_32h_1e_1c.webp`"></el-image>
-        {{img.name}}</div>
-<!--      <i class="el-icon-user-solid"></i>-->
+      <el-tooltip content="点击查看作者主页~" placement="top" effect="light">
+        <div style="display: flex; align-items: center" >
+          <el-image style="width: 24px; height: 24px; border-radius: .75rem;margin-right: 1px;: " :src="`${img.face}@64w_64h_1e_1c.webp`"></el-image>
+          {{img.name}}
+        </div>
+      </el-tooltip>
     </a>
 
     <a class="img-div" :href="`https://t.bilibili.com/${img.dy_id}?tab=2`" target="_blank">
@@ -120,8 +122,9 @@ a{
   right: 10px;
   border-radius: .375rem;
   background: rgba(99,99,99,.5);
-  color: white;
+  color: rgb(247,247,247);
   font-size: x-small;
+  font-weight: 500;
   padding: .35rem .375rem;
 }
 .img-card{

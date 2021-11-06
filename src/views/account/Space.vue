@@ -1,6 +1,7 @@
 <template>
   <div v-if="!isLoad">
-    <div class="account-card">
+    <div class="account-card" >
+
       <a :href="`https://space.bilibili.com/${response.account.uid}`" target="_blank"><el-image class="account-face" :src="response.account.face" ></el-image></a>
       <div style="width: 100%;" class="account-work">
         <div class="work-nums">
@@ -25,33 +26,94 @@
       </div>
     </div>
     <div class="account-sign" v-if="response.account.sign">{{ response.account.sign }}</div>
+    <el-tabs v-model="activeName" @tab-click="handleClick" style="padding: 1rem">
+      <el-tab-pane :label="tab.label" :name="tab.name" v-for="tab in tabs" :key="tab.name">
+        <TabPage :uid="uid" :name="nowName" v-if="tab.name === nowName && tab.num > 0"></TabPage>
+        <div v-else>暂无数据</div>
+      </el-tab-pane>
+    </el-tabs>
+<!--    <el-tabs v-model="activeName" @tab-click="handleClick" style="padding: 1rem">-->
+<!--      <el-tab-pane label="视频" name="first" v-if="response.videos.num > 0">-->
+<!--        <VideoGrid-->
+<!--            v-bind:key="index"-->
+<!--            :uid="uid"-->
+<!--        ></VideoGrid>-->
+<!--      </el-tab-pane>-->
+<!--      <el-tab-pane label="插画" name="second" v-if="response.illusts.num > 0">-->
+<!--        <WaterfallPic :uid="`${uid}`" :type="2" :owner="false" v-if="!isLoad"></WaterfallPic>-->
+<!--      </el-tab-pane>-->
+<!--      <el-tab-pane label="专栏" name="third" v-if="response.articles.num > 0">专栏</el-tab-pane>-->
+<!--    </el-tabs>-->
 
-    <WaterfallPic :uid="`${uid}`" :type="2" :owner="false" v-if="!isLoad"></WaterfallPic>
   </div>
 </template>
 
 <script>
-import WaterfallPic from "../WaterfallPic";
 import Api from '../../util/http.js'
+
+import TabPage from "../components/TabPage";
 
 export default {
   name: "space",
   components:{
-    WaterfallPic
+    TabPage
   },
   data(){
     return{
       uid:"",
       response:{},
-      isLoad:true
+      isLoad:true,
+      activeName:"videos",
+      nowName: "videos",
+      videosList:[],
+      tabs:[
+        {
+          name:"videos",
+          label:"视频",
+          num:0
+        },
+        {
+          name:"illusts",
+          label:"插画",
+          num:0
+        },
+        {
+          name:"articles",
+          label:"专栏",
+          num:0
+        }
+      ]
+    }
+  },
+  methods:{
+    handleClick(tab){
+      //console.log(tab)
+      //console.log(tab.props.name)
+      this.nowName=tab.props.name
     }
   },
   mounted() {
     this.uid = this.$route.params.uid
     Api._getAccountInfo({uid:this.uid, p:10}).then((res)=>{
-      console.log(res.data)
+
       this.response = res.data
       this.isLoad = false
+      let workTypeList = [this.response.videos.num, this.response.illusts.num, this.response.articles.num]
+      for (let [workType,num] of workTypeList.entries()){
+        this.tabs[workType].num = num
+        if (workType > 0){
+
+          if (workTypeList[workType-1] < num){
+            //console.log(workTypeList[workType-1], num,this.tabs[workType].name)
+            this.nowName=this.tabs[workType].name
+            this.activeName = this.tabs[workType].name
+          }
+        }
+
+        //console.log(workType)
+      }
+
+
     })
   }
 }

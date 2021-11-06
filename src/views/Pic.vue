@@ -24,19 +24,19 @@ import {ElMessage} from "element-plus";
 
 import Condition from "./components/Condition";
 import Waterfall from "./components/Waterfall";
-import WaterfallPic from "./WaterfallPic";
 
 export default {
   name: 'v-waterfall',
   components: {
     Condition,
     Waterfall,
-    WaterfallPic
   },
   data() {
     return {
       maxHeight: '900',
       isload: false,
+      //作品信息高度
+      detailHeight:0,
       //存放计算好的数据
       waterfallList: [],
       //每一列的宽度
@@ -169,6 +169,7 @@ export default {
         let aImg = new Image();
         //图片渲染列表，先把高宽和占位颜色赋值直接push到waterfallList，图片的实际url等图片加载上了在赋值
         imgData.height = this.imageWidth / moreList[i].img_width * moreList[i].img_height;
+        imgData.height = imgData.height + this.detailHeight
         //console.log('第' + i + '张图片的高度是：'+imgData.height );
         imgData.id = moreList[i].id;
         //获取随机占位背景色
@@ -180,7 +181,7 @@ export default {
          }*/
         this.waterfallList = [...this.waterfallList,imgData];
         let webp_w = Math.round(this.imageWidth * 1.5) ;
-        let webp_h =Math.round(imgData.height * 1.5) ;
+        let webp_h =Math.round((imgData.height-this.detailHeight) * 1.5) ;
 
         if (webp_w < 200){
           webp_w = webp_w * 2
