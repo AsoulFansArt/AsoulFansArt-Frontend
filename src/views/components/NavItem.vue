@@ -1,7 +1,7 @@
 <template>
 <div>
   <div style="text-align: center">
-    <el-image src="./img/icons/android-icon-96x96.png"></el-image>
+    <el-image src="/img/icons/android-icon-96x96.png"></el-image>
   </div>
   <ul class="ul-menu" >
     <li class="menu-item">

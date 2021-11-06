@@ -153,6 +153,14 @@ const _getArticleList = (params) =>{
     })
 }
 
+const _getAccountInfo = (params) => {
+    return Axios({
+        url:hosts +"/account/info",
+        method: "get",
+        params:params
+    })
+}
+
 export default {
     _getBV,
     _getVideoPart,
@@ -169,7 +177,8 @@ export default {
     _getArticleSorts,
     _submitArticle,
     _getMeme,
-    _getArticleList
+    _getArticleList,
+    _getAccountInfo
 }
 
 

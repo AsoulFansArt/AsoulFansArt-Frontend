@@ -1,4 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
+import Space from "../views/account/Space";
 
 const routes = [
   {
@@ -43,11 +44,17 @@ const routes = [
     name:'New',
     component:() => import('../views/New')
   },
+  {
+    path:'/space/:uid',
+    component:Space,
+    props:true
+  }
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
+  // 4. 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
+  history: createWebHistory(),
+  routes, // `routes: routes` 的缩写
 })
 
 export default router

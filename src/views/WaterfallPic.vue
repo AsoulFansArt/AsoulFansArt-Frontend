@@ -1,18 +1,13 @@
 <template>
-  <div class="header">
-    <Condition type="pic" @changePic="getResult" @changeLoad="getLoadStatus"></Condition>
-  </div>
-
-
   <el-container :style="{height:maxHeight + 'px'}">
     <div class="container-fluid" ref="container">
-        <div class="v-waterfall-content"
-            v-infinite-scroll="getMoreData"
-             infinite-scroll-disabled="disabled"
-             infinite-scroll-distance="10"
-        >
-          <Waterfall class="relative" :isload="isload" :waterfallList="waterfallList" :imageWidth="imageWidth"/>
-        </div>
+      <div class="v-waterfall-content"
+           v-infinite-scroll="getMoreData"
+           infinite-scroll-disabled="disabled"
+           infinite-scroll-distance="10"
+      >
+        <Waterfall :owner="owner" class="relative" :isload="isload" :waterfallList="waterfallList" :imageWidth="imageWidth"/>
+      </div>
       <div v-if="isload" style="text-align: center"><i class="el-icon-loading"></i></div>
     </div>
   </el-container>
@@ -21,17 +16,28 @@
 <script>
 import Api from '../util/http.js'
 import {ElMessage} from "element-plus";
-
-import Condition from "./components/Condition";
 import Waterfall from "./components/Waterfall";
-import WaterfallPic from "./WaterfallPic";
 
 export default {
   name: 'v-waterfall',
   components: {
-    Condition,
     Waterfall,
-    WaterfallPic
+  },
+  props:{
+    uid:{
+      type:String,
+      description:"用户UID",
+      default:"0",
+    },
+    type:{
+      type:Number,
+      default:1
+    },
+    owner:{
+      type:Boolean,
+      description: "显示作者名字",
+      default: true
+    }
   },
   data() {
     return {
@@ -65,13 +71,18 @@ export default {
         part: 0,
         rank: 0,
         ctime:0,
+        uid:0
       },
     };
   },
   created() {
+    this.load_params.uid = this.uid
     this.getMoreData();
   },
   mounted() {
+
+    //this.load_params.uid = this.uid
+    console.log(this.load_params)
     window.scrollTo(0, 0)
     /*
     this.$notify({
@@ -133,24 +144,25 @@ export default {
       this.load_params.page++
       Api._getPic(
           this.load_params
-        ).then((res) => {
-          this.isload = false
-          if (res.data.message === "没有更多数据"){
-            //alert(res.data.message)
-            ElMessage.warning({
-              message: '没有更多了......',
-              type: 'warning'
-            });
-            return
-          }
-          if (res.data[0].pic_url.length == 0) {
-            this.noMore = true;
-          } else {
-            this.imgPreloading(res.data);
-            this.noMore = false;
-          }
+      ).then((res) => {
+        this.isload = false
+        if (res.data.message === "没有更多数据"){
+          //alert(res.data.message)
+          ElMessage.warning({
+            message: '没有更多了......',
+            type: 'warning'
+          });
+          this.noMore = true;
+          return
+        }
+        if (res.data[0].pic_url.length == 0) {
+          this.noMore = true;
+        } else {
+          this.imgPreloading(res.data);
+          this.noMore = false;
+        }
 
-        })
+      })
 
 
     },
@@ -188,7 +200,7 @@ export default {
         }
         let suffix = `@${webp_w}w_${webp_h}h_1e_1c.webp`
         aImg.onload = () => {
-            aImg.src =  `${moreList[i].img_src}${suffix}`;
+          aImg.src =  `${moreList[i].img_src}${suffix}`;
         };
         this.rankImg(imgData);
         imgData.src =  `${moreList[i].img_src}${suffix}`;
@@ -217,7 +229,8 @@ export default {
   },
   computed: {
     disabled() {
-      return this.noMore||this.isload;
+      console.log(this.noMore)
+      return this.noMore;
     },
   },
 
