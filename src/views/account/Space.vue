@@ -32,25 +32,12 @@
         <div v-else>暂无数据</div>
       </el-tab-pane>
     </el-tabs>
-<!--    <el-tabs v-model="activeName" @tab-click="handleClick" style="padding: 1rem">-->
-<!--      <el-tab-pane label="视频" name="first" v-if="response.videos.num > 0">-->
-<!--        <VideoGrid-->
-<!--            v-bind:key="index"-->
-<!--            :uid="uid"-->
-<!--        ></VideoGrid>-->
-<!--      </el-tab-pane>-->
-<!--      <el-tab-pane label="插画" name="second" v-if="response.illusts.num > 0">-->
-<!--        <WaterfallPic :uid="`${uid}`" :type="2" :owner="false" v-if="!isLoad"></WaterfallPic>-->
-<!--      </el-tab-pane>-->
-<!--      <el-tab-pane label="专栏" name="third" v-if="response.articles.num > 0">专栏</el-tab-pane>-->
-<!--    </el-tabs>-->
-
   </div>
 </template>
 
 <script>
 import Api from '../../util/http.js'
-
+import '../../assets/scss/account.scss'
 import TabPage from "../components/TabPage";
 
 export default {
@@ -120,67 +107,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.account-card{
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  box-shadow: 0 0 8px rgba(0,0,0,.175)!important;
-  margin: 1rem;
-  padding: 1.5rem;
-  .account-face{
-    width: 168px;
-    height: 168px;
-    border-radius: 50%;
-  }
-  .account-work{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    justify-items: center;
-    .work-nums{
-      display: flex;
-      flex-flow: column;
-      align-items: center;
-      margin-right: 10px;
-      padding: 1rem;
-      font-size: medium;
-      font-weight: bolder;
-    }
-  }
-  .account-name{
-    width: 100%;
-    text-align: center;
-    font-size: larger;
-    font-weight: bold;
-    line-height: 1.5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.25rem;
-  }
-  .account-level{
-    font-size: xx-small;
-    background: #FC966E;
-    border-radius: .45rem;
-    padding: 2px  8px;
-    color: white;
-    margin-right: 4px;
-  }
-  .account-uid{
-    background: #42b983;
-    color: white;
-    padding: 2px 8px;
-    border-radius: .45rem;
-    font-size: xx-small;
-  }
 
-}
-.account-sign{
-  font-weight: 400;
-  line-height: 1.5;
-  box-shadow: 0 0 8px rgba(0,0,0,.175)!important;
-  margin: 1rem;
-  padding: 1.5rem;
-}
 
 </style>

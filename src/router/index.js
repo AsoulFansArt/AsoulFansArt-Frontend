@@ -1,5 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import Space from "../views/account/Space";
+import Account from "../views/account/Account";
 
 const routes = [
   {
@@ -48,6 +49,11 @@ const routes = [
     path:'/space/:uid',
     component:Space,
     props:true
+  },
+  {
+    path: '/account/:uid',
+    component:Account,
+    props: true
   }
 ]
 

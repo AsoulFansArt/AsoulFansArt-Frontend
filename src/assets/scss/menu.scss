@@ -1,0 +1,55 @@
+a{
+  text-decoration: none;
+  color: black;
+  transition: 0.5s;
+}
+a:hover{
+  color:black;
+}
+.icon-menu{
+
+  display: flex;
+  justify-content: center;
+
+  flex-wrap: wrap;
+  pointer-events: auto;
+  border:-1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  :hover {
+    border:-1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    background: rgba(245, 245, 245, 0.88);
+  }
+
+
+}
+
+
+
+.icon-card{
+  width: 7.5rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  :hover{
+    border: none;
+    border-radius: 0;
+  }
+}
+
+.icon-card-no-hover{
+  width: 7.5rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  pointer-events: none;
+}
+
+
+
+
+.icon-desc{
+  font-size: x-small;
+}

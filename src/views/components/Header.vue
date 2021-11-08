@@ -17,8 +17,15 @@
         alt=""
         :style="{width: '16rem'}"
     >
-
+  <div class="user-avatar">
+    <el-avatar
+        @click="loginMessageBox"
+        :src="`https:${avatarList[getRandom(0,4)]}`"></el-avatar>
+  </div>
 </div>
+
+
+
 <div class="aside" style="overflow: auto" ref="aside">
   <el-drawer
       v-model="isCollapse"
@@ -41,12 +48,11 @@
 <script>
 import g from '../../util/general'
 import NavItem from "./NavItem";
-import {useRoute} from 'vue-router'
 
 export default {
   name: "Header",
   components:{
-    NavItem
+    NavItem,
   },
   data(){
     return{
@@ -56,9 +62,40 @@ export default {
       direction:'ltr',
       isCollapse:false,
       isShow:true,
+      avatarList:[
+          "//i0.hdslb.com/bfs/album/e60150aa8dc26c9ac2845c1529a49ac9a716f05d.jpg@64w_64h_1e_1c.webp",
+          "//i0.hdslb.com/bfs/album/3645a6c37c00a3e2e3cec9653d487d63025307a0.jpg@64w_64h_1e_1c.webp",
+          "//i0.hdslb.com/bfs/album/889abf8b47d0587cc20061a572163592ed4d5aae.jpg@64w_64h_1e_1c.webp",
+          "//i0.hdslb.com/bfs/album/5a057f6ae3767b8f2fe9e650f08a5cc02e5a74c6.jpg@64w_64h_1e_1c.webp",
+          "//i0.hdslb.com/bfs/album/0dd69527fe1873bd48bcc245ec81a709431cd73d.jpg@64w_64h_1e_1c.webp"
+      ]
     }
   },
   methods:{
+    getRandom(min, max){
+      return (Math.random() * (max - min + 1) | 0) + min
+    },
+    loginMessageBox(){
+      this.$prompt('请输入登录密钥', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        inputPattern:
+          /^[0-9a-zA-Z_]+$/,
+        inputErrorMessage: '密钥格式不正确',
+      })
+          .then(({ value }) => {
+            this.$message({
+              type: 'success',
+              message: '登录成功: ' + value,
+            })
+          })
+          .catch(() => {
+            this.$message({
+              type: 'info',
+              message: '取消输入',
+            })
+          })
+    },
     onSelect(link){
       window.open(link)
     },
@@ -94,6 +131,16 @@ export default {
   width: 100%;
   margin-bottom: 5px;
   background: #fff;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 0 8px rgba(0,0,0,.175)!important;
+  .user-avatar{
+    position: absolute;
+    right: 2rem;
+    top:6px;
+  }
 }
 .head-menu{
   padding: .5rem;
