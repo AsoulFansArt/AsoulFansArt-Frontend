@@ -26,11 +26,11 @@
     <div class="account-sign">测试~</div>
     <div class="account-card">
       <div class="icon-menu" ref="menuContainer">
-        <div class="icon-card" href="/video" ref="menuIcon">
+        <div class="icon-card" ref="menuIcon" v-for="tool in tools" :key="tool.id">
           <el-icon :size="32" style="margin: 9px">
-            <Star />
+            <component :is="tool.component"></component>
           </el-icon>
-          <div class="icon-desc">我的收藏</div>
+          <div class="icon-desc">{{ tool.name }}</div>
         </div>
       </div>
 
@@ -41,12 +41,40 @@
 <script>
 import '../../assets/scss/account.scss'
 import '../../assets/scss/menu.scss'
-import { Star } from '@element-plus/icons'
+import { Star,Timer,Link,User } from '@element-plus/icons'
 export default {
   name: "Account",
-  components:{
-    Star,
-  },
+  data(){
+    return{
+      currentTabComponent:Star,
+      tools:[
+        {
+          id:1,
+          component:Star,
+          name: "我的收藏",
+          link: "/"
+        },
+        {
+          id:2,
+          component:Timer,
+          name: "历史记录",
+          link: "/"
+        },
+        {
+          id:3,
+          component:Link,
+          name: "关联B站账号",
+          link: "/"
+        },
+        {
+          id:4,
+          component:User,
+          name: "个人信息",
+          link: "/"
+        },
+      ]
+    }
+  }
 }
 </script>
 

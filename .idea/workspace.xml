@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b411b24-9c57-49e5-aa8a-d76076f9f11e" name="更改" comment="更改">
-      <change afterPath="$PROJECT_DIR$/src/assets/scss/account.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/scss/menu.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/account/Account.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/account/Space.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/account/Space.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/Header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/account/Account.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/account/Account.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,6 +108,7 @@
       <workItem from="1636104814732" duration="14812000" />
       <workItem from="1636163548471" duration="15291000" />
       <workItem from="1636337242080" duration="3753000" />
+      <workItem from="1636418623528" duration="2661000" />
     </task>
     <servers />
   </component>
