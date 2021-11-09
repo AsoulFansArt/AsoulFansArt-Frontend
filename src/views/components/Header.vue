@@ -19,8 +19,9 @@
     >
   <div class="user-avatar">
     <el-avatar
+        v-once
         @click="loginMessageBox"
-        :src="`https:${avatarList[getRandom(0,4)]}`"></el-avatar>
+        :src="`https:${avatarList[randomFaceIndex]}`"></el-avatar>
   </div>
 </div>
 
@@ -56,6 +57,7 @@ export default {
   },
   data(){
     return{
+      randomFaceIndex: this.getRandom(0,4),
       scrollbarHeight:0,
       g:g,
       drawer: false,
@@ -85,8 +87,8 @@ export default {
       })
           .then(({ value }) => {
             this.$message({
-              type: 'success',
-              message: '登录成功: ' + value,
+              type: 'error',
+              message: 'error',
             })
           })
           .catch(() => {

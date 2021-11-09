@@ -25,9 +25,7 @@ export default {
 
   },
   mounted() {
-    Api._tempLogin().then((res)=>{
-      console.log(res.data)
-    })
+    Api._tempLogin()
 
     let deferredPrompt;
     const addBtn = document.querySelector('.add-button');

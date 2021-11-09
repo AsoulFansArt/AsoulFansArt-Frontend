@@ -41,11 +41,6 @@ const routes = [
     component:() => import('../views/Article')
   },
   {
-    path:'/new',
-    name:'New',
-    component:() => import('../views/New')
-  },
-  {
     path:'/space/:uid',
     component:Space,
     props:true
