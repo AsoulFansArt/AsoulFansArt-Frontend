@@ -72,10 +72,8 @@ export default {
       Api._tempView({
         work_type: 1,
         work_id: dyID
-      }).then((res)=>{
-        console.log(res.data)
       })
-      alert(dyID)
+      // alert(dyID)
 
     },
   },
