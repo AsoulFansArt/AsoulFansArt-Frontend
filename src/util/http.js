@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 let hosts = 'https://api.asoul.cloud:8000'
-
+Axios.defaults.withCredentials = true
 Axios.defaults.headers = {
     'Cache-Control': 'no-cache',
     'Pragma': 'no-cache',
@@ -161,6 +161,24 @@ const _getAccountInfo = (params) => {
     })
 }
 
+
+const _tempLogin = (params) => {
+    return Axios({
+        url:hosts +"/account/temp/login",
+        method: "get",
+        params:params
+    })
+}
+
+
+const _tempView = (params) => {
+    return Axios({
+        url:hosts +"/account/temp/view",
+        method: "post",
+        data:params
+    })
+}
+
 export default {
     _getBV,
     _getVideoPart,
@@ -178,7 +196,9 @@ export default {
     _submitArticle,
     _getMeme,
     _getArticleList,
-    _getAccountInfo
+    _getAccountInfo,
+    _tempLogin,
+    _tempView
 }
 
 

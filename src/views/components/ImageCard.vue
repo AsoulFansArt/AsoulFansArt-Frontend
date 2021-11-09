@@ -15,7 +15,7 @@
       </el-tooltip>
     </a>
 
-    <a class="img-div" :href="`https://t.bilibili.com/${img.dy_id}?tab=2`" target="_blank">
+    <a class="img-div" :href="`https://t.bilibili.com/${img.dy_id}?tab=2`" @click="jumpBili(img.dy_id)" target="_blank">
       <!-- 图片懒加载 -->
 
       <el-image
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import Api from '../../util/http'
 
 export default {
   name: "ImageCard",
@@ -67,8 +68,15 @@ export default {
     }
   },
   methods:{
-    jumpBili(item){
-      window.open(`https://t.bilibili.com/${item.dy_id}?tab=2`)
+    jumpBili(dyID){
+      Api._tempView({
+        work_type: 1,
+        work_id: dyID
+      }).then((res)=>{
+        console.log(res.data)
+      })
+      alert(dyID)
+
     },
   },
   data() {
