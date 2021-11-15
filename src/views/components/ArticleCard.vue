@@ -61,6 +61,7 @@ li{
   align-items: center;
   font-size: smaller;
   .article-mid {
+    margin-right: 0.7em !important;
     i {
       margin-right: 0.3em;
     }
