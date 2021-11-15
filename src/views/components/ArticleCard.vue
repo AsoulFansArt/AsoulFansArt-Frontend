@@ -1,7 +1,7 @@
 <template>
 <div>
   <ul>
-    <li v-for="item in articleList" :key="item">
+    <li class="article-item" v-for="item in articleList" :key="item">
       <div class="article-title"><a :href="`https://www.bilibili.com/read/${item.cvid}`" target="_blank">{{item.title}}</a></div>
 <!--      <div class="article-summary"><span v-for="i in 100" :key="i">{{item.remarks}}</span></div>-->
       <div class="article-info">
@@ -37,9 +37,12 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 li{
   list-style: none;
+}
+.article-item {
+  margin-left: 0.7em;
 }
 .article-title{
   font-weight: bold;
@@ -57,5 +60,10 @@ li{
   display: flex;
   align-items: center;
   font-size: smaller;
+  .article-mid {
+    i {
+      margin-right: 0.3em;
+    }
+  }
 }
 </style>

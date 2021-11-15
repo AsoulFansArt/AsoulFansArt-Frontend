@@ -11,12 +11,14 @@
       </svg>
     </button>
 
-    <img
+    <a href="/">
+      <img
         class="head-menu"
         src="../../../public/logo.png"
         alt=""
         :style="{width: '16rem'}"
-    >
+      >
+    </a>
   <div class="user-avatar">
     <el-avatar
         v-once

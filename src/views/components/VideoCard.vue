@@ -31,16 +31,16 @@
                   </div>
               </a>
             </div>
-            <span><i class="el-icon-video-play"></i>{{g._changeBillionToCN(item.stat_view)}}</span>
+            <span class="col-data-item"><i class="el-icon-video-play"></i>{{g._changeBillionToCN(item.stat_view)}}</span>
             <span class="col-data-item"><i class="el-icon-postcard"></i>{{g._changeBillionToCN(item.stat_danmaku)}}</span>
             <span class="col-data-item"><i class="el-icon-time"></i>{{g._timestampToTime(item.pubdate)}}</span>
             <span v-if="!isMobile">
-                    <span class="col-data-item"><i class="iconfont icon-0_like1" style="font-size: xx-small;"></i>{{g._changeBillionToCN(item.stat_like)}} </span>
-                    <span class="col-data-item"><i class="el-icon-coin"></i>{{g._changeBillionToCN(item.stat_coin)}}</span>
-                    <span class="col-data-item"><i class="el-icon-star-off"></i>{{g._changeBillionToCN(item.stat_favorite)}}</span>
-                    <span class="col-data-item"><i class="el-icon-chat-line-square"></i>{{g._changeBillionToCN(item.stat_reply)}}</span>
-                    <span class="col-data-item"><i class="el-icon-share"></i>{{g._changeBillionToCN(item.stat_share)}}</span>
-                  </span>
+              <span class="col-data-item"><i class="iconfont icon-0_like1" style="font-size: xx-small;"></i>{{g._changeBillionToCN(item.stat_like)}} </span>
+              <span class="col-data-item"><i class="el-icon-coin"></i>{{g._changeBillionToCN(item.stat_coin)}}</span>
+              <span class="col-data-item"><i class="el-icon-star-off"></i>{{g._changeBillionToCN(item.stat_favorite)}}</span>
+              <span class="col-data-item"><i class="el-icon-chat-line-square"></i>{{g._changeBillionToCN(item.stat_reply)}}</span>
+              <span class="col-data-item"><i class="el-icon-share"></i>{{g._changeBillionToCN(item.stat_share)}}</span>
+            </span>
           </div>
         </div>
       </div>
@@ -107,6 +107,7 @@ a{
     position:relative;
     width:60%;
     height: 100%;
+    margin-left: 0.5em;
   .col-title{
     font-size: smaller;
     flex:1;
@@ -118,7 +119,10 @@ a{
     font-size: x-small;
     bottom: 0;
     .col-data-item{
-      margin-left: 5px;
+      margin-right: 1em;
+      i {
+        margin-right: 0.3em;
+      }
     }
   }
 }
