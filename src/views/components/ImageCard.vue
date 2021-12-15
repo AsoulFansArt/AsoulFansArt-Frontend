@@ -1,6 +1,10 @@
 <template>
 
   <div class="img-card">
+    <!-- 排名卡片 -->
+    <div v-if="showRank" class="img-rank" :class="[imgIndex === 1?'img-rank-gold':imgIndex === 2?'img-rank-silver':imgIndex === 3?'img-rank-copper':'img-rank-normal']" >
+      <div size="10" style="display: flex;justify-content: center">{{ imgIndex }}</div>
+    </div>
     <!-- 图片数量卡片 -->
     <div class="imgnums" v-if="img.pic_url.length>1">
       <div><i class="el-icon-copy-document"></i> {{img.pic_url.length}}</div>
@@ -65,6 +69,15 @@ export default {
       type:Boolean,
       description:"显示作者",
       default:true,
+    },
+    imgIndex:{
+      type:Number,
+      description:"图片索引"
+    },
+    showRank:{
+      type:Boolean,
+      description:"图片索引",
+      default:false,
     }
   },
   methods:{
@@ -109,6 +122,32 @@ a{
   opacity: 0;
   bottom: 50%;
   transform: translateY(50%);
+}
+.img-rank{
+  position: absolute;
+  z-index: 90;
+  top: 8px;
+  left: 10px;
+  border-radius: 50%;
+  color: white;
+  font-size: 16px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.img-rank-normal{
+  background: rgba(99,99,99,.5);
+}
+.img-rank-gold{
+  background: rgba(255,215,0,.9);
+}
+.img-rank-silver{
+  background: rgba(192,192,192,.9);
+}
+.img-rank-copper{
+  background: rgba(184,115,51,.9);
 }
 .imgnums{
   position: absolute;

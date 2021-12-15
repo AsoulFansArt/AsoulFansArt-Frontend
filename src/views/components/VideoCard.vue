@@ -25,22 +25,22 @@
 
             <div>
               <a class="picowner"  @click="jumpSpace($event)" :href="`space/${item.uid}`" target="_blank">
-                  <div style="display: flex; align-items: center" >
-                    <el-image style="width: 20px; height: 20px; border-radius: .75rem;margin-right: 1px;: " :src="`${item.face}@32w_32h_1e_1c.webp`"></el-image>
-                    {{item.name}}
-                  </div>
+                <div style="display: flex; align-items: center" >
+                  <el-image style="width: 20px; height: 20px; border-radius: .75rem;margin-right: 1px;: " :src="`${item.face}@32w_32h_1e_1c.webp`"></el-image>
+                  {{item.name}}
+                </div>
               </a>
             </div>
-            <span><i class="el-icon-video-play"></i>{{g._changeBillionToCN(item.stat_view)}}</span>
+            <span class="col-data-item"><i class="el-icon-video-play"></i>{{g._changeBillionToCN(item.stat_view)}}</span>
             <span class="col-data-item"><i class="el-icon-postcard"></i>{{g._changeBillionToCN(item.stat_danmaku)}}</span>
             <span class="col-data-item"><i class="el-icon-time"></i>{{g._timestampToTime(item.pubdate)}}</span>
             <span v-if="!isMobile">
-                    <span class="col-data-item"><i class="iconfont icon-0_like1" style="font-size: xx-small;"></i>{{g._changeBillionToCN(item.stat_like)}} </span>
-                    <span class="col-data-item"><i class="el-icon-coin"></i>{{g._changeBillionToCN(item.stat_coin)}}</span>
-                    <span class="col-data-item"><i class="el-icon-star-off"></i>{{g._changeBillionToCN(item.stat_favorite)}}</span>
-                    <span class="col-data-item"><i class="el-icon-chat-line-square"></i>{{g._changeBillionToCN(item.stat_reply)}}</span>
-                    <span class="col-data-item"><i class="el-icon-share"></i>{{g._changeBillionToCN(item.stat_share)}}</span>
-                  </span>
+              <span class="col-data-item"><i class="iconfont icon-0_like1" style="font-size: xx-small;"></i>{{g._changeBillionToCN(item.stat_like)}} </span>
+              <span class="col-data-item"><i class="el-icon-coin"></i>{{g._changeBillionToCN(item.stat_coin)}}</span>
+              <span class="col-data-item"><i class="el-icon-star-off"></i>{{g._changeBillionToCN(item.stat_favorite)}}</span>
+              <span class="col-data-item"><i class="el-icon-chat-line-square"></i>{{g._changeBillionToCN(item.stat_reply)}}</span>
+              <span class="col-data-item"><i class="el-icon-share"></i>{{g._changeBillionToCN(item.stat_share)}}</span>
+            </span>
           </div>
         </div>
       </div>
@@ -107,28 +107,32 @@ a{
     position:relative;
     width:60%;
     height: 100%;
-  .col-title{
-    font-size: smaller;
-    flex:1;
-    overflow: hidden;
-    height: 50%;
-  }
-  .col-data{
-    position:absolute;
-    font-size: x-small;
-    bottom: 0;
-    .col-data-item{
-      margin-left: 5px;
+    margin-left: 0.5em;
+    .col-title{
+      font-size: smaller;
+      flex:1;
+      overflow: hidden;
+      height: 50%;
+    }
+    .col-data{
+      position:absolute;
+      font-size: x-small;
+      bottom: 0;
+      .col-data-item{
+        margin-right: 1em;
+        i {
+          margin-right: 0.3em;
+        }
+      }
     }
   }
-}
-.col-score{
-  text-align: center;
-  width: 5rem;
-  margin-top: 1rem;
-  position: absolute;
-  right: 1rem;
-}
+  .col-score{
+    text-align: center;
+    width: 5rem;
+    margin-top: 1rem;
+    position: absolute;
+    right: 1rem;
+  }
 }
 
 

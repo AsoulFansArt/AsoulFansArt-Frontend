@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import SubmitPic from "./SubmitPic";
 import SubmitArticle from "./SubmitArticle";
 

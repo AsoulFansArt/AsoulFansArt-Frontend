@@ -6,7 +6,7 @@
            infinite-scroll-disabled="disabled"
            infinite-scroll-distance="10"
       >
-        <Waterfall :owner="owner" class="relative" :isload="isload" :waterfallList="waterfallList" :imageWidth="imageWidth"/>
+        <Waterfall :showRank="showRank" :owner="owner" class="relative" :isload="isload" :waterfallList="waterfallList" :imageWidth="imageWidth"/>
       </div>
       <div v-if="isload" style="text-align: center"><i class="el-icon-loading"></i></div>
     </div>
@@ -37,6 +37,11 @@ export default {
       type:Boolean,
       description: "显示作者名字",
       default: true
+    },
+    showRank:{
+      type:Boolean,
+      description:"图片索引",
+      default:false,
     }
   },
   data() {

@@ -179,6 +179,14 @@ const _tempView = (params) => {
     })
 }
 
+const _getRank = (params) => {
+    return Axios({
+        url:hosts +"/pic/getRank",
+        method: "get",
+        params:params
+    })
+}
+
 export default {
     _getBV,
     _getVideoPart,
@@ -198,7 +206,8 @@ export default {
     _getArticleList,
     _getAccountInfo,
     _tempLogin,
-    _tempView
+    _tempView,
+    _getRank,
 }
 
 

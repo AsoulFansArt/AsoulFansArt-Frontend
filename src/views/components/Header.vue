@@ -10,17 +10,18 @@
            18H19C19.5523 18 20 17.5523 20 17C20 16.4477 19.5523 16 19 16H5Z"></path>
       </svg>
     </button>
-
-    <img
-        class="head-menu"
-        src="../../../public/logo.png"
-        alt=""
-        :style="{width: '16rem'}"
-    >
+    <a href="/">
+      <img
+          class="head-menu"
+          src="../../../public/logo.png"
+          alt=""
+          :style="{width: '16rem'}"
+      >
+    </a>
   <div class="user-avatar">
     <el-avatar
         @click="loginMessageBox"
-        :src="`https:${avatarList[getRandom(0,4)]}`"></el-avatar>
+        :src="`https:${avatarList[getRandom()]}`"></el-avatar>
   </div>
 </div>
 
@@ -72,8 +73,9 @@ export default {
     }
   },
   methods:{
-    getRandom(min, max){
-      return (Math.random() * (max - min + 1) | 0) + min
+    getRandom(){
+      let day = new Date().getDay();
+      return Math.ceil(day%5)
     },
     loginMessageBox(){
       this.$prompt('请输入登录密钥', '提示', {

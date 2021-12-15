@@ -2,10 +2,12 @@
   <div class="v-waterfall">
 
     <ImageCard
+        :showRank="showRank"
         :mode="mode"
         :owner="owner"
-        v-for="img in waterfallList"
+        v-for="(img,imgIndex) in waterfallList"
         :img="img"
+        :imgIndex="imgIndex + 1"
         :key="img.key"
         :imageWidth = "imageWidth"
         class="v-waterfall-item"
@@ -53,6 +55,11 @@ export default {
       type:Boolean,
       description:"显示作者",
       default:true,
+    },
+    showRank:{
+      type:Boolean,
+      description:"图片索引",
+      default:false,
     }
   },
   components:{

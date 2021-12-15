@@ -4,14 +4,22 @@
   </div>
 
 
+  <div>
+    <el-tabs v-model="activeName" @tab-click="handleTabsClick" style="margin: 0 1rem">
+      <el-tab-pane label="默认排序" name="first"></el-tab-pane>
+      <el-tab-pane label="最受欢迎" name="asfa_score"></el-tab-pane>
+      <el-tab-pane label="最多点击" name="asfa_view"></el-tab-pane>
+    </el-tabs>
+  </div>
   <el-container :style="{height:maxHeight + 'px'}">
+
     <div class="container-fluid" ref="container">
         <div class="v-waterfall-content"
             v-infinite-scroll="getMoreData"
              infinite-scroll-disabled="disabled"
              infinite-scroll-distance="10"
         >
-          <Waterfall class="relative" :isload="isload" :waterfallList="waterfallList" :imageWidth="imageWidth"/>
+          <Waterfall :showRank="showRank" class="relative" :isload="isload" :waterfallList="waterfallList" :imageWidth="imageWidth"/>
         </div>
       <div v-if="isload" style="text-align: center"><i class="el-icon-loading"></i></div>
     </div>
@@ -33,6 +41,9 @@ export default {
   },
   data() {
     return {
+      activeName:"first",
+      getMoreFunc:{"first":Api._getPic, "asfa_score": Api._getRank, "asfa_view": Api._getRank},
+      getMoreParams:{"first": this.load_params},
       maxHeight: '900',
       isload: false,
       //作品信息高度
@@ -52,7 +63,7 @@ export default {
       //整体左偏移量，左右相同
       colLeft: 0,
       currentPage: 0,
-
+      showRank:false,
       //是否还有数据
       noMore: false,
       //搜索内容
@@ -66,6 +77,7 @@ export default {
         rank: 0,
         ctime:0,
       },
+
     };
   },
   created() {
@@ -73,14 +85,6 @@ export default {
   },
   mounted() {
     window.scrollTo(0, 0)
-    /*
-    this.$notify({
-      title: '提示',
-      dangerouslyUseHTMLString: true,
-      message:  '<p>图片来源bilibili.com</p>图片右下角为原作者B站ID',
-      duration:2000,
-    });*/
-
     //计算可视区域能够容纳的最大列数,向下取整
     let fullWidth = this.$refs.container.clientWidth;
     if (fullWidth > 1500) {
@@ -116,10 +120,28 @@ export default {
     }
   },
   methods: {
+    handleTabsClick(){
+      if (this.activeName==="first"){
+        this.showRank = false
+      }else{
+        this.showRank = true
+      }
+      this.waterfallList= []
+
+      this.load_params.page = 0
+      this.waterfallColHeight = new Array(this.waterfallImgCol);
+      for (let i = 0; i < this.waterfallColHeight.length; i++) {
+        this.waterfallColHeight[i] = 0;
+      }
+      this.getMoreData()
+      //alert(this.activeName)
+    },
     getLoadStatus(bool){
       this.isload = bool
     },
     getResult(data){
+      this.activeName = "first"
+      this.showRank = false
       this.waterfallList = [];
       this.currentPage = 1;
       for (let i = 0; i < this.waterfallColHeight.length; i++) {
@@ -131,8 +153,18 @@ export default {
     getMoreData() {
       this.isload = true
       this.load_params.page++
-      Api._getPic(
-          this.load_params
+      let load_params;
+      if (this.activeName === "first")
+      {
+        load_params = this.load_params;
+      }else{
+        load_params = {
+          "page": this.load_params.page,
+          "order": this.activeName
+        }
+      }
+      this.getMoreFunc[this.activeName](
+          load_params
         ).then((res) => {
           this.isload = false
           if (res.data.message === "没有更多数据"){
