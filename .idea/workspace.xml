@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b411b24-9c57-49e5-aa8a-d76076f9f11e" name="更改" comment="更改">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/http.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Pic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Pic.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Submit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Submit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/WaterfallPic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WaterfallPic.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/ArticleCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/ArticleCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/Header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/ImageCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/ImageCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/VideoCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/VideoCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/Waterfall.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/Waterfall.vue" afterDir="false" />
-    </list>
+    <list default="true" id="5b411b24-9c57-49e5-aa8a-d76076f9f11e" name="更改" comment="更改" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -119,7 +108,7 @@
       <workItem from="1636418623528" duration="2661000" />
       <workItem from="1636438630574" duration="2443000" />
       <workItem from="1638589308148" duration="6454000" />
-      <workItem from="1639538409690" duration="2170000" />
+      <workItem from="1639538409690" duration="2371000" />
     </task>
     <servers />
   </component>
