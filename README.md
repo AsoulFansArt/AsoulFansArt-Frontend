@@ -36,20 +36,20 @@ vue/cli4.5+vue3.0+element-plus+bootstrap 响应式布局,后期准备改为电�
 * 图片页面[x]
 * 关于网站[ ]
 ## 交流/参与项目
-####欢迎提交Issue或者B站私信：https://space.bilibili.com/291072226
-####后端技术栈:django+celery
-####src结构：
-####router - 路由
-####util/http.js - 后端Api
-####util/general.js - 常用函数
-####views/account - 用户相关页面
-####views/components - 组件
-####views/MainPage.vue - 主页
-####views/Video.vue - 视频
-####views/Pic.vue - 图片
-####views/Article.vue - 专栏
-####views/Meme.vue - 表情包大赛
-####views/Submit.vue - 提交作品
+欢迎提交Issue或者B站私信：https://space.bilibili.com/291072226
+* 后端技术栈:django+celery
+* src结构
+  - router - 路由
+  - util/http.js - 后端Api
+  - util/general.js - 常用函数
+  - views/account - 用户相关页面
+  - views/components - 组件
+  - views/MainPage.vue - 主页
+  - views/Video.vue - 视频
+  - views/Pic.vue - 图片
+  - views/Article.vue - 专栏
+  - views/Meme.vue - 表情包大赛
+  - views/Submit.vue - 提交作品
 
 ## 相关项目
 [枝网查重](https://github.com/ASoulCnki)  
