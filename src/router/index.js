@@ -10,12 +10,6 @@ const routes = [
   },
   {
 
-    path: '/qa',
-    name:'QA',
-    component:() => import('../views/QA')
-  },
-  {
-
     path: '/video',
     name:'Video',
     component:() => import('../views/Video')
@@ -39,11 +33,6 @@ const routes = [
     path: '/article',
     name:'Article',
     component:() => import('../views/Article')
-  },
-  {
-    path:'/new',
-    name:'New',
-    component:() => import('../views/New')
   },
   {
     path:'/space/:uid',

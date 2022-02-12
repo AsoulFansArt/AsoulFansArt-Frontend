@@ -1,30 +1,48 @@
 <template>
-
-
-
   <el-container :style="{height:maxHeight + 'px'}">
     <div class="container-fluid" ref="container">
-        <div class="v-waterfall-content"
-            v-infinite-scroll="getMoreData"
-             infinite-scroll-disabled="disabled"
-             infinite-scroll-distance="10"
-        >
-          <Waterfall class="relative" :owner="false" :isload="isload" :waterfallList="waterfallList" :imageWidth="imageWidth" mode="full"/>
-        </div>
+      <div class="v-waterfall-content"
+           v-infinite-scroll="getMoreData"
+           infinite-scroll-disabled="disabled"
+           infinite-scroll-distance="10"
+      >
+        <Waterfall :showRank="showRank" :owner="owner" class="relative" :isload="isload" :waterfallList="waterfallList" :imageWidth="imageWidth"/>
+      </div>
       <div v-if="isload" style="text-align: center"><i class="el-icon-loading"></i></div>
     </div>
   </el-container>
 </template>
 
 <script>
-import Api from '../util/http.js'
+import Api from '../../util/http.js'
 import {ElMessage} from "element-plus";
-import Waterfall from "./components/Waterfall";
+import Waterfall from "./Waterfall";
 
 export default {
   name: 'v-waterfall',
   components: {
     Waterfall,
+  },
+  props:{
+    uid:{
+      type:String,
+      description:"用户UID",
+      default:"0",
+    },
+    type:{
+      type:Number,
+      default:1
+    },
+    owner:{
+      type:Boolean,
+      description: "显示作者名字",
+      default: true
+    },
+    showRank:{
+      type:Boolean,
+      description:"图片索引",
+      default:false,
+    }
   },
   data() {
     return {
@@ -37,9 +55,9 @@ export default {
       //多少列
       waterfallImgCol: 5,
       //右边距
-      waterfallImgRight: 0,
+      waterfallImgRight: 10,
       //下边距
-      waterfallImgBottom: 0,
+      waterfallImgBottom: 10,
       //存放瀑布流各个列的高度
       waterfallColHeight: [],
       //整体左偏移量，左右相同
@@ -58,48 +76,64 @@ export default {
         part: 0,
         rank: 0,
         ctime:0,
+        uid:0
       },
     };
   },
   created() {
+    this.load_params.uid = this.uid
     this.getMoreData();
   },
   mounted() {
+
+    //this.load_params.uid = this.uid
+    //console.log(this.load_params)
     window.scrollTo(0, 0)
+    /*
+    this.$notify({
+      title: '提示',
+      dangerouslyUseHTMLString: true,
+      message:  '<p>图片来源bilibili.com</p>图片右下角为原作者B站ID',
+      duration:2000,
+    });*/
+
     //计算可视区域能够容纳的最大列数,向下取整
-    let fullWidth = this.$refs.container.clientWidth;
+    this.$nextTick(()=>{
+      let fullWidth = this.$refs.container.clientWidth;
+      if (fullWidth > 1500) {
+        this.imageWidth = 280;
+      } else if (fullWidth < 800) {
+        this.isMobile= true;
+        this.imageWidth = 160;
+      }
+      let maxColNum = Math.floor(fullWidth / (this.imageWidth + this.waterfallImgRight));
+      this.imageWidth = (fullWidth - 24 - this.waterfallImgRight * (maxColNum-1))/(maxColNum)
+      console.log('可视宽度：' + fullWidth + ',列数：' + maxColNum);
+      if (maxColNum == 0) {
+        maxColNum = 1;
+      }
+      let contentWhith = (this.imageWidth + this.waterfallImgRight) * maxColNum;
+      if ((fullWidth - contentWhith) < (this.imageWidth * 0.8)) {
+
+        contentWhith = (this.imageWidth + this.waterfallImgRight) * maxColNum;
+      }
+      //console.log('计算列数：' + maxColNum);
+      //获取左边距
+      //this.colLeft = (fullWidth - contentWhith) / 2;
+      this.colLeft = 0
+      if (maxColNum == 1) {
+        maxColNum = 2;
+      }
+      this.waterfallImgCol = maxColNum;
+      //console.log('总宽度：' + fullWidth + ',内容宽度：' + contentWhith + '左偏移：' + this.colLeft);
+      //初始化偏移高度数组
+      this.waterfallColHeight = new Array(this.waterfallImgCol);
+      for (let i = 0; i < this.waterfallColHeight.length; i++) {
+        this.waterfallColHeight[i] = 0;
+      }
+    })
 
 
-    if (fullWidth > 1500) {
-      this.imageWidth = 280;
-    } else if (fullWidth < 800) {
-      this.isMobile= true;
-      this.imageWidth = 160;
-    }
-    let maxColNum = Math.floor(fullWidth / (this.imageWidth + this.waterfallImgRight));
-    this.imageWidth = (fullWidth - 24)/(maxColNum)
-    console.log('可视宽度：' + fullWidth + ',列数：' + maxColNum);
-    if (maxColNum == 0) {
-      maxColNum = 1;
-    }
-    let contentWhith = (this.imageWidth + this.waterfallImgRight) * maxColNum;
-    if ((fullWidth - contentWhith) < (this.imageWidth * 0.8)) {
-
-      contentWhith = (this.imageWidth + this.waterfallImgRight) * maxColNum;
-    }
-    //console.log('计算列数：' + maxColNum);
-    //获取左边距
-    this.colLeft = 0;
-    if (maxColNum == 1) {
-      maxColNum = 2;
-    }
-    this.waterfallImgCol = maxColNum;
-    //console.log('总宽度：' + fullWidth + ',内容宽度：' + contentWhith + '左偏移：' + this.colLeft);
-    //初始化偏移高度数组
-    this.waterfallColHeight = new Array(this.waterfallImgCol);
-    for (let i = 0; i < this.waterfallColHeight.length; i++) {
-      this.waterfallColHeight[i] = 0;
-    }
   },
   methods: {
     getLoadStatus(bool){
@@ -119,24 +153,25 @@ export default {
       this.load_params.page++
       Api._getPic(
           this.load_params
-        ).then((res) => {
-          this.isload = false
-          if (res.data.message === "没有更多数据"){
-            //alert(res.data.message)
-            ElMessage.warning({
-              message: '没有更多了......',
-              type: 'warning'
-            });
-            return
-          }
-          if (res.data[0].pic_url.length == 0) {
-            this.noMore = true;
-          } else {
-            this.imgPreloading(res.data);
-            this.noMore = false;
-          }
+      ).then((res) => {
+        this.isload = false
+        if (res.data.message === "没有更多数据"){
+          //alert(res.data.message)
+          ElMessage.warning({
+            message: '没有更多了......',
+            type: 'warning'
+          });
+          this.noMore = true;
+          return
+        }
+        if (res.data[0].pic_url.length == 0) {
+          this.noMore = true;
+        } else {
+          this.imgPreloading(res.data);
+          this.noMore = false;
+        }
 
-        })
+      })
 
 
     },
@@ -174,7 +209,7 @@ export default {
         }
         let suffix = `@${webp_w}w_${webp_h}h_1e_1c.webp`
         aImg.onload = () => {
-            aImg.src =  `${moreList[i].img_src}${suffix}`;
+          aImg.src =  `${moreList[i].img_src}${suffix}`;
         };
         this.rankImg(imgData);
         imgData.src =  `${moreList[i].img_src}${suffix}`;
@@ -203,7 +238,8 @@ export default {
   },
   computed: {
     disabled() {
-      return this.noMore||this.isload;
+      //console.log(this.noMore)
+      return this.noMore;
     },
   },
 

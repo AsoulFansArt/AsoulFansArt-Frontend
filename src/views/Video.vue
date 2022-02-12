@@ -1,6 +1,11 @@
 <template>
   <Condition @changeMs="getResult" @changeLoad="getLoadStatus"></Condition>
   <!--主界面-->
+  <el-tabs v-model="activeName" @tab-click="handleTabsClick" style="margin: 0 1rem">
+    <el-tab-pane label="默认排序" name="first"></el-tab-pane>
+    <el-tab-pane label="最受欢迎" name="top"></el-tab-pane>
+  </el-tabs>
+
   <div class="container-fluid">
     <div
         ref="container"
@@ -11,6 +16,7 @@
         class="main row justify-content-center"
         v-loading="isload"
     >
+
       <VideoCard
           v-for="(item,index) in response"
           v-bind:key="index"
@@ -37,6 +43,7 @@ import Api from '../util/http.js'
 import Condition from "./components/Condition";
 import {ElMessage} from "element-plus";
 import VideoCard from "./components/VideoCard";
+import Axios from "axios";
 
 export default {
   name: "Rank",
@@ -46,6 +53,7 @@ export default {
   },
   data() {
     return {
+      activeName:"top",
       g:g,
       mainStyle:{},
       response: [],
@@ -64,6 +72,37 @@ export default {
     }
   },
   methods:{
+
+    handleTabsClick(){
+      this.loading = true
+      if(this.activeName === "top"){
+        Axios({
+          url:"https://api.asoul.cloud:8000/AsoulRT-top30",
+          method: "get",
+        }).then((res)=>{
+          console.log(res.data.data.result)
+          this.response = res.data.data.result
+          this.response.splice(this.response.findIndex(item => item.owner.mid === 660551654), 1)
+          for (let item of this.response){
+            item.uid = item.owner.mid
+            item.face = item.owner.face
+            item.name = item.owner.name
+            item.stat_view = item.stat.view
+            item.stat_danmaku = item.stat.danmaku
+            item.stat_like = item.stat.like
+            item.stat_coin = item.stat.coin
+            item.stat_favorite = item.stat.favorite
+            item.stat_reply = item.stat.reply
+            item.stat_share = item.stat.share
+          }
+          this.loading = false
+
+        })
+      }else{
+        this.response = []
+        this.load()
+      }
+    },
     getLoadStatus(bool){
       this.isload = bool
     },
@@ -73,6 +112,9 @@ export default {
       this.load_params = data.load_params;
     },
     load () {
+      if(this.activeName === "top"){
+        return
+      }
       this.loading = true
       this.load_params.page++;
       try {
@@ -128,7 +170,12 @@ export default {
         col_rank_image_width:"10rem",
       }
     }
-    this.load()
+    if(this.activeName === "top"){
+      this.handleTabsClick()
+    }else{
+      this.load()
+    }
+
   },
 }
 </script>

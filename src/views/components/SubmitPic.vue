@@ -32,7 +32,7 @@
 <script>
 import { ElMessage } from 'element-plus'
 import { defineComponent, ref } from 'vue'
-import Api from '../util/http.js'
+import Api from '../../util/http.js'
 
 
 export default defineComponent ({

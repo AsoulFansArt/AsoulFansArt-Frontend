@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import Api from '../util/http'
+import Api from '../../util/http'
 import {ElMessage} from "element-plus";
 
 

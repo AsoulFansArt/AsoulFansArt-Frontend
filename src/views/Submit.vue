@@ -8,8 +8,8 @@
 
 <script>
 import { defineComponent } from 'vue'
-import SubmitPic from "./SubmitPic";
-import SubmitArticle from "./SubmitArticle";
+import SubmitPic from "./components/SubmitPic";
+import SubmitArticle from "./components/SubmitArticle";
 
 export default defineComponent ({
   name: "Submit",

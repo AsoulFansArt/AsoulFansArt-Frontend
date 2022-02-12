@@ -1,4 +1,8 @@
-[
+[  {
+  "name": "二创图片搜索",
+  "link": "https://picsearch.asoulfan.com/",
+  "icon": "./img/asdb.ico"
+ },
   {
   "name": "枝网查重",
   "link": "https://asoulcnki.asia/",
@@ -17,6 +21,11 @@
   {
     "name": "AsoulDB",
     "link": "https://asdb.live/",
+    "icon": "./img/asdb.ico"
+  },
+  {
+    "name": "Asoul动态提醒",
+    "link": "https://t.bilibili.com/594279841472379864/",
     "icon": "./img/asdb.ico"
   },
   {

@@ -4,7 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b411b24-9c57-49e5-aa8a-d76076f9f11e" name="更改" comment="更改" />
+    <list default="true" id="5b411b24-9c57-49e5-aa8a-d76076f9f11e" name="更改" comment="更改">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase___.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase___.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/links.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/links.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HelloWorld.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ImageCard.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/biliApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/http.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/New.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/QA.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Submit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Submit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/SubmitArticle.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/SubmitArticle.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/SubmitPic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/SubmitPic.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Video.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Video.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/WaterfallPic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/WaterfallPic.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/QACard.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/QAList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/TabPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/TabPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue.config.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,6 +52,9 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="1yNnOsmzOSH0QgCAMRl3eskWYEO" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -45,7 +70,7 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_interpreter_path" value="$PROJECT_DIR$/../../../../../Program Files/nodejs/node" />
+    <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="settings.nodejs" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2021.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
@@ -57,6 +82,9 @@
       <recent name="C:\Users\surface\Desktop\git\AsoulFansArt-Frontend\src\views" />
       <recent name="C:\asoul.cloud\AsoulFansArt-Frontend\src\views" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\rongyao\Desktop\asgit\AsoulFansArt-Frontend\src\views\components" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="serve" type="js.build_tools.npm" nameIsGenerated="true">
@@ -65,7 +93,7 @@
       <scripts>
         <script value="serve" />
       </scripts>
-      <node-interpreter value="$PROJECT_DIR$/../../../../../Program Files/nodejs/node" />
+      <node-interpreter value="node" />
       <package-manager value="npm" />
       <envs />
       <method v="2" />
@@ -109,6 +137,9 @@
       <workItem from="1636438630574" duration="2443000" />
       <workItem from="1638589308148" duration="6454000" />
       <workItem from="1639538409690" duration="2371000" />
+      <workItem from="1643855433314" duration="5508000" />
+      <workItem from="1643869178277" duration="2654000" />
+      <workItem from="1644630981748" duration="890000" />
     </task>
     <servers />
   </component>
@@ -125,7 +156,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

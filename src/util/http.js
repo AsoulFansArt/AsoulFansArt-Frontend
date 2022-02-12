@@ -187,7 +187,18 @@ const _getRank = (params) => {
     })
 }
 
+const _getTopVideo = (params)=>{
+    return Axios({
+        url:"http://124.223.8.236:5200/",
+        method: "get",
+        params:params
+    })
+}
+
+
+
 export default {
+    _getTopVideo,
     _getBV,
     _getVideoPart,
     _submitBV,

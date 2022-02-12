@@ -7,7 +7,7 @@
 
 <script>
 import VideoGrid from "./VideoGrid";
-import WaterfallPic from "../WaterfallPic";
+import WaterfallPic from "./WaterfallPic";
 export default {
   name: "TabPage",
   components:{
