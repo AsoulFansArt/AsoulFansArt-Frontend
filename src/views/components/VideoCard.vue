@@ -1,11 +1,9 @@
 <template>
   <div
-      class="main-item col-sm-12 col-md-12 col-lg-12 m-1"
+      class="main-item"
+      style="margin: 1rem"
   >
-
-
     <div :style="{width:'70rem', overflow:'hidden'}">
-
       <div class="col-rank" @click="jumpBili(item.bvid)">
         <el-image
             :src="`${item.pic}@${412}w_${232}h_1e_1c.webp`"
@@ -46,6 +44,8 @@
       </div>
     </div>
   </div>
+
+
 </template>
 
 <script>
@@ -95,7 +95,8 @@ a{
 .col-rank{
   width: 100%;
   display: flex;
-  border-bottom:1px solid #b8c0cc;
+  border: none;
+  border-bottom:1px solid gray;
   padding-bottom: 5px;
   position:relative;
   height: 100%;

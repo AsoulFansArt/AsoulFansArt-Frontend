@@ -1,20 +1,28 @@
 <template>
-  <Condition @changeMs="getResult" @changeLoad="getLoadStatus"></Condition>
+  <div class="tabs is-toggle is-small is-centered" style="margin-top: 2rem">
+    <ul>
+      <li v-for="tab in tabs" :class="tabActive === tab.param ? 'is-active':''" :key="tab.name" @click="handleTabsClick(tab.param)">
+        <a>
+          <span class="icon is-small" ><i :class="tab.icon"></i></span>
+          <span>{{ tab.name }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
   <!--主界面-->
-  <el-tabs v-model="activeName" @tab-click="handleTabsClick" style="margin: 0 1rem">
-    <el-tab-pane label="默认排序" name="first"></el-tab-pane>
-    <el-tab-pane label="最受欢迎" name="top"></el-tab-pane>
-  </el-tabs>
 
-  <div class="container-fluid">
+
+
+  <div style="width: 100%;">
     <div
         ref="container"
         style="position: relative"
         v-infinite-scroll="load"
         infinite-scroll-distance="10"
         infinite-scroll-disabled="disabled"
-        class="main row justify-content-center"
+
         v-loading="isload"
+
     >
 
       <VideoCard
@@ -24,23 +32,17 @@
           :videoWidth="mainStyle.col_rank_image_width"
           :isMobile="isMobile"
       ></VideoCard>
+
     </div>
 
     <p v-if="loading" style="text-align: center"><i class="el-icon-loading"></i></p>
-    <p v-if="!loading" style="text-align: center;padding-bottom: 5px">
-      <el-button
-          plain
-          :disabled="noMore"
-          type="primary" @click="nextPage"
-          lazy
-      >下一页<i class="el-icon-arrow-right el-icon--right"></i></el-button></p>
+
   </div>
 </template>
 
 <script>
 import g from '../util/general'
 import Api from '../util/http.js'
-import Condition from "./components/Condition";
 import {ElMessage} from "element-plus";
 import VideoCard from "./components/VideoCard";
 import Axios from "axios";
@@ -48,12 +50,22 @@ import Axios from "axios";
 export default {
   name: "Rank",
   components:{
-    Condition,
     VideoCard
   },
   data() {
     return {
-      activeName:"top",
+      tabActive: "top",
+      tabs:[
+        {
+          "name":"发布时间",
+          "icon":"el-icon-timer",
+          "param":"default",
+        },        {
+          "name":"B站热门",
+          "icon":"el-icon-medal",
+          "param":"top"
+        }
+      ],
       g:g,
       mainStyle:{},
       response: [],
@@ -73,9 +85,11 @@ export default {
   },
   methods:{
 
-    handleTabsClick(){
+    handleTabsClick(label){
+      this.load_params.page = 0
+      this.tabActive = label
       this.loading = true
-      if(this.activeName === "top"){
+      if(this.tabActive === "top"){
         Axios({
           url:"https://api.asoul.cloud:8000/AsoulRT-top30",
           method: "get",
@@ -112,7 +126,7 @@ export default {
       this.load_params = data.load_params;
     },
     load () {
-      if(this.activeName === "top"){
+      if(this.tabActive === "top"){
         return
       }
       this.loading = true
@@ -151,10 +165,12 @@ export default {
   mounted() {
     window.scrollTo(0, 0)
     let fullWidth = this.$refs.container.clientWidth;
+
     if (g._isMobile()){
       this.isMobile = true
       if (fullWidth > 700) {
         this.isMobile = false
+
         this.mainStyle = {
           col_rank_image_width:"10rem"
         }
@@ -170,8 +186,8 @@ export default {
         col_rank_image_width:"10rem",
       }
     }
-    if(this.activeName === "top"){
-      this.handleTabsClick()
+    if(this.tabActive === "top"){
+      this.handleTabsClick("top")
     }else{
       this.load()
     }

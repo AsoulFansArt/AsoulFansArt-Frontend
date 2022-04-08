@@ -72,7 +72,7 @@ export default {
     let fullWidth = this.$refs.menuContainer.clientWidth;
     let iconWidth = this.$refs.menuIcon.clientWidth;
     let col = Math.floor(fullWidth/iconWidth)
-        local._getLinks().then((res)=>{
+        local._getLinks({time:new Date().getTime()}).then((res)=>{
         this.links = res.data;
         let linksNum = this.links.length + this.navNum
         let row = Math.ceil(linksNum / col);

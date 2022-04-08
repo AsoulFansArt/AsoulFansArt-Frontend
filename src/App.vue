@@ -3,10 +3,10 @@
   <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta content="yes" name="apple-mobile-web-app-capable">
   <div id="app">
-
-      <Header/>
+      <Header></Header>
       <router-view></router-view>
       <button class="add-button">将网站添加到桌面</button>
+
   </div>
 
 </template>
@@ -84,6 +84,7 @@ export default {
 <style>
 #app{
   height: 100%;
+
 }
 html,body{
   margin: 0;

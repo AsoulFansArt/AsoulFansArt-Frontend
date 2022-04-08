@@ -1,11 +1,8 @@
 <template>
-  <div class="header">
-    <Condition type="meme" @changePic="getResult" @changeLoad="getLoadStatus"></Condition>
-  </div>
 
 
   <el-container :style="{height:maxHeight + 'px'}">
-    <div class="container-fluid" ref="container">
+    <div style="width: 100%" ref="container">
         <div class="v-waterfall-content"
             v-infinite-scroll="getMoreData"
              infinite-scroll-disabled="disabled"
@@ -25,15 +22,11 @@
 <script>
 import Api from '../util/http.js'
 import {ElMessage} from "element-plus";
-
-import Condition from "./components/Condition";
 import Waterfall from "./components/Waterfall";
-import PicGrid from "./components/PicGrid"
 
 export default {
   name: 'v-waterfall',
   components: {
-    Condition,
     Waterfall,
   },
   data() {
@@ -99,8 +92,7 @@ export default {
     }
     //console.log('计算列数：' + maxColNum);
     //获取左边距
-    //this.colLeft = (fullWidth - contentWhith) / 2;
-    this.colLeft = 0
+    this.colLeft = (fullWidth - contentWhith) / 2;
     if (maxColNum == 1) {
       maxColNum = 2;
     }

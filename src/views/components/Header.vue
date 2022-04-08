@@ -1,45 +1,25 @@
 <template>
-  <div class="header">
-    <button
-        class="nav-menu-button"
-        @click="isCollapse = !isCollapse">
-      <svg viewBox="0 0 24 24" class="nav-menu-icon"><path d="M4 7C4 6.44772 4.44772 6 5 6H19C19.5523 6 20 6.44772 20 7C20
-           7.55228 19.5523 8 19 8H5C4.44772 8 4 7.55228 4 7ZM4 12C4 11.4477 4.44772 11
-           5 11H19C19.5523 11 20 11.4477 20 12C20 12.5523 19.5523 13 19 13H5C4.44772
-           13 4 12.5523 4 12ZM5 16C4.44772 16 4 16.4477 4 17C4 17.5523 4.44772 18 5
-           18H19C19.5523 18 20 17.5523 20 17C20 16.4477 19.5523 16 19 16H5Z"></path>
-      </svg>
-    </button>
-    <a href="/">
-      <img
-          class="head-menu"
-          src="../../../public/logo.png"
-          alt=""
-          :style="{width: '16rem'}"
-      >
-    </a>
-  <div class="user-avatar">
-    <el-avatar
-        @click="loginMessageBox"
-        :src="`https:${avatarList[getRandom()]}`"></el-avatar>
+    <div style="position: fixed;left:20px;bottom: 20px; z-index:99;">
+      <button class="button is-medium" @click="this.modalActive === '' ? this.modalActive='is-active':this.modalActive=''">
+          <span class="icon is-medium is-centered">
+            <i class="el-icon-menu" style="color: #FC966E; font-size: xxx-large; margin: 0"></i>
+          </span>
+      </button>
+    </div>
+
+
+
+
+  <div class="modal" :class="modalActive">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <section class="modal-card-body" style="margin: 1rem; border-radius: 0.75rem">
+        <NavItem></NavItem>
+      </section>
+
+    </div>
   </div>
-</div>
 
-
-
-<div class="aside" style="overflow: auto" ref="aside">
-  <el-drawer
-      v-model="isCollapse"
-      direction="ltr"
-      :size="{width: g._isMobile()?'100%':'30%'}"
-      :withHeader="false"
-      style="overflow: auto"
-  >
-    <el-scrollbar :height="`${scrollbarHeight}px`">
-      <NavItem></NavItem>
-    </el-scrollbar>
-  </el-drawer>
-</div>
 
 
 
@@ -57,6 +37,7 @@ export default {
   },
   data(){
     return{
+      modalActive:"",
       scrollbarHeight:0,
       g:g,
       drawer: false,
@@ -115,7 +96,7 @@ export default {
 
 
   mounted() {
-    this.scrollbarHeight = this.$refs.aside.offsetHeight
+
 
     let router = window.location.href
     if (router.substr(-1) === "/"){

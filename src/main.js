@@ -3,17 +3,13 @@ import App from './App.vue'
 import installElementPlus from './plugins/element'
 import router from './router'
 import './assets/icon/iconfont.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-import 'bootstrap/dist/js/bootstrap.min'
 import store from './store'
 import './registerServiceWorker'
-import VueViewer from 'v-viewer'
-import 'viewerjs/dist/viewer.css'
+import 'bulma'
 
 
 
-const app = createApp(App).use(store).use(router).use(VueViewer)
+const app = createApp(App).use(store).use(router)
 installElementPlus(app)
 app.mount('#app')
 

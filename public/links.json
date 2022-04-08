@@ -1,7 +1,7 @@
 [  {
-  "name": "二创图片搜索",
-  "link": "https://picsearch.asoulfan.com/",
-  "icon": "./img/asdb.ico"
+  "name": "搜图姬",
+  "link": "https://pic.asoulfan.com/",
+  "icon": "./img/asf.svg"
  },
   {
   "name": "枝网查重",
@@ -9,19 +9,19 @@
   "icon": "./img/zwcc.svg"
   },
   {
+    "name": "AsoulFan",
+    "link": "https://asoulfan.com/",
+    "icon": "./img/asf.svg"
+  },
+  {
     "name": "AsoulWorld",
     "link": "https://www.asoulworld.com/",
     "icon": "./img/aswd.png"
   },
   {
-    "name": "AsoulFan",
-    "link": "https://asoulfan.com/",
-    "icon": "./img/asf.ico"
-  },
-  {
     "name": "AsoulDB",
     "link": "https://asdb.live/",
-    "icon": "./img/asdb.ico"
+    "icon": "./img/asf.svg"
   },
   {
     "name": "Asoul动态提醒",
@@ -67,5 +67,13 @@
     "name": "A-SOUL鼓励师",
     "link": "https://marketplace.visualstudio.com/items?itemName=AS042971.asoul",
     "icon": "./img/asdb.ico"
-  }
+  },  {
+    "name": "嘉心糖圈子",
+    "link": "https://www.xn--w4r49t8ny.com/",
+    "icon": "https://www.xn--w4r49t8ny.com/favicon.ico"
+  },  {
+  "name": "评论区冲浪指南",
+  "link": "https://wiki.asoul.org/",
+  "icon": "./img/asdb.ico"
+}
 ]

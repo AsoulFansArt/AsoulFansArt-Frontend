@@ -1,6 +1,6 @@
 <template>
   <el-container :style="{height:maxHeight + 'px'}">
-    <div class="container-fluid" ref="container">
+    <div style="width: 100%;" ref="container">
       <div class="v-waterfall-content"
            v-infinite-scroll="getMoreData"
            infinite-scroll-disabled="disabled"

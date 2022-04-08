@@ -1,8 +1,8 @@
 <template>
-  <div class="container-fluid" :style="{display: 'flex', justifyContent: 'center'}">
-    <div class="row justify-content-center" :style="{width:'80rem', overflow:'hidden'}">
+  <div style="display: flex; justify-content: center; width: 100%">
+    <div class="el-row justify-content-center" :style="{width:'80rem', overflow:'hidden'}">
 
-      <div class="col" :style="{marginBottom: '5px'}"  v-if="type !== 'meme'">
+      <div class="el-col" :style="{marginBottom: '5px'}"  v-if="type !== 'meme'">
         <el-card shadow="never">
           <template #header>
             <h3 class="card-title">全部分区</h3>
@@ -92,15 +92,12 @@
               >
                 {{item.name}}
               </el-check-tag>
-
-              <!--            <el-switch v-model="showOfficial" active-color="#13ce66" inactive-color="#ff4949" active-text="不显示官号" @change="showChange">-->
-              <!--            </el-switch>-->
             </div>
-            <div class="py-2" style="width: 100%;" v-if="type==='pic'">
+            <div class="py-2" style="width: 100%;padding-top: 2rem;padding-right: 2rem" v-if="type==='pic'">
 
             </div>
 
-            <div class="col mx-5 px-5" :style="{display: 'flex', alignItems:'center', justifyContent: 'space-around'}">
+            <div class="el-col mx-5 px-5" :style="{display: 'flex', alignItems:'center', justifyContent: 'space-around'}">
               <el-tooltip
                   v-for="item in asouls"
                   v-bind:key="item.uid"

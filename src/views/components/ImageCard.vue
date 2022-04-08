@@ -183,37 +183,5 @@ a{
 
   }
 }
-  //::after{
-  //  content: "";
-  //  position: absolute;
-  //  text-align: center;
-  //  top: 0;
-  //  bottom: 0;
-  //  left: 0;
-  //  right: 0;
-  //  z-index: 0;
-  //  width: 100%;
-  //  border-radius: 16px;
-  //  box-sizing: border-box;
-  //  transition: 200ms;
-  //  height: 100%;
-  //  background-color: rgba(0,0,0,0);
-  //  background: {
-  //    position: center;
-  //    repeat: no-repeat;
-  //    size: cover;
-  //  }
-  //}
-
-  //&:hover{
-  //  .img-title{
-  //    opacity: 1;
-  //  }
-  //  .image{
-  //    transform: scale(1.1,1.1);
-  //  }
-  //
-  //}
-
 
 </style>

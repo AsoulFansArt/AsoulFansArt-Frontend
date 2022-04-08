@@ -1,23 +1,92 @@
 <template>
-  <div class="header">
-    <Condition type="pic" @changePic="getResult" @changeLoad="getLoadStatus"></Condition>
+  <div class="tabs is-small is-toggle is-centered" style="margin-top: 2rem">
+    <ul>
+      <template v-for="(tab,index) in tabs" >
+        <li v-if="!isMobile" :class="tabs[tabActive].param === tab.param ? 'is-active':''" :key="tab.name" @click="handleTabsClick(index)">
+          <a>
+            <span class="icon is-small" ><i :class="tab.icon"></i></span>
+            <span>{{ tab.name }}</span>
+          </a>
+        </li>
+      </template>
+
+
+      <li class="is-active" v-if="isMobile" @click="this.modalActive = 'is-active'; this.modalType='sort'">
+        <a>
+          <span class="icon is-small" ><i class="el-icon-date"></i></span>
+          <span>{{ tabs[tabActive].name }}</span>
+          <span class="icon is-small" ><i class="el-icon-arrow-down"></i></span>
+        </a>
+      </li>
+
+      <li>
+        <a style="padding: 1px">
+          <el-date-picker
+              style="width: 120px;"
+              size="mini"
+              v-model="dailyRankDate"
+              type="date"
+              placeholder="日期"
+              format="YYYY/MM/DD"
+              @change="pickDate"
+          >
+          </el-date-picker>
+        </a>
+      </li>
+      <li @click="this.modalActive = 'is-active'; this.modalType='tag'">
+        <a>
+          <span class="icon is-small" ><i class="el-icon-collection-tag"></i></span>
+          <span>{{ activeTagText }}</span>
+          <span class="icon is-small" ><i class="el-icon-arrow-down"></i></span>
+        </a>
+      </li>
+    </ul>
   </div>
+<!--  悬浮弹窗-->
+  <div class="modal" :class="modalActive">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <section class="modal-card-body" style="margin: 1rem; border-radius: 0.75rem">
+        <!-- Content ... -->
+        <ul class="menu-list is-medium">
+          <template
+              v-for="(tab,index) in tabs"
+          >
+            <li
+                v-if="this.modalType === 'sort'"
+                :class="tabs[tabActive].param === tab.param ? 'is-active':''" :key="tab.name"
+                @click="handleTabsClick(index)"
+            >
+              <a>
+                <span class="icon" ><i :class="tab.icon"></i></span>
+                <span>{{ tab.name }}</span>
+              </a>
+            </li>
+          </template>
+        </ul>
 
+        <ul class="menu-list is-medium">
+          <template
+              v-for="(tag,index) in picTags"
+              :key="tag.tag_id"
+          >
+            <li v-if="this.modalType === 'tag'" @click="selectTag(index)">
+              <a>
+                <span>{{ tag.tag_title }}</span>
+              </a>
+            </li>
+          </template>
+        </ul>
 
-  <div>
-    <el-tabs v-model="activeName" @tab-click="handleTabsClick" style="margin: 0 1rem">
-      <el-tab-pane label="默认排序" name="first"></el-tab-pane>
-      <el-tab-pane label="最受欢迎" name="asfa_score"></el-tab-pane>
-      <el-tab-pane label="最多点击" name="asfa_view"></el-tab-pane>
-    </el-tabs>
+      </section>
+    </div>
   </div>
   <el-container :style="{height:maxHeight + 'px'}">
-
-    <div class="container-fluid" ref="container">
+    <div style="width: 100%" ref="container">
         <div class="v-waterfall-content"
             v-infinite-scroll="getMoreData"
              infinite-scroll-disabled="disabled"
-             infinite-scroll-distance="10"
+             infinite-scroll-distance="200"
         >
           <Waterfall :showRank="showRank" class="relative" :isload="isload" :waterfallList="waterfallList" :imageWidth="imageWidth"/>
         </div>
@@ -30,20 +99,56 @@
 import Api from '../util/http.js'
 import {ElMessage} from "element-plus";
 
-import Condition from "./components/Condition";
 import Waterfall from "./components/Waterfall";
 
 export default {
   name: 'v-waterfall',
   components: {
-    Condition,
     Waterfall,
   },
   data() {
     return {
-      activeName:"first",
-      getMoreFunc:{"first":Api._getPic, "asfa_score": Api._getRank, "asfa_view": Api._getRank},
-      getMoreParams:{"first": this.load_params},
+      dailyRankDate:"",
+      activeTagText:"标签",
+      picTags:[],
+      modalActive:"",
+      modalType:"sort",
+      isMobile:false,
+      tabActive: 0,
+      tabs:[
+        {
+          "name":"发布时间",
+          "icon":"el-icon-timer",
+          "param":"default",
+        },        {
+          "name":"最受欢迎",
+          "icon":"el-icon-data-line",
+          "param":"asfa_score"
+        },        {
+          "name":"最多点击",
+          "icon":"el-icon-view",
+          "param":"asfa_view"
+        },        {
+          "name":"B站热门",
+          "icon":"el-icon-medal",
+          "param":"bili_hot"
+        },        {
+          "name":"日榜",
+          "icon":"el-icon-sunny",
+          "param":"bili_daily"
+        },        {
+          "name":"周榜",
+          "icon":"el-icon-date",
+          "param":"bili_weekly"
+        },        {
+          "name":"月榜",
+          "icon":"el-icon-moon",
+          "param":"bili_monthly"
+        }
+      ],
+      imgDataType: "default",
+      getMoreFunc:{"default":Api._getPic, "asfa_score": Api._getRank, "asfa_view": Api._getRank},
+      getMoreParams:{"default": this.load_params},
       maxHeight: '900',
       isload: false,
       //作品信息高度
@@ -51,9 +156,9 @@ export default {
       //存放计算好的数据
       waterfallList: [],
       //每一列的宽度
-      imageWidth: 280,
+      imageWidth: 350,
       //多少列
-      waterfallImgCol: 5,
+      waterfallImgCol: 4,
       //右边距
       waterfallImgRight: 10,
       //下边距
@@ -85,32 +190,32 @@ export default {
   },
   mounted() {
     window.scrollTo(0, 0)
-    //计算可视区域能够容纳的最大列数,向下取整
     let fullWidth = this.$refs.container.clientWidth;
-    if (fullWidth > 1500) {
-      this.imageWidth = 280;
-    } else if (fullWidth < 800) {
+    let maxColNum = this.waterfallImgCol
+    if (fullWidth < 800) {
       this.isMobile= true;
       this.imageWidth = 160;
+      this.waterfallImgCol = 2
+      maxColNum = 2
+      this.imageWidth = (fullWidth - 24 - this.waterfallImgRight * (maxColNum-1))/(maxColNum)
     }
-    let maxColNum = Math.floor(fullWidth / (this.imageWidth + this.waterfallImgRight));
-    this.imageWidth = (fullWidth - 24 - this.waterfallImgRight * (maxColNum-1))/(maxColNum)
+    let imageOccupyWidth = this.imageWidth * maxColNum + (maxColNum - 1) * 10
+    while (imageOccupyWidth > fullWidth){
+      maxColNum--
+      imageOccupyWidth = this.imageWidth * maxColNum + (maxColNum - 1) * 10
+    }
     //console.log('可视宽度：' + fullWidth + ',列数：' + maxColNum);
-    if (maxColNum == 0) {
-      maxColNum = 1;
-    }
+
     let contentWhith = (this.imageWidth + this.waterfallImgRight) * maxColNum;
     if ((fullWidth - contentWhith) < (this.imageWidth * 0.8)) {
-
       contentWhith = (this.imageWidth + this.waterfallImgRight) * maxColNum;
     }
     //console.log('计算列数：' + maxColNum);
     //获取左边距
-    //this.colLeft = (fullWidth - contentWhith) / 2;
-    this.colLeft = 0
-    if (maxColNum == 1) {
-      maxColNum = 2;
-    }
+    this.colLeft = (fullWidth - contentWhith) / 2;
+
+
+
     this.waterfallImgCol = maxColNum;
     //console.log('总宽度：' + fullWidth + ',内容宽度：' + contentWhith + '左偏移：' + this.colLeft);
     //初始化偏移高度数组
@@ -118,52 +223,112 @@ export default {
     for (let i = 0; i < this.waterfallColHeight.length; i++) {
       this.waterfallColHeight[i] = 0;
     }
+    Api._getPicTags().then((res)=>{
+      this.picTags = res.data
+    })
   },
   methods: {
-    handleTabsClick(){
-      if (this.activeName==="first"){
-        this.showRank = false
-      }else{
-        this.showRank = true
-      }
+    refreshWaterFallData(){
       this.waterfallList= []
-
-      this.load_params.page = 0
       this.waterfallColHeight = new Array(this.waterfallImgCol);
       for (let i = 0; i < this.waterfallColHeight.length; i++) {
         this.waterfallColHeight[i] = 0;
       }
       this.getMoreData()
-      //alert(this.activeName)
+    },
+    pickDate(ctime){
+      this.load_params.ctime = new Date(ctime).getTime()/1000
+      this.load_params.rank = 1
+      this.load_params.page = 0
+      this.load_params.sort = 4
+      this.tabActive = 4
+      this.imgDataType = "default"
+      this.refreshWaterFallData()
+    },
+    selectTag(index){
+      this.modalActive = ''
+      let tagId = this.picTags[index].tag_id
+      this.activeTagText = this.picTags[index].tag_title
+      this.load_params.page = 0
+      this.load_params.part = tagId
+      if (this.tabActive === 1 || this.tabActive === 2){
+        this.imgDataType = "default"
+        this.tabActive = 0
+      }
+      this.refreshWaterFallData()
+    },
+    handleTabsClick(index){
+      this.modalActive = ''
+      let label = this.tabs[index].param
+      this.showRank = label !== "default";
+      this.tabActive = index;
+      switch (label){
+        case "bili_daily":{
+          this.load_params.sort = 4
+          this.load_params.rank = 1
+          this.load_params.page = 0
+          this.imgDataType = "default"
+          break
+        }
+        case "bili_weekly":{
+          this.load_params.sort = 4
+          this.load_params.page = 0
+          this.load_params.rank = 2
+          this.imgDataType = "default"
+          break
+        }
+        case "bili_monthly":{
+          this.load_params.sort = 4
+          this.load_params.rank = 3
+          this.load_params.page = 0
+          this.imgDataType = "default"
+          break
+        }
+        case "bili_hot":{
+          this.load_params.sort = 4
+          this.load_params.page = 0
+          this.load_params.rank = 0
+          this.imgDataType = "default"
+          break
+        }
+        case "default":{
+          this.load_params.sort = 3
+          this.load_params.page = 0
+          this.load_params.rank = 0
+          this.imgDataType = "default"
+          break
+        }
+
+        case "asfa_view":
+        case "asfa_score":{
+          this.imgDataType = label
+          this.activeTagText = "标签"
+          break
+        }
+      }
+
+
+
+      this.load_params.page = 0
+      this.refreshWaterFallData()
     },
     getLoadStatus(bool){
       this.isload = bool
-    },
-    getResult(data){
-      this.activeName = "first"
-      this.showRank = false
-      this.waterfallList = [];
-      this.currentPage = 1;
-      for (let i = 0; i < this.waterfallColHeight.length; i++) {
-        this.waterfallColHeight[i] = 0;
-      }
-      this.load_params = data.load_params;
-      this.imgPreloading(data.response);
     },
     getMoreData() {
       this.isload = true
       this.load_params.page++
       let load_params;
-      if (this.activeName === "first")
+      if (this.imgDataType === "default")
       {
         load_params = this.load_params;
       }else{
         load_params = {
           "page": this.load_params.page,
-          "order": this.activeName
+          "order": this.imgDataType
         }
       }
-      this.getMoreFunc[this.activeName](
+      this.getMoreFunc[this.imgDataType](
           load_params
         ).then((res) => {
           this.isload = false
@@ -173,9 +338,10 @@ export default {
               message: '没有更多了......',
               type: 'warning'
             });
+            this.noMore = true;
             return
           }
-          if (res.data[0].pic_url.length == 0) {
+          if (res.data[0].pic_url.length === 0) {
             this.noMore = true;
           } else {
             this.imgPreloading(res.data);
@@ -258,7 +424,16 @@ export default {
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+
+input{
+  border: none !important;
+}
+
+i{
+  margin-right: 0.25rem;
+}
+
 .header{
   margin-top: 2rem;
 }

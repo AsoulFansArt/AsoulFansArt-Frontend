@@ -15,7 +15,7 @@
   <div>
     <el-pagination
         background layout="pager"
-        :page-count="total"
+        :page-count="total/20"
         @current-change="getMoreArticle"
         :hide-on-single-page="hidePagination"
     >

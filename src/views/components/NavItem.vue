@@ -1,33 +1,14 @@
 <template>
-<div>
-  <div style="text-align: center">
-    <el-image src="/img/icons/android-icon-96x96.png"></el-image>
-  </div>
-  <ul class="ul-menu" >
-    <li class="menu-item">
-      <a href="/" class="menu-link"><i class="el-icon-house menu-item-icon"></i><span class="menu-item-text">首页</span></a>
-    </li>
-    <li class="menu-item"><a href="/video" class="menu-link"><i class="el-icon-video-camera menu-item-icon"></i><span class="menu-item-text">视频</span></a></li>
-    <li class="menu-item"><a href="/pic" class="menu-link"><i class="el-icon-picture-outline menu-item-icon"></i><span class="menu-item-text">图片</span></a></li>
-    <li class="menu-item"><a href="/article" class="menu-link"><i class="el-icon-reading menu-item-icon"></i><span class="menu-item-text">专栏</span></a></li>
-<!--    <li class="menu-item"><a href="/qa" class="menu-link"><i class="el-icon-question menu-item-icon"></i><span class="menu-item-text">官方QA</span></a></li>-->
-    <li class="menu-item"><a href="/meme" class="menu-link"><i class="el-icon-lollipop menu-item-icon"></i><span class="menu-item-text">趣味P图大赛</span></a></li>
-    <li class="menu-item"><a href="/submit" class="menu-link"><i class="el-icon-upload2 menu-item-icon"></i><span class="menu-item-text">提交/推荐作品</span></a></li>
 
-<!--    <li class="menu-item"><span style="color: gray;">其他</span></li>-->
-<!--    <li-->
-<!--        v-for="item in links"-->
-<!--        v-bind:key="item.index"-->
-<!--        class="menu-item"-->
-<!--    >-->
-<!--      <a :href="item.link" target="_blank" class="menu-link">-->
-<!--        <i class="el-icon-paperclip menu-item-icon"></i>-->
-<!--        <span class="menu-item-text">{{ item.title }}</span>-->
-<!--      </a>-->
-<!--    </li>-->
-
+  <ul class="menu-list" >
+    <li><a href="/" class="menu-link"><span class="icon" ><i class="el-icon-house menu-item-icon"></i></span><span class="menu-item-text">首页</span></a></li>
+    <li><a href="/video" class="menu-link"><span class="icon" ><i class="el-icon-video-camera menu-item-icon"></i></span><span class="menu-item-text">视频</span></a></li>
+    <li><a href="/pic" class="menu-link"><span class="icon" ><i class="el-icon-picture-outline menu-item-icon"></i></span><span class="menu-item-text">图片</span></a></li>
+    <li><a href="/article" class="menu-link"><span class="icon" ><i class="el-icon-reading menu-item-icon"></i></span><span class="menu-item-text">专栏</span></a></li>
+    <li><a href="/meme" class="menu-link"><span class="icon" ><i class="el-icon-lollipop menu-item-icon"></i></span><span class="menu-item-text">趣味P图大赛</span></a></li>
+    <li><a href="/submit" class="menu-link"><span class="icon" ><i class="el-icon-upload2 menu-item-icon"></i></span><span class="menu-item-text">提交/推荐作品</span></a></li>
   </ul>
-</div>
+
 </template>
 
 <script>
