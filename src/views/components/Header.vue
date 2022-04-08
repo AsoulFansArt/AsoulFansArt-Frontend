@@ -10,8 +10,8 @@
 
 
 
-  <div class="modal" :class="modalActive">
-    <div class="modal-background"></div>
+  <div class="modal" :class="modalActive" >
+    <div class="modal-background" @click="modalActive=''"></div>
     <div class="modal-card">
       <section class="modal-card-body" style="margin: 1rem; border-radius: 0.75rem">
         <NavItem></NavItem>
