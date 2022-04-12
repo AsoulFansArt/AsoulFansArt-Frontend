@@ -15,7 +15,7 @@ A-SOUL_Official：https://space.bilibili.com/703007996
 向晚：https://space.bilibili.com/672346917  
 ***
 **技术栈:**  
-vue/cli4.5+vue3.0+element-plus+bootstrap 响应式布局,后期准备改为电脑端,手机端双页面
+新版:vue3+bulma+pwa
 ***
 **声明:**  
 如网站侵犯了您的版权,请联系B站项目官号[@A-SoulFansArt](https://space.bilibili.com/291072226)

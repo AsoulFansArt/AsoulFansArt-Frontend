@@ -5,37 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b411b24-9c57-49e5-aa8a-d76076f9f11e" name="更改" comment="更改">
-      <change afterPath="$PROJECT_DIR$/src/util/lazyload.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/1.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/1.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/links.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/links.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/element-variables.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/plugins/element.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/http.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Article.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Article.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/MainPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MainPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Meme.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Meme.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Pic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Pic.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Submit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Submit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Video.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Video.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/account/Account.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/account/Space.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/account/Space.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/ArticleCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/ArticleCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/Header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/ImageCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/ImageCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/NavItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/NavItem.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/PicGrid.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/PicGrid.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/SubmitArticle.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/SubmitArticle.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/SubmitPic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/SubmitPic.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/VideoCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/VideoCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/VideoGrid.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/VideoGrid.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/WaterfallPic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/WaterfallPic.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,6 +135,7 @@
       <workItem from="1649580082192" duration="1990000" />
       <workItem from="1649640854957" duration="36026000" />
       <workItem from="1649724971731" duration="10083000" />
+      <workItem from="1649745667295" duration="104000" />
     </task>
     <servers />
   </component>
