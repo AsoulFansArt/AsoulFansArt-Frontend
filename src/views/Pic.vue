@@ -1,10 +1,10 @@
 <template>
   <div class="tabs is-small is-toggle is-centered" style="margin-top: 2rem">
     <ul>
-      <template v-for="(tab,index) in tabs" >
+      <template v-for="(tab,index) in tabs" :key="tab.name">
         <li v-if="!isMobile" :class="tabs[tabActive].param === tab.param ? 'is-active':''" :key="tab.name" @click="handleTabsClick(index)">
           <a>
-            <span class="icon is-small" ><i :class="tab.icon"></i></span>
+            <span class="icon is-small" ><font-awesome-icon :icon="tab.icon"/></span>
             <span>{{ tab.name }}</span>
           </a>
         </li>
@@ -13,31 +13,22 @@
 
       <li class="is-active" v-if="isMobile" @click="this.modalActive = 'is-active'; this.modalType='sort'">
         <a>
-          <span class="icon is-small" ><i class="el-icon-date"></i></span>
+          <span class="icon is-small" ><font-awesome-icon :icon="tabs[tabActive].icon"/></span>
           <span>{{ tabs[tabActive].name }}</span>
-          <span class="icon is-small" ><i class="el-icon-arrow-down"></i></span>
+          <span class="icon is-small" ><font-awesome-icon icon="chevron-down"/></span>
         </a>
       </li>
 
       <li>
-        <a style="padding: 1px">
-          <el-date-picker
-              style="width: 120px;"
-              size="mini"
-              v-model="dailyRankDate"
-              type="date"
-              placeholder="日期"
-              format="YYYY/MM/DD"
-              @change="pickDate"
-          >
-          </el-date-picker>
+        <a style="padding: 0">
+          <Datepicker ref="datePicker" placeholder="日期" class="is-small" @change="pickDate"></Datepicker>
         </a>
       </li>
       <li @click="this.modalActive = 'is-active'; this.modalType='tag'">
         <a>
-          <span class="icon is-small" ><i class="el-icon-collection-tag"></i></span>
+          <span class="icon is-small" ><font-awesome-icon icon="tag"/></span>
           <span>{{ activeTagText }}</span>
-          <span class="icon is-small" ><i class="el-icon-arrow-down"></i></span>
+          <span class="icon is-small" ><font-awesome-icon icon="chevron-down"/></span>
         </a>
       </li>
     </ul>
@@ -57,8 +48,8 @@
                 :class="tabs[tabActive].param === tab.param ? 'is-active':''" :key="tab.name"
                 @click="handleTabsClick(index)"
             >
-              <a>
-                <span class="icon" ><i :class="tab.icon"></i></span>
+              <a style="display: flex; align-items: center">
+                <span class="icon" ><font-awesome-icon :icon="tab.icon"/></span>
                 <span>{{ tab.name }}</span>
               </a>
             </li>
@@ -81,23 +72,28 @@
       </section>
     </div>
   </div>
-  <el-container :style="{height:maxHeight + 'px'}">
-    <div style="width: 100%" ref="container">
-        <div class="v-waterfall-content"
-            v-infinite-scroll="getMoreData"
-             infinite-scroll-disabled="disabled"
-             infinite-scroll-distance="200"
-        >
-          <Waterfall :showRank="showRank" class="relative" :isload="isload" :waterfallList="waterfallList" :imageWidth="imageWidth"/>
-        </div>
-      <div v-if="isload" style="text-align: center"><i class="el-icon-loading"></i></div>
+  <div :style="{height:maxHeight + 'px'}">
+    <div style="width: 100%; height: 100%" ref="container">
+      <div class="v-waterfall-content"
+           v-infinite-scroll="getMoreData"
+           :infinite-scroll-disabled="disabled"
+           infinite-scroll-distance="100"
+      >
+        <Waterfall :showRank="showRank" class="relative" :isload="isload" :waterfallList="waterfallList" :imageWidth="imageWidth"/>
+      </div>
+      <div v-if="isload" style="text-align: center">
+        <font-awesome-icon icon="spinner" size="2x"/>
+      </div>
     </div>
-  </el-container>
+  </div>
 </template>
 
 <script>
+window.addEventListener("beforeunload", (e) => {
+  window.scroll(0, 0);
+});
 import Api from '../util/http.js'
-import {ElMessage} from "element-plus";
+import Datepicker from 'vue-bulma-datepicker'
 
 import Waterfall from "./components/Waterfall";
 
@@ -105,6 +101,7 @@ export default {
   name: 'v-waterfall',
   components: {
     Waterfall,
+    Datepicker
   },
   data() {
     return {
@@ -118,31 +115,31 @@ export default {
       tabs:[
         {
           "name":"发布时间",
-          "icon":"el-icon-timer",
+          "icon":"clock",
           "param":"default",
         },        {
           "name":"最受欢迎",
-          "icon":"el-icon-data-line",
+          "icon":"arrow-trend-up",
           "param":"asfa_score"
         },        {
           "name":"最多点击",
-          "icon":"el-icon-view",
+          "icon":"eye",
           "param":"asfa_view"
         },        {
           "name":"B站热门",
-          "icon":"el-icon-medal",
+          "icon":"fire",
           "param":"bili_hot"
         },        {
           "name":"日榜",
-          "icon":"el-icon-sunny",
+          "icon":"sun",
           "param":"bili_daily"
         },        {
           "name":"周榜",
-          "icon":"el-icon-date",
+          "icon":"calendar",
           "param":"bili_weekly"
         },        {
           "name":"月榜",
-          "icon":"el-icon-moon",
+          "icon":"moon",
           "param":"bili_monthly"
         }
       ],
@@ -189,7 +186,9 @@ export default {
     this.getMoreData();
   },
   mounted() {
-    window.scrollTo(0, 0)
+    let tmpDate = new Date()
+    this.$refs.datePicker.setDate(`${tmpDate.getFullYear()}-${tmpDate.getMonth() + 1}-${tmpDate.getDate()}`, "")
+
     let fullWidth = this.$refs.container.clientWidth;
     let maxColNum = this.waterfallImgCol
     if (fullWidth < 800) {
@@ -236,8 +235,9 @@ export default {
       }
       this.getMoreData()
     },
-    pickDate(ctime){
-      this.load_params.ctime = new Date(ctime).getTime()/1000
+    pickDate(){
+      this.load_params.ctime =new Date(this.$refs.datePicker.date).getTime()/1000
+
       this.load_params.rank = 1
       this.load_params.page = 0
       this.load_params.sort = 4
@@ -312,10 +312,8 @@ export default {
       this.load_params.page = 0
       this.refreshWaterFallData()
     },
-    getLoadStatus(bool){
-      this.isload = bool
-    },
     getMoreData() {
+      this.noMore = false
       this.isload = true
       this.load_params.page++
       let load_params;
@@ -333,11 +331,7 @@ export default {
         ).then((res) => {
           this.isload = false
           if (res.data.message === "没有更多数据"){
-            //alert(res.data.message)
-            ElMessage.warning({
-              message: '没有更多了......',
-              type: 'warning'
-            });
+            alert(res.data.message)
             this.noMore = true;
             return
           }
@@ -345,7 +339,6 @@ export default {
             this.noMore = true;
           } else {
             this.imgPreloading(res.data);
-            this.noMore = false;
           }
 
         })
@@ -416,7 +409,9 @@ export default {
   },
   computed: {
     disabled() {
-      return this.noMore||this.isload;
+      if (this.noMore)
+        return this.noMore
+      return this.isload;
     },
   },
 
@@ -425,19 +420,15 @@ export default {
 </script>
 
 <style lang="scss">
-
 input{
   border: none !important;
 }
-
 i{
   margin-right: 0.25rem;
 }
-
 .header{
   margin-top: 2rem;
 }
-
 .v-waterfall-content{
   width: 100%;
   height: 100%;

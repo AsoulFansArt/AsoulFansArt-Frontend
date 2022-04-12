@@ -1,69 +1,50 @@
 <template>
 <div class="mx-2">
-  <el-input
-      class="my-2"
-      placeholder="专栏cv号 cvxxxxx  xxxx为一串数字"
-      prefix-icon="el-icon-link"
+  <input
+      class="my-2 input"
+      placeholder="专栏cv号、例如：cvxxxxx"
       v-model="cvid">
-  </el-input>
-  <el-select v-model="value" placeholder="请选择分区">
-    <el-option
-        v-for="item in options"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value"
-    >
-    </el-option>
-  </el-select>
+  <div class="select">
+    <select @change="selectOption($event)">
+      <option v-for="item in options" :key="item.id" :value="item.id">{{ item.title }}</option>
+    </select>
+  </div>
   <span class="mx-2" style="font-size: smaller">Tips:添加分区请在B站私信~</span>
-  <el-input
-      class="my-2"
-      type="textarea"
+  <input
+      class="my-2 input"
+      type="text"
       placeholder="请输入备注(可空)"
       v-model="remarks"
       maxlength="30"
-      show-word-limit
   >
-  </el-input>
-  <el-button @click="submitArticle">提交</el-button>
+  <div class="button" @click="submitArticle">提交</div>
 </div>
 </template>
 
-<script>
+<script setup>
 import Api from '../../util/http'
-import {ElMessage} from "element-plus";
-
-
-export default {
-  name: "SubmitArticle",
-  data(){
-    return{
-      cvid:"",
-      response:[],
-      options:[],
-      value:"",
-      remarks:""
-    }
-  },
-  methods:{
-    submitArticle(){
-      Api._submitArticle({
-        "cvid": this.cvid,
-        "sort_id": this.value,
-        "remark": this.remarks
-      }).then((res)=>{
-        this.response = res.data
-        console.log(res.data)
-        ElMessage.success(`${this.response.message}`)
-      })
-    }
-  },
-  mounted() {
-    Api._getArticleSorts().then((res)=>{
-      for (let item of res.data)
-        this.options = [ ...this.options, {"value":item.id, "label":item.title}]
-    })
-  }
+import {ref} from "vue";
+let options = ref([])
+let selectOptionID = ref(1)
+let cvid = ref('')
+let remarks = ref('')
+let response = ref([])
+Api._getArticleSorts().then((res)=>{
+  options.value = res.data
+})
+let selectOption = (e)=>{
+  selectOptionID.value = e.target.value
+}
+let submitArticle = () => {
+  Api._submitArticle({
+    "cvid": cvid.value,
+    "sort_id": selectOptionID.value,
+    "remark": remarks.value
+  }).then((res)=>{
+    response.value = res.data
+    console.log(res.data)
+    alert(`${response.value.message}`)
+  })
 }
 </script>
 

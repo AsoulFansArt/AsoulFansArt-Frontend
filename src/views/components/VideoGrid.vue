@@ -3,30 +3,30 @@
   <div
       class="video-container" ref="videoContainer"
       v-infinite-scroll="load"
-      infinite-scroll-distance="10"
-      infinite-scroll-disabled="busy"
+      :infinite-scroll-disabled="disabled"
+      infinite-scroll-distance="100"
   >
     <a v-for="(item,index) in response" :key="index" class="item" :style="`width:${videoWidth}px`"
       :href="`https://www.bilibili.com/video/${item.bvid}`"
        target="_blank"
     >
       <div>
-        <el-image
+        <img
             :src="`${item.pic}@${412}w_${232}h_1e_1c.webp`"
             alt="" class="image" >
-        </el-image>
       </div>
 
       <div class="title">{{item.title}}</div>
     </a>
   </div>
-  <p v-if="loading" style="text-align: center"><i class="el-icon-loading"></i></p>
+  <p v-if="isload" style="text-align: center">
+    <font-awesome-icon icon="spinner" size="2x"/>
+  </p>
 </div>
 </template>
 
 <script>
 import Api from "../../util/http"
-import {ElMessage} from "element-plus";
 export default {
   name: "VideoGrid",
   props:{
@@ -42,7 +42,7 @@ export default {
       noMore: false,
       page:0,
       busy:false,
-      loading:false,
+      isload:false,
     }
   },
   created() {
@@ -50,7 +50,7 @@ export default {
   },
   methods:{
     load () {
-      this.loading = true
+      this.isload = true
       this.busy = true
       this.page++;
       try {
@@ -59,12 +59,10 @@ export default {
           page:this.page,
           sort:2,
         }).then((res) => {
-          this.loading = false
+          this.isload = false
           if (res.data.message === "没有更多数据") {
-            ElMessage.warning({
-              message: '没有更多了......',
-              type: 'warning'
-            });
+            alert(res.data.message)
+            this.noMore = true;
             return
           }
           this.response = [...this.response,...res.data]
@@ -96,6 +94,13 @@ export default {
 
     })
 
+  },
+  computed: {
+    disabled() {
+      if (this.noMore)
+        return this.noMore
+      return this.isload;
+    },
   },
 }
 </script>

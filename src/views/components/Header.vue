@@ -1,29 +1,21 @@
 <template>
-    <div style="position: fixed;left:20px;bottom: 20px; z-index:99;">
-      <button class="button is-medium" @click="this.modalActive === '' ? this.modalActive='is-active':this.modalActive=''">
-          <span class="icon is-medium is-centered">
-            <i class="el-icon-menu" style="color: #FC966E; font-size: xxx-large; margin: 0"></i>
-          </span>
-      </button>
-    </div>
-
-
-
-
+<!--  悬浮工具栏-->
+  <div style="position: fixed;left:20px;bottom: 20px; z-index:99;">
+    <button class="button is-medium" @click="this.modalActive === '' ? this.modalActive='is-active':this.modalActive=''">
+        <span class="icon is-medium is-centered">
+          <font-awesome-icon icon="bars" />
+        </span>
+    </button>
+  </div>
+<!--  导航弹窗-->
   <div class="modal" :class="modalActive" >
     <div class="modal-background" @click="modalActive=''"></div>
     <div class="modal-card">
       <section class="modal-card-body" style="margin: 1rem; border-radius: 0.75rem">
         <NavItem></NavItem>
       </section>
-
     </div>
   </div>
-
-
-
-
-
 </template>
 
 <script>

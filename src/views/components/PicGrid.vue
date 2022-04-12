@@ -4,7 +4,7 @@
 
       <!-- 图片数量卡片 -->
       <div class="imgnums" v-if="img.pic_url.length>1">
-        <div><i class="el-icon-copy-document"></i> {{img.pic_url.length}}</div>
+        <div><font-awesome-icon icon="images" class="mr-1"/> {{img.pic_url.length}}</div>
       </div>
       <div>
         <a :href="`https://t.bilibili.com/${img.dy_id}?tab=2`" target="_blank"></a>

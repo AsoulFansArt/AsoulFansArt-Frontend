@@ -2,11 +2,6 @@ import Axios from "axios";
 
 let hosts = 'https://api.asoul.cloud:8000'
 Axios.defaults.withCredentials = true
-Axios.defaults.headers = {
-    'Cache-Control': 'no-cache',
-    'Pragma': 'no-cache',
-    'Expires': '0',
-};
 
 const _getBV = (params) =>{
     params.tag_id = params.tag_id || 0

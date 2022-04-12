@@ -75,5 +75,9 @@
   "name": "评论区冲浪指南",
   "link": "https://wiki.asoul.org/",
   "icon": "./img/asdb.ico"
+},{
+  "name": "AsAsFans",
+  "link": "https://app.asf.ink/",
+  "icon": "https://app.asf.ink/assets/images/favicons/favicon.ico"
 }
 ]

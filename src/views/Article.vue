@@ -1,25 +1,35 @@
 <template>
-  <div>
-    <el-tabs v-model="activeName" @tab-click="changeSort">
-      <el-tab-pane
-          v-for="item in options"
-          :label="item.title"
-          :name="`${item.id}`"
+  <div class="tabs is-size-7-mobile">
+    <ul>
+      <li
+          :class="item.id === Number(activeName) ? 'is-active': ''"
           :key="item.id"
-      ></el-tab-pane>
-    </el-tabs>
+          v-for="item in options"
+          @click="changeSort(item)"
+      >
+        <a>{{item.title}}</a>
+      </li>
+    </ul>
   </div>
-  <div v-loading="isLoading">
+  <div>
     <ArticleCard :articleList="response"></ArticleCard>
   </div>
   <div>
-    <el-pagination
-        background layout="pager"
-        :page-count="total/20"
-        @current-change="getMoreArticle"
-        :hide-on-single-page="hidePagination"
-    >
-    </el-pagination>
+    <nav
+        style="margin-left: 1rem"
+        class="pagination"
+        role="navigation"
+        aria-label="pagination">
+      <ul class="pagination-list">
+        <li>
+          <a
+              class="pagination-link is-current"
+              aria-current="page"
+              aria-label="Goto page 1">1</a>
+        </li>
+      </ul>
+    </nav>
+
   </div>
 </template>
 
@@ -41,7 +51,7 @@ export default {
     ],
     activeName:"0",
     params:{
-      "page": 0,
+      "page": 1,
       "sort_id": 0,
       "order": "publish_time",
       "type": 1,
@@ -50,7 +60,8 @@ export default {
     hidePagination:false
   }},
   methods:{
-    changeSort(tab, event){
+    changeSort(item){
+      this.activeName = item.id
       this.params.sort_id = this.activeName
       // console.log(this.params.sort_id)
       this.getArticleList(this.params)

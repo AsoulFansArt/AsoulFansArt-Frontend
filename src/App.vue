@@ -6,7 +6,6 @@
       <Header></Header>
       <router-view></router-view>
       <button class="add-button">将网站添加到桌面</button>
-
   </div>
 
 </template>
@@ -19,64 +18,56 @@ export default {
   components: {
     Header,
   },
-  data(){return{
-  }},
   methods:{
+    showNotice(content){
+      setTimeout(() => {
+        this.$notify({
+          title: '公告',
+          dangerouslyUseHTMLString: true,
+          message: content,
+          duration: 3000
+        }, 1000);
+      })
+    },
+    showPwaAddBut(){
+      let deferredPrompt;
+      const addBtn = document.querySelector('.add-button');
+      addBtn.style.display = 'none';
 
-  },
-  mounted() {
-    Api._tempLogin().then((res)=>{
-      console.log(res.data)
-    })
+      window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent Chrome 67 and earlier from automatically showing the prompt
+        e.preventDefault();
+        // Stash the event so it can be triggered later.
+        deferredPrompt = e;
+        // Update UI to notify the user they can add to home screen
+        addBtn.style.display = 'block';
 
-    let deferredPrompt;
-    const addBtn = document.querySelector('.add-button');
-    addBtn.style.display = 'none';
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-      // Prevent Chrome 67 and earlier from automatically showing the prompt
-      e.preventDefault();
-      // Stash the event so it can be triggered later.
-      deferredPrompt = e;
-      // Update UI to notify the user they can add to home screen
-      addBtn.style.display = 'block';
-
-      addBtn.addEventListener('click', (e) => {
-        // hide our user interface that shows our A2HS button
-        addBtn.style.display = 'none';
-        // Show the prompt
-        deferredPrompt.prompt();
-        // Wait for the user to respond to the prompt
-        deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the A2HS prompt');
-          } else {
-            console.log('User dismissed the A2HS prompt');
-          }
-          deferredPrompt = null;
+        addBtn.addEventListener('click', (e) => {
+          // hide our user interface that shows our A2HS button
+          addBtn.style.display = 'none';
+          // Show the prompt
+          deferredPrompt.prompt();
+          // Wait for the user to respond to the prompt
+          deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+              console.log('User accepted the A2HS prompt');
+            } else {
+              console.log('User dismissed the A2HS prompt');
+            }
+            deferredPrompt = null;
+          });
         });
       });
-    });
-
+    }
+  },
+  mounted() {
+    Api._tempLogin()
+    this.showPwaAddBut()
     Api._getNotification().then((res)=>{
-          if(res.data.length > 0){
-            for (let item of res.data){
-              console.log(item)
-              setTimeout(()=>{
-                this.$notify({
-                  title: '公告',
-                  dangerouslyUseHTMLString: true,
-                  message:  item.content,
-                  duration: 3000
-                },1000);
-              })
-
-
-            }
-          }
-
-        }
-    )
+      if(res.data.length > 0)
+        for (let item of res.data)
+          this.showNotice(item.content)
+    })
   }
 }
 </script>

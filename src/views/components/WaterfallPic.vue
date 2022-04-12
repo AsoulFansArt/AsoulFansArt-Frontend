@@ -1,21 +1,22 @@
 <template>
-  <el-container :style="{height:maxHeight + 'px'}">
-    <div style="width: 100%;" ref="container">
+  <div :style="{height:maxHeight + 'px'}">
+    <div style="width: 100%; height: 100%" ref="container">
       <div class="v-waterfall-content"
            v-infinite-scroll="getMoreData"
-           infinite-scroll-disabled="disabled"
-           infinite-scroll-distance="10"
+           :infinite-scroll-disabled="disabled"
+           infinite-scroll-distance="100"
       >
         <Waterfall :showRank="showRank" :owner="owner" class="relative" :isload="isload" :waterfallList="waterfallList" :imageWidth="imageWidth"/>
       </div>
-      <div v-if="isload" style="text-align: center"><i class="el-icon-loading"></i></div>
+      <div v-if="isload" style="text-align: center">
+        <font-awesome-icon icon="spinner" size="2x"/>
+      </div>
     </div>
-  </el-container>
+  </div>
 </template>
 
 <script>
 import Api from '../../util/http.js'
-import {ElMessage} from "element-plus";
 import Waterfall from "./Waterfall";
 
 export default {
@@ -63,7 +64,6 @@ export default {
       //整体左偏移量，左右相同
       colLeft: 0,
       currentPage: 0,
-
       //是否还有数据
       noMore: false,
       //搜索内容
@@ -85,55 +85,30 @@ export default {
     this.getMoreData();
   },
   mounted() {
-
-    //this.load_params.uid = this.uid
-    //console.log(this.load_params)
-    window.scrollTo(0, 0)
-    /*
-    this.$notify({
-      title: '提示',
-      dangerouslyUseHTMLString: true,
-      message:  '<p>图片来源bilibili.com</p>图片右下角为原作者B站ID',
-      duration:2000,
-    });*/
-
-    //计算可视区域能够容纳的最大列数,向下取整
-    this.$nextTick(()=>{
-      let fullWidth = this.$refs.container.clientWidth;
-      if (fullWidth > 1500) {
-        this.imageWidth = 280;
-      } else if (fullWidth < 800) {
-        this.isMobile= true;
-        this.imageWidth = 160;
-      }
-      let maxColNum = Math.floor(fullWidth / (this.imageWidth + this.waterfallImgRight));
+    let fullWidth = this.$refs.container.clientWidth;
+    let maxColNum = this.waterfallImgCol
+    if (fullWidth < 800) {
+      this.isMobile= true;
+      this.imageWidth = 160;
+      this.waterfallImgCol = 2
+      maxColNum = 2
       this.imageWidth = (fullWidth - 24 - this.waterfallImgRight * (maxColNum-1))/(maxColNum)
-      console.log('可视宽度：' + fullWidth + ',列数：' + maxColNum);
-      if (maxColNum == 0) {
-        maxColNum = 1;
-      }
-      let contentWhith = (this.imageWidth + this.waterfallImgRight) * maxColNum;
-      if ((fullWidth - contentWhith) < (this.imageWidth * 0.8)) {
-
-        contentWhith = (this.imageWidth + this.waterfallImgRight) * maxColNum;
-      }
-      //console.log('计算列数：' + maxColNum);
-      //获取左边距
-      //this.colLeft = (fullWidth - contentWhith) / 2;
-      this.colLeft = 0
-      if (maxColNum == 1) {
-        maxColNum = 2;
-      }
-      this.waterfallImgCol = maxColNum;
-      //console.log('总宽度：' + fullWidth + ',内容宽度：' + contentWhith + '左偏移：' + this.colLeft);
-      //初始化偏移高度数组
-      this.waterfallColHeight = new Array(this.waterfallImgCol);
-      for (let i = 0; i < this.waterfallColHeight.length; i++) {
-        this.waterfallColHeight[i] = 0;
-      }
-    })
-
-
+    }
+    let imageOccupyWidth = this.imageWidth * maxColNum + (maxColNum - 1) * 10
+    while (imageOccupyWidth > fullWidth){
+      maxColNum--
+      imageOccupyWidth = this.imageWidth * maxColNum + (maxColNum - 1) * 10
+    }
+    let contentWhith = (this.imageWidth + this.waterfallImgRight) * maxColNum;
+    if ((fullWidth - contentWhith) < (this.imageWidth * 0.8)) {
+      contentWhith = (this.imageWidth + this.waterfallImgRight) * maxColNum;
+    }
+    this.colLeft = (fullWidth - contentWhith) / 2;
+    this.waterfallImgCol = maxColNum;
+    this.waterfallColHeight = new Array(this.waterfallImgCol);
+    for (let i = 0; i < this.waterfallColHeight.length; i++) {
+      this.waterfallColHeight[i] = 0;
+    }
   },
   methods: {
     getLoadStatus(bool){
@@ -156,19 +131,14 @@ export default {
       ).then((res) => {
         this.isload = false
         if (res.data.message === "没有更多数据"){
-          //alert(res.data.message)
-          ElMessage.warning({
-            message: '没有更多了......',
-            type: 'warning'
-          });
+          alert(res.data.message)
           this.noMore = true;
           return
         }
-        if (res.data[0].pic_url.length == 0) {
+        if (res.data[0].pic_url.length === 0) {
           this.noMore = true;
         } else {
           this.imgPreloading(res.data);
-          this.noMore = false;
         }
 
       })
@@ -177,13 +147,9 @@ export default {
     },
     //图片预加载
     imgPreloading(moreList) {
-
-      //console.log(listLen, moreList)
       for (let i = 0; i < moreList.length; i++) {
         let imgData = moreList[i];
         moreList[i] = moreList[i].pic_url[0]
-
-
         if(moreList[i].img_src.indexOf('http') > 0){
           continue;
         }
@@ -194,11 +160,6 @@ export default {
         imgData.id = moreList[i].id;
         //获取随机占位背景色
         imgData.color=this.randomColor[i%9];
-        /*
-         if (imgData.height > 750){
-           moreList.splice(i,1)
-           continue;
-         }*/
         this.waterfallList = [...this.waterfallList,imgData];
         let webp_w = Math.round(this.imageWidth * 1.5) ;
         let webp_h =Math.round(imgData.height * 1.5) ;
@@ -238,8 +199,9 @@ export default {
   },
   computed: {
     disabled() {
-      //console.log(this.noMore)
-      return this.noMore;
+      if (this.noMore)
+        return this.noMore
+      return this.isload;
     },
   },
 

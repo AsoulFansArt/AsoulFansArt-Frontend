@@ -2,43 +2,31 @@
 <div>
   <div class="icon-menu" ref="menuContainer">
     <a class="icon-card" href="/video" ref="menuIcon">
-      <el-icon :size="32" style="margin: 9px">
-        <VideoCamera />
-      </el-icon>
+      <font-awesome-icon icon="circle-play" size="2x" style="margin: 9px"/>
       <div class="icon-desc">视频</div>
     </a>
     <a class="icon-card" href="/pic">
-      <el-icon :size="32" style="margin: 9px">
-        <Picture />
-      </el-icon>
+      <font-awesome-icon icon="image" size="2x" style="margin: 9px"/>
       <div class="icon-desc">图片</div>
     </a>
     <a class="icon-card" href="/article">
-      <el-icon :size="32" style="margin: 9px">
-        <Reading />
-      </el-icon>
+      <font-awesome-icon icon="book-open" size="2x" style="margin: 9px"/>
       <div class="icon-desc">专栏</div>
     </a>
     <a class="icon-card" href="/meme">
-      <el-icon :size="32" style="margin: 9px">
-        <Lollipop />
-      </el-icon>
+      <font-awesome-icon icon="ice-cream" size="2x" style="margin: 9px"/>
       <div class="icon-desc">P图大赛</div>
     </a>
     <a class="icon-card" href="/submit">
-      <el-icon :size="32" style="margin: 9px">
-        <Upload />
-      </el-icon>
+      <font-awesome-icon icon="upload" size="2x" style="margin: 9px"/>
       <div class="icon-desc">提交作品</div>
     </a>
     <a class="icon-card" href="https://space.bilibili.com/291072226" target="_blank">
-      <el-icon :size="32" style="margin: 9px">
-        <Message />
-      </el-icon>
+      <font-awesome-icon icon="envelope" size="2x" style="margin: 9px"/>
       <div class="icon-desc">联系我们</div>
     </a>
     <a v-for="link in links" :key="link" class="icon-card" :href="link.link" target="_blank">
-      <el-image :src="link.icon" style="margin: 9px;width: 32px;height: 32px"></el-image>
+      <img :src="link.icon" style="margin: 9px;width: 32px;height: 32px">
       <div class="icon-desc">{{ link.name }}</div>
     </a>
     <a v-for="linkAfter in linksAfter" :key="linkAfter" class="icon-card-no-hover">
@@ -50,8 +38,6 @@
 </template>
 
 <script>
-
-import { VideoCamera,Picture,Reading,Lollipop,Upload,Message } from '@element-plus/icons'
 import "../assets/scss/card.scss"
 import "../assets/scss/a.scss"
 import local from "../util/local";
@@ -80,14 +66,6 @@ export default {
         this.linksAfter = fullLinks - linksNum
     })
 
-  },
-  components:{
-    VideoCamera,
-    Picture,
-    Reading,
-    Lollipop,
-    Upload,
-    Message
   },
 }
 </script>
@@ -125,6 +103,7 @@ a:hover{
   width: 7.5rem;
   padding: 1rem;
   display: flex;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   :hover{

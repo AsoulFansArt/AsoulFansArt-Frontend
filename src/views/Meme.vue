@@ -1,12 +1,12 @@
 <template>
 
 
-  <el-container :style="{height:maxHeight + 'px'}">
-    <div style="width: 100%" ref="container">
+  <div :style="{height:maxHeight + 'px'}">
+    <div style="width: 100%; height: 100%" ref="container">
         <div class="v-waterfall-content"
-            v-infinite-scroll="getMoreData"
-             infinite-scroll-disabled="disabled"
-             infinite-scroll-distance="10"
+             v-infinite-scroll="getMoreData"
+             :infinite-scroll-disabled="disabled"
+             infinite-scroll-distance="100"
         >
           <Waterfall class="relative"
                      :owner="false"
@@ -14,18 +14,18 @@
                      :waterfallList="waterfallList"
                      :imageWidth="imageWidth"/>
         </div>
-      <div v-if="isload" style="text-align: center"><i class="el-icon-loading"></i></div>
+      <div v-if="isload" style="text-align: center">
+        <font-awesome-icon icon="spinner" size="2x"/>
+      </div>
     </div>
-  </el-container>
+  </div>
 </template>
 
 <script>
 import Api from '../util/http.js'
-import {ElMessage} from "element-plus";
 import Waterfall from "./components/Waterfall";
 
 export default {
-  name: 'v-waterfall',
   components: {
     Waterfall,
   },
@@ -69,45 +69,33 @@ export default {
   },
   mounted() {
     window.scrollTo(0, 0)
-
-
-    //计算可视区域能够容纳的最大列数,向下取整
     let fullWidth = this.$refs.container.clientWidth;
-    if (fullWidth > 1500) {
-      this.imageWidth = 280;
-    } else if (fullWidth < 800) {
+    let maxColNum = this.waterfallImgCol
+    if (fullWidth < 800) {
       this.isMobile= true;
       this.imageWidth = 160;
+      this.waterfallImgCol = 2
+      maxColNum = 2
+      this.imageWidth = (fullWidth - 24 - this.waterfallImgRight * (maxColNum-1))/(maxColNum)
     }
-    let maxColNum = Math.floor(fullWidth / (this.imageWidth + this.waterfallImgRight));
-    this.imageWidth = (fullWidth - 24 - this.waterfallImgRight * (maxColNum-1))/(maxColNum)
-    //console.log('可视宽度：' + fullWidth + ',列数：' + maxColNum);
-    if (maxColNum == 0) {
-      maxColNum = 1;
+    let imageOccupyWidth = this.imageWidth * maxColNum + (maxColNum - 1) * 10
+    while (imageOccupyWidth > fullWidth){
+      maxColNum--
+      imageOccupyWidth = this.imageWidth * maxColNum + (maxColNum - 1) * 10
     }
     let contentWhith = (this.imageWidth + this.waterfallImgRight) * maxColNum;
     if ((fullWidth - contentWhith) < (this.imageWidth * 0.8)) {
-
       contentWhith = (this.imageWidth + this.waterfallImgRight) * maxColNum;
     }
-    //console.log('计算列数：' + maxColNum);
-    //获取左边距
     this.colLeft = (fullWidth - contentWhith) / 2;
-    if (maxColNum == 1) {
-      maxColNum = 2;
-    }
     this.waterfallImgCol = maxColNum;
-    //console.log('总宽度：' + fullWidth + ',内容宽度：' + contentWhith + '左偏移：' + this.colLeft);
-    //初始化偏移高度数组
     this.waterfallColHeight = new Array(this.waterfallImgCol);
     for (let i = 0; i < this.waterfallColHeight.length; i++) {
       this.waterfallColHeight[i] = 0;
     }
+
   },
   methods: {
-    getLoadStatus(bool){
-      this.isload = bool
-    },
     getResult(data){
       this.waterfallList = [];
       this.currentPage = 1;
@@ -125,18 +113,13 @@ export default {
         ).then((res) => {
           this.isload = false
           if (res.data.message === "没有更多数据"){
-            //alert(res.data.message)
-            ElMessage.warning({
-              message: '没有更多了......',
-              type: 'warning'
-            });
+            alert(res.data.message)
             return
           }
-          if (res.data[0].pic_url.length == 0) {
+          if (res.data[0].pic_url.length === 0) {
             this.noMore = true;
           } else {
             this.imgPreloading(res.data);
-            this.noMore = false;
           }
 
         })
@@ -206,7 +189,9 @@ export default {
   },
   computed: {
     disabled() {
-      return this.noMore||this.isload;
+      if (this.noMore)
+        return this.noMore
+      return this.isload;
     },
   },
 

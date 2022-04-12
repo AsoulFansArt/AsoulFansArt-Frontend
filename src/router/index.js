@@ -1,6 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import Space from "../views/account/Space";
-import Account from "../views/account/Account";
 
 const routes = [
   {
@@ -39,11 +38,6 @@ const routes = [
     component:Space,
     props:true
   },
-  {
-    path: '/account/:uid',
-    component:Account,
-    props: true
-  }
 ]
 
 const router = createRouter({
@@ -53,10 +47,3 @@ const router = createRouter({
 })
 
 export default router
-
-
-// {
-//   path: '/',
-//   name: 'Home',
-//   component: Home
-// },

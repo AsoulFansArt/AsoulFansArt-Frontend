@@ -1,8 +1,7 @@
 <template>
   <div v-if="!isLoad">
     <div class="account-card" >
-
-      <a :href="`https://space.bilibili.com/${response.account.uid}`" target="_blank"><el-image class="account-face" :src="response.account.face" ></el-image></a>
+      <a :href="`https://space.bilibili.com/${response.account.uid}`" target="_blank"><img class="account-face" :src="response.account.face" alt=""></a>
       <div style="width: 100%;" class="account-work">
         <div class="work-nums">
           <span style="color: gray">视频</span>
@@ -26,12 +25,14 @@
       </div>
     </div>
     <div class="account-sign" v-if="response.account.sign">{{ response.account.sign }}</div>
-    <el-tabs v-model="activeName" @tab-click="handleClick" style="padding: 1rem">
-      <el-tab-pane :label="tab.label" :name="tab.name" v-for="tab in tabs" :key="tab.name">
-        <TabPage :uid="uid" :name="nowName" v-if="tab.name === nowName && tab.num > 0"></TabPage>
-        <div v-else>暂无数据</div>
-      </el-tab-pane>
-    </el-tabs>
+    <div class="tabs is-size-7-mobile"  style="padding: 1rem">
+      <ul>
+        <li :class="activeName === tab.name ? 'is-active' : ''" v-for="tab in tabs" :key="tab.name" @click="handleClick(tab)">
+          <a>{{tab.label}}</a>
+        </li>
+      </ul>
+    </div>
+    <TabPage :uid="uid" :name="activeName"></TabPage>
   </div>
 </template>
 
@@ -74,9 +75,7 @@ export default {
   },
   methods:{
     handleClick(tab){
-      //console.log(tab)
-      //console.log(tab.props.name)
-      this.nowName=tab.props.name
+      this.activeName = tab.name
     }
   },
   mounted() {

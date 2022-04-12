@@ -7,41 +7,35 @@
     </div>
     <!-- 图片数量卡片 -->
     <div class="imgnums" v-if="img.pic_url.length>1">
-      <div><i class="el-icon-copy-document"></i> {{img.pic_url.length}}</div>
+      <div><font-awesome-icon icon="clone"/> {{img.pic_url.length}}</div>
     </div>
     <!-- 作者卡片 -->
     <a class="picowner" v-if="owner" :href="`space/${img.uid}`" target="_blank">
-      <el-tooltip content="点击查看作者主页~" placement="top" effect="light">
-        <div style="display: flex; align-items: center" >
-          <el-image style="width: 24px; height: 24px; border-radius: .75rem;margin-right: 1px;: " :src="`${img.face}@64w_64h_1e_1c.webp`"></el-image>
-          {{img.name}}
-        </div>
-      </el-tooltip>
+      <div style="display: flex; align-items: center" >
+        <img style="width: 24px; height: 24px; border-radius: .75rem;margin-right: 1px;: " :src="`${img.face}@64w_64h_1e_1c.webp`">
+        {{img.name}}
+      </div>
     </a>
 
     <a class="img-div" :href="`https://t.bilibili.com/${img.dy_id}?tab=2`" @click="jumpBili(img.dy_id)" target="_blank">
       <!-- 图片懒加载 -->
+      <img v-lazy="img.src" class='image' :key='img.src' alt="">
 
-      <el-image
-          :src='img.src'
-          class='image'
-          :key='img.src' lazy>
-        <!-- 加载前占位 -->
-        <template #placeholder>
-          <div  class="image-slot">
-            <div
-                v-loading="true"
-                element-loading-background="rgba(0,0,0,0.4)"
-                :style="{height: img.height+'px',width:imageWidth + 'px',backgroundColor:img.color}"></div>
-          </div>
-        </template>
-        <!-- 加载失败占位 -->
-        <template #error>
-          <div  class="image-slot">
-            <div :style="{height:img.height+'px',width:imageWidth + 'px',backgroundColor:img.color}"></div>
-          </div>
-        </template>
-      </el-image>
+<!--        &lt;!&ndash; 加载前占位 &ndash;&gt;-->
+<!--        <template #placeholder>-->
+<!--          <div  class="image-slot">-->
+<!--            <div-->
+<!--                v-loading="true"-->
+<!--                element-loading-background="rgba(0,0,0,0.4)"-->
+<!--                :style="{height: img.height+'px',width:imageWidth + 'px',backgroundColor:img.color}"></div>-->
+<!--          </div>-->
+<!--        </template>-->
+<!--        &lt;!&ndash; 加载失败占位 &ndash;&gt;-->
+<!--        <template #error>-->
+<!--          <div  class="image-slot">-->
+<!--            <div :style="{height:img.height+'px',width:imageWidth + 'px',backgroundColor:img.color}"></div>-->
+<!--          </div>-->
+<!--        </template>-->
     </a>
   </div>
 

@@ -3,7 +3,7 @@
     <ul>
       <li v-for="tab in tabs" :class="tabActive === tab.param ? 'is-active':''" :key="tab.name" @click="handleTabsClick(tab.param)">
         <a>
-          <span class="icon is-small" ><i :class="tab.icon"></i></span>
+          <span class="icon is-small" ><font-awesome-icon :icon="tab.icon"/></span>
           <span>{{ tab.name }}</span>
         </a>
       </li>
@@ -18,11 +18,8 @@
         ref="container"
         style="position: relative"
         v-infinite-scroll="load"
-        infinite-scroll-distance="10"
-        infinite-scroll-disabled="disabled"
-
-        v-loading="isload"
-
+        :infinite-scroll-disabled="disabled"
+        infinite-scroll-distance="100"
     >
 
       <VideoCard
@@ -35,7 +32,9 @@
 
     </div>
 
-    <p v-if="loading" style="text-align: center"><i class="el-icon-loading"></i></p>
+    <p v-if="loading" style="text-align: center">
+      <font-awesome-icon icon="spinner" size="2x"/>
+    </p>
 
   </div>
 </template>
@@ -43,7 +42,6 @@
 <script>
 import g from '../util/general'
 import Api from '../util/http.js'
-import {ElMessage} from "element-plus";
 import VideoCard from "./components/VideoCard";
 import Axios from "axios";
 
@@ -58,11 +56,11 @@ export default {
       tabs:[
         {
           "name":"发布时间",
-          "icon":"el-icon-timer",
+          "icon":"clock",
           "param":"default",
         },        {
           "name":"B站热门",
-          "icon":"el-icon-medal",
+          "icon":"fire",
           "param":"top"
         }
       ],
@@ -91,10 +89,9 @@ export default {
       this.loading = true
       if(this.tabActive === "top"){
         Axios({
-          url:"https://api.asoul.cloud:8000/AsoulRT-top30",
+          url:`https://api.asoul.cloud:8000/AsoulRT-top30`,
           method: "get",
         }).then((res)=>{
-          console.log(res.data.data.result)
           this.response = res.data.data.result
           this.response.splice(this.response.findIndex(item => item.owner.mid === 660551654), 1)
           for (let item of this.response){
@@ -135,10 +132,7 @@ export default {
         Api._getBV(this.load_params).then((res) => {
           this.loading = false
           if (res.data.message === "没有更多数据") {
-            ElMessage.warning({
-              message: '没有更多了......',
-              type: 'warning'
-            });
+            alert("没有更多了......")
             this.noMore=true
             return}
           this.noMore = false
@@ -159,7 +153,9 @@ export default {
   },
   computed: {
     disabled () {
-      return this.noMore || this.loading
+      if (this.noMore)
+        return this.noMore
+      return this.loading;
     }
   },
   mounted() {
