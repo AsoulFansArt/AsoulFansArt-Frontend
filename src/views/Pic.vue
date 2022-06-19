@@ -72,6 +72,28 @@
       </section>
     </div>
   </div>
+
+
+  <el-scrollbar style="white-space: nowrap; display: flex; flex-direction: row; " class="mx-2 mb-2" :class="largerMargin">
+    <div
+        v-for="(tag, index) in picTags"
+        :key="tag.tag_id"
+        class="mb-4 my-2 mx-1 cover-img"
+
+        @click="selectTag(index)"
+    >
+      <el-image
+
+          style="width: 176px; height: 176px; border-radius: 10px;"
+          class="scroll-item image"
+          :src="`${tag.cover_pics[0].img_src}@276w_276h_1e_1c.webp`"
+      ></el-image>
+      <div style="position: absolute;z-index: 15; left: 0; bottom: 0; right: 0; top: 85%; display: flex; justify-content: center; color: white; font-weight: bolder">
+        {{ tag.tag_title }}</div>
+    </div>
+  </el-scrollbar>
+
+
   <div :style="{height:maxHeight + 'px'}">
     <div style="width: 100%; height: 100%" ref="container">
       <div class="v-waterfall-content"
@@ -81,20 +103,21 @@
       >
         <Waterfall :showRank="showRank" class="relative" :isload="isload" :waterfallList="waterfallList" :imageWidth="imageWidth"/>
       </div>
-      <div v-if="isload" style="text-align: center">
-        <font-awesome-icon icon="spinner" size="2x"/>
+      <div v-loading="isload" style="text-align: center; height: 200px">
+
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {ElMessage} from "element-plus";
+
 window.addEventListener("beforeunload", (e) => {
   window.scroll(0, 0);
 });
 import Api from '../util/http.js'
 import Datepicker from 'vue-bulma-datepicker'
-
 import Waterfall from "./components/Waterfall";
 
 export default {
@@ -105,6 +128,7 @@ export default {
   },
   data() {
     return {
+      largerMargin: "",
       dailyRankDate:"",
       activeTagText:"标签",
       picTags:[],
@@ -146,14 +170,14 @@ export default {
       imgDataType: "default",
       getMoreFunc:{"default":Api._getPic, "asfa_score": Api._getRank, "asfa_view": Api._getRank},
       getMoreParams:{"default": this.load_params},
-      maxHeight: '900',
+      maxHeight: 'auto',
       isload: false,
       //作品信息高度
-      detailHeight:0,
+      detailHeight:40,
       //存放计算好的数据
       waterfallList: [],
       //每一列的宽度
-      imageWidth: 350,
+      imageWidth: 320,
       //多少列
       waterfallImgCol: 4,
       //右边距
@@ -189,14 +213,19 @@ export default {
     let tmpDate = new Date()
     this.$refs.datePicker.setDate(`${tmpDate.getFullYear()}-${tmpDate.getMonth() + 1}-${tmpDate.getDate()}`, "")
 
-    let fullWidth = this.$refs.container.clientWidth;
-    let maxColNum = this.waterfallImgCol
+    let fullWidth = this.$refs.container.clientWidth; //获取容器宽度
+    let maxColNum = this.waterfallImgCol //读取列数
+
+    //媒体查询
     if (fullWidth < 800) {
       this.isMobile= true;
       this.imageWidth = 160;
       this.waterfallImgCol = 2
       maxColNum = 2
-      this.imageWidth = (fullWidth - 24 - this.waterfallImgRight * (maxColNum-1))/(maxColNum)
+      this.imageWidth = (fullWidth - 24 - this.waterfallImgRight * (maxColNum-1))/(maxColNum) //减去边界动态算图片宽
+    }
+    if (fullWidth > 1100){
+      this.largerMargin = "mx-6"
     }
     let imageOccupyWidth = this.imageWidth * maxColNum + (maxColNum - 1) * 10
     while (imageOccupyWidth > fullWidth){
@@ -205,7 +234,7 @@ export default {
     }
     //console.log('可视宽度：' + fullWidth + ',列数：' + maxColNum);
 
-    let contentWhith = (this.imageWidth + this.waterfallImgRight) * maxColNum;
+    let contentWhith = (this.imageWidth + this.waterfallImgRight) * maxColNum; //content宽度 图片宽+右边距 * 列数
     if ((fullWidth - contentWhith) < (this.imageWidth * 0.8)) {
       contentWhith = (this.imageWidth + this.waterfallImgRight) * maxColNum;
     }
@@ -237,7 +266,6 @@ export default {
     },
     pickDate(){
       this.load_params.ctime =new Date(this.$refs.datePicker.date).getTime()/1000
-
       this.load_params.rank = 1
       this.load_params.page = 0
       this.load_params.sort = 4
@@ -331,7 +359,7 @@ export default {
         ).then((res) => {
           this.isload = false
           if (res.data.message === "没有更多数据"){
-            alert(res.data.message)
+            ElMessage.warning(res.data.message)
             this.noMore = true;
             return
           }
@@ -379,11 +407,16 @@ export default {
           webp_h = webp_h * 2
         }
         let suffix = `@${webp_w}w_${webp_h}h_1e_1c.webp`
+        if (moreList[i].img_src.indexOf('$') > -1){
+          suffix = ''
+        }
         aImg.onload = () => {
-            aImg.src =  `${moreList[i].img_src}${suffix}`;
+          aImg.src =  `${moreList[i].img_src}${suffix}`;
         };
         this.rankImg(imgData);
         imgData.src =  `${moreList[i].img_src}${suffix}`;
+        console.log(imgData.src)
+
 
       }
       this.maxHeight = Math.max(...this.waterfallColHeight)
@@ -419,7 +452,7 @@ export default {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 input{
   border: none !important;
 }
@@ -437,5 +470,43 @@ i{
   position: relative;
   height: 100%;
 }
+
+.scroll-item:after {
+  position: absolute;
+  border-radius: 10px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  content: "";
+  width: 100%;
+  box-sizing: border-box;
+  height: 100%;
+  background-image: linear-gradient(0deg,rgba(50,50,50,.2),hsla(0,0%,100%,0));
+}
+img{
+  display:block;
+}
+.image{
+  transition: transform 0.45s ease-in-out 0s;
+}
+.cover-img{
+  position: relative;
+  width: 176px;
+  height: 176px;
+  display: inline-block;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0;
+  overflow: hidden;
+
+  &:hover{
+    .image{
+      transform: scale(1.1,1.1);
+    }
+  }
+}
+
 </style>
 

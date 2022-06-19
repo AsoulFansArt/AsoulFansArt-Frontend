@@ -12,6 +12,7 @@
 <script>
 import Header from "./views/components/Header";
 import Api from "./util/http";
+import local from "./util/local";
 
 export default {
   name: 'App',
@@ -61,6 +62,17 @@ export default {
     }
   },
   mounted() {
+
+    local._getVersion({time:new Date().getTime()}).then(res => {
+      if(localStorage.version===undefined){
+        localStorage.setItem("version", res.data.version)
+      }else{
+        if(localStorage.version!==res.data.version){
+          localStorage.removeItem("version")
+          this.$router.go(0)
+        }
+      }
+    })
     Api._tempLogin()
     this.showPwaAddBut()
     Api._getNotification().then((res)=>{
@@ -81,8 +93,12 @@ html,body{
   margin: 0;
   padding: 0;
   width:100%;
-  height:100%;
+  height:auto;
   position: relative;
+}
+
+html{
+  background: #f8f8f8 !important;
 }
 .add-button {
   position: absolute;

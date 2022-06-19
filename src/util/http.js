@@ -1,7 +1,19 @@
 import Axios from "axios";
 
 let hosts = 'https://api.asoul.cloud:8000'
+// hosts = 'http://192.168.68.162:8000'
 Axios.defaults.withCredentials = true
+
+Axios.interceptors.request.use(
+    config =>{
+        const token = localStorage.getItem('token')
+        if (token)
+            config.headers.Authorization = "Token " + token;
+        return config
+    }, error => {
+        return Promise.reject(error);
+    }
+)
 
 const _getBV = (params) =>{
     params.tag_id = params.tag_id || 0
@@ -156,7 +168,6 @@ const _getAccountInfo = (params) => {
     })
 }
 
-
 const _tempLogin = (params) => {
     return Axios({
         url:hosts +"/account/temp/login",
@@ -164,7 +175,6 @@ const _tempLogin = (params) => {
         params:params
     })
 }
-
 
 const _tempView = (params) => {
     return Axios({
@@ -182,23 +192,84 @@ const _getRank = (params) => {
     })
 }
 
-const _getTopVideo = (params)=>{
+const _regAccount = (params) => {
     return Axios({
-        url:"http://124.223.8.236:5200/",
+        url:hosts +"/account/register",
+        method: "post",
+        data:params
+    })
+}
+
+const _accountLogin = (params) => {
+    return Axios({
+        url:hosts +"/account/login",
+        method: "post",
+        data:params
+    })
+}
+
+const _getAccountProfile = () => {
+    return Axios({
+        url:hosts +"/account",
+        method: "get",
+    })
+}
+
+const _addFavorites = (params) => {
+    return Axios({
+        url:hosts +"/account/favorites/add",
+        method: "post",
+        data:params,
+    })
+}
+
+const _addView = (params) => {
+    return Axios({
+        url:hosts +"/account/view/add",
+        method: "post",
+        data:params,
+    })
+}
+
+const _getFavorites = (params) => {
+    return Axios({
+        url:hosts +"/account/favorites",
         method: "get",
         params:params
     })
 }
 
+const _getViewHistory = (params) => {
+    return Axios({
+        url:hosts +"/account/view/history",
+        method: "get",
+        params:params
+    })
+}
 
+const _getPicDetail = (id) =>{
+    return Axios({
+        url:hosts +"/getPicDetail" + '?nocache=' + new Date().getTime(),
+        method: "get",
+        params: {id}
+    })
+}
 
 export default {
-    _getTopVideo,
+    _regAccount,
+    _accountLogin,
+    _getAccountProfile,
+    _addFavorites,
+    _addView,
+    _getFavorites,
+    _getViewHistory,
+
     _getBV,
     _getVideoPart,
     _submitBV,
     _getDynamicDetail,
     _getPic,
+    _getPicDetail,
     _getPicTags,
     _getNotification,
     _submit,

@@ -1,9 +1,7 @@
 <template>
-
   <ul class="menu-list" >
-
     <li v-for="navLink in navLinks" :key="navLink.name">
-      <a :href="navLink.link" class="menu-link">
+      <a @click = "clickJump(navLink.link)" class="menu-link">
         <span class="icon" >
           <font-awesome-icon :icon="navLink.icon" />
         </span>
@@ -11,43 +9,51 @@
       </a>
     </li>
   </ul>
-
 </template>
 
-<script>
-export default {
-  name: "NavItem",
-  data(){
-    return {
-      navLinks:[
-        {
-          name:"首页",
-          icon:['fas', 'house'],
-          link:"/"
-        },         {
-          name:"视频",
-          icon:['fas', 'circle-play'],
-          link:"/video"
-        },        {
-          name:"图片",
-          icon:['fas', 'image'],
-          link:"/pic"
-        },        {
-          name:"专栏",
-          icon:['fas', 'book-open'],
-          link:"/article"
-        },        {
-          name:"趣味P图大赛",
-          icon:['fas', 'ice-cream'],
-          link:"/meme"
-        },        {
-          name:"提交/推荐作品",
-          icon:['fas', 'upload'],
-          link:"/submit"
-        },
+<script setup>
+import router from "../../router";
+import {defineEmits} from "vue";
+const navLinks = [
+  {
+    name:"首页",
+    icon:['fas', 'house'],
+    link:"/"
+  },         {
+    name:"视频",
+    icon:['fas', 'circle-play'],
+    link:"/video"
+  },        {
+    name:"图片",
+    icon:['fas', 'image'],
+    link:"/pic"
+  },        {
+    name:"专栏",
+    icon:['fas', 'book-open'],
+    link:"/article"
+  },       {
+    name:"提交/推荐作品",
+    icon:['fas', 'upload'],
+    link:"/submit"
+  },        {
+    name:"个人中心",
+    icon:['fas', 'user'],
+    link:"/space"
+  },
 
-      ]
-    }
+]
+// {
+//   name:"趣味P图大赛",
+//       icon:['fas', 'ice-cream'],
+//     link:"/meme"
+// },
+const emit = defineEmits(['navRouterPush'])
+const clickJump = function(link){
+  if (link !== "/space"){
+    router.push({"path": link})
+    emit('navRouterPush', "nav")
+  }else{
+    emit('navRouterPush', "login")
   }
 }
 </script>

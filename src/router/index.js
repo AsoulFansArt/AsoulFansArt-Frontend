@@ -1,5 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import Space from "../views/account/Space";
+import PicDetail from "../views/PicDetail";
 
 const routes = [
   {
@@ -37,6 +38,16 @@ const routes = [
     path:'/space/:uid',
     component:Space,
     props:true
+  },
+  {
+    path:'/pic/:dyid',
+    component:() => import('../views/PicDetail'),
+    props:true
+  },
+  {
+    path: '/asoul/history',
+    name:'AsoulHistory',
+    component:() => import('../views/AsoulHistory.vue')
   },
 ]
 

@@ -50,7 +50,7 @@
   },
   {
     "name": "B站粉丝牌助手",
-    "link": "https://github.com/XiaoMiku01/bili-live-heart",
+    "link": "https://github.com/XiaoMiku01/fansMedalHelper",
     "icon": "./img/github.png"
   },
   {
@@ -59,18 +59,13 @@
     "icon": "./img/jwf.jpg"
   },
   {
-    "name": "枝江异闻录",
-    "link": "https://h.bilibili.com/156259680",
-    "icon": "./img/asdb.ico"
-  },
-  {
     "name": "A-SOUL鼓励师",
     "link": "https://marketplace.visualstudio.com/items?itemName=AS042971.asoul",
     "icon": "./img/asdb.ico"
   },  {
     "name": "嘉心糖圈子",
     "link": "https://www.xn--w4r49t8ny.com/",
-    "icon": "https://www.xn--w4r49t8ny.com/favicon.ico"
+    "icon": "./img/asdb.ico"
   },  {
   "name": "评论区冲浪指南",
   "link": "https://wiki.asoul.org/",
@@ -78,6 +73,10 @@
 },{
   "name": "AsAsFans",
   "link": "https://app.asf.ink/",
-  "icon": "https://app.asf.ink/assets/images/favicons/favicon.ico"
+  "icon": "./img/asfa.ico"
+},{
+  "name": "S1ASOUL讨论楼",
+  "link": "https://bbs.saraba1st.com/2b/thread-2070127-1-1.html",
+  "icon": "./img/s1.ico"
 }
 ]

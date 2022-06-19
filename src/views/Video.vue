@@ -32,9 +32,9 @@
 
     </div>
 
-    <p v-if="loading" style="text-align: center">
-      <font-awesome-icon icon="spinner" size="2x"/>
-    </p>
+    <div v-loading="loading" style="text-align: center; height: 200px">
+
+    </div>
 
   </div>
 </template>
@@ -44,6 +44,7 @@ import g from '../util/general'
 import Api from '../util/http.js'
 import VideoCard from "./components/VideoCard";
 import Axios from "axios";
+import {ElMessage} from "element-plus";
 
 export default {
   name: "Rank",
@@ -86,31 +87,13 @@ export default {
     handleTabsClick(label){
       this.load_params.page = 0
       this.tabActive = label
-      this.loading = true
       if(this.tabActive === "top"){
-        Axios({
-          url:`https://api.asoul.cloud:8000/AsoulRT-top30`,
-          method: "get",
-        }).then((res)=>{
-          this.response = res.data.data.result
-          this.response.splice(this.response.findIndex(item => item.owner.mid === 660551654), 1)
-          for (let item of this.response){
-            item.uid = item.owner.mid
-            item.face = item.owner.face
-            item.name = item.owner.name
-            item.stat_view = item.stat.view
-            item.stat_danmaku = item.stat.danmaku
-            item.stat_like = item.stat.like
-            item.stat_coin = item.stat.coin
-            item.stat_favorite = item.stat.favorite
-            item.stat_reply = item.stat.reply
-            item.stat_share = item.stat.share
-          }
-          this.loading = false
-
-        })
+        this.response = []
+        this.load_params.sort = 5
+        this.load()
       }else{
         this.response = []
+        this.load_params.sort = 2
         this.load()
       }
     },
@@ -123,16 +106,13 @@ export default {
       this.load_params = data.load_params;
     },
     load () {
-      if(this.tabActive === "top"){
-        return
-      }
       this.loading = true
       this.load_params.page++;
       try {
         Api._getBV(this.load_params).then((res) => {
           this.loading = false
           if (res.data.message === "没有更多数据") {
-            alert("没有更多了......")
+            ElMessage.warning("没有更多了......")
             this.noMore=true
             return}
           this.noMore = false
@@ -166,7 +146,6 @@ export default {
       this.isMobile = true
       if (fullWidth > 700) {
         this.isMobile = false
-
         this.mainStyle = {
           col_rank_image_width:"10rem"
         }

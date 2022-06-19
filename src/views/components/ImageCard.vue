@@ -1,6 +1,6 @@
 <template>
 
-  <div class="img-card">
+  <div>
     <!-- 排名卡片 -->
     <div v-if="showRank" class="img-rank" :class="[imgIndex === 1?'img-rank-gold':imgIndex === 2?'img-rank-silver':imgIndex === 3?'img-rank-copper':'img-rank-normal']" >
       <div size="10" style="display: flex;justify-content: center">{{ imgIndex }}</div>
@@ -9,40 +9,49 @@
     <div class="imgnums" v-if="img.pic_url.length>1">
       <div><font-awesome-icon icon="clone"/> {{img.pic_url.length}}</div>
     </div>
-    <!-- 作者卡片 -->
-    <a class="picowner" v-if="owner" :href="`space/${img.uid}`" target="_blank">
-      <div style="display: flex; align-items: center" >
-        <img style="width: 24px; height: 24px; border-radius: .75rem;margin-right: 1px;: " :src="`${img.face}@64w_64h_1e_1c.webp`">
-        {{img.name}}
+
+    <div style="overflow: hidden">
+      <div class="img-div" style="overflow: hidden" @click="jumpBili(img.dy_id, `https://t.bilibili.com/${img.dy_id}?tab=2`)" target="_blank">
+        <!-- 图片懒加载 -->
+        <el-image
+            class="img-card image"
+            style="transition: transform .45s ease-in-out"
+            :src="formatSrc(img.src, img.pic_url[0].img_width)"
+            :key='img.src'
+            :style="{height: img.height - 40 +'px',width:imageWidth + 'px'}"
+        lazy>
+          <!-- 加载前占位 -->
+          <template #placeholder>
+            <div  class="image-slot">
+              <div
+                  v-loading="true"
+                  element-loading-background="rgba(0,0,0,0.4)"
+                  :style="{height: img.height+'px',width:imageWidth + 'px',backgroundColor:img.color}"></div>
+            </div>
+          </template>
+          <!-- 加载失败占位 -->
+        </el-image>
       </div>
-    </a>
+    </div>
+    <!-- 作者卡片 -->
+    <div style="display: flex; flex-wrap: nowrap; justify-content: space-between; align-items: center">
+      <div class="picowner">
+        <img alt="" style="width: 32px; height: 32px; border-radius: 50%;margin-right: 1px; " :src="`${img.face}@64w_64h_1e_1c.webp`">
+        <span class="owner-name" @click="$router.push({path:`/space/${img.uid}`})">{{img.name}}</span>
+      </div>
+      <div class="art-star" @click="sendFavouriteArt(img.dy_id, img)" :class="isClick || img.isLike ? 'art-star-check':''">
+        <font-awesome-icon icon="star"></font-awesome-icon>
+      </div>
 
-    <a class="img-div" :href="`https://t.bilibili.com/${img.dy_id}?tab=2`" @click="jumpBili(img.dy_id)" target="_blank">
-      <!-- 图片懒加载 -->
-      <img v-lazy="img.src" class='image' :key='img.src' alt="">
-
-<!--        &lt;!&ndash; 加载前占位 &ndash;&gt;-->
-<!--        <template #placeholder>-->
-<!--          <div  class="image-slot">-->
-<!--            <div-->
-<!--                v-loading="true"-->
-<!--                element-loading-background="rgba(0,0,0,0.4)"-->
-<!--                :style="{height: img.height+'px',width:imageWidth + 'px',backgroundColor:img.color}"></div>-->
-<!--          </div>-->
-<!--        </template>-->
-<!--        &lt;!&ndash; 加载失败占位 &ndash;&gt;-->
-<!--        <template #error>-->
-<!--          <div  class="image-slot">-->
-<!--            <div :style="{height:img.height+'px',width:imageWidth + 'px',backgroundColor:img.color}"></div>-->
-<!--          </div>-->
-<!--        </template>-->
-    </a>
+    </div>
   </div>
 
 </template>
 
 <script>
 import Api from '../../util/http'
+import {ElMessage} from "element-plus";
+
 
 export default {
   name: "ImageCard",
@@ -75,40 +84,92 @@ export default {
     }
   },
   methods:{
-    jumpBili(dyID){
-      Api._tempView({
-        work_type: 1,
-        work_id: dyID
-      })
+    formatSrc(src, originWidth){
+      /*
+      let _src = src.split("/")[5].split("@")
+      let hash = _src[0]
+      let params = _src[1]
+
+      let imgWidth = params.substring(0, 3)
+      if (originWidth < Number(imgWidth))
+        imgWidth = originWidth
+      return `https:///images/${hash}?w=${imgWidth}&format=webp`*/
+      return src
+    },
+    jumpBili(id, url){
+      window.open(`/pic/${id}`)
+      //window.open(url)
+      if (localStorage.getItem("token").length > 10){
+        Api._addView({
+          art_id: id
+        })
+      }else{
+        Api._tempView({
+          work_type: 1,
+          work_id: id
+        })
+      }
       // alert(dyID)
 
     },
+    async sendFavouriteArt(id, img){
+      try {
+        this.isClick = !this.isClick
+        let res = await Api._addFavorites({art_id: id})
+        if (res.data.message === "添加成功"){
+          this.isClick = true
+
+          ElMessage.success({
+            message: "添加成功",
+            duration: 500,
+          })
+        }
+        else if (res.data.message === "删除成功"){
+          this.isClick = false
+          img.isLike = false
+          ElMessage.error({
+            message: "删除成功",
+            duration: 500,
+          })
+        }else{
+          if(res.data.code===401){
+            ElMessage.error("请先登陆")
+          }else{
+            alert(res.data.message)
+          }
+          this.isClick = false
+        }
+
+      }catch (err){
+        ElMessage.error("网络错误")
+        console.log(err)
+      }
+    }
   },
   data() {
     return {
-      url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-      srcList: [
-        'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',
-        'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg',
-      ],
+      isClick: false,
     }
   },
+
 }
 </script>
 
 <style lang="scss" scoped>
 a{
   text-decoration: none;
+  color: black;
 }
 .img-div{
+  cursor: pointer;
   padding: 0;
   //border-radius: 10px;
   overflow: hidden;
-}
-.image{
-  box-shadow: 0 0 8px rgba(0,0,0,.175)!important;
-  //border-radius: 16px;
-  transition: transform .45s ease-in-out;
+  &:hover{
+    .image{
+      transform: scale(1.1,1.1);
+    }
+  }
 }
 
 .img-title{
@@ -155,27 +216,76 @@ a{
   padding: .35rem .375rem;
 }
 .picowner{
-  position: absolute;
-  z-index: 90;
-  bottom: 8px;
-  right: 10px;
+  display: flex;
+  align-items: center;
+  margin-left: .5rem;
   border-radius: .375rem;
-  background: rgba(99,99,99,.5);
-  color: rgb(247,247,247);
-  font-size: x-small;
-  font-weight: 500;
-  padding: .35rem .375rem;
-}
-.img-card{
-  &:hover{
-    .img-title{
-      opacity: 1;
-    }
-    .image{
-      transform: scale(1.1,1.1);
-    }
 
+  .owner-name{
+    font-size: small;
+    font-weight: bold;
+    cursor: pointer;
+    color: gray;
+
+    &:hover{
+      color: black;
+    }
+  }
+
+
+}
+.art-star{
+  color: gray;
+  margin-right: .5rem;
+  &:hover{
+    /* 执行动画: 动画名 时长 加速后减速 停留在最后一帧 */
+    //animation: anm 0.5s ease-in-out forwards;
+    ///* 动画延迟时间 */
+    //animation-delay: 0.85s;
+    color: #FC966E;
+    cursor: pointer;
+  }
+
+}
+.art-star-check{
+  color: #FC966E;
+  animation: anm 0.5s;
+}
+@keyframes anm {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
   }
 }
+//.img-card{
+//  box-shadow: 0 0 8px rgba(0,0,0,.175)!important;
+//  //border-radius: 16px;
+//  transition: transform .45s ease-in-out;
+//  &:hover{
+//    transform: scale(1.1,1.1);
+//    z-index: -1;
+//  }
+//}
 
 </style>
+
+<!--        &lt;!&ndash; 加载前占位 &ndash;&gt;-->
+<!--        <template #placeholder>-->
+<!--          <div  class="image-slot">-->
+<!--            <div-->
+<!--                v-loading="true"-->
+<!--                element-loading-background="rgba(0,0,0,0.4)"-->
+<!--                :style="{height: img.height+'px',width:imageWidth + 'px',backgroundColor:img.color}"></div>-->
+<!--          </div>-->
+<!--        </template>-->
+<!--        &lt;!&ndash; 加载失败占位 &ndash;&gt;-->
+<!--        <template #error>-->
+<!--          <div  class="image-slot">-->
+<!--            <div :style="{height:img.height+'px',width:imageWidth + 'px',backgroundColor:img.color}"></div>-->
+<!--          </div>-->
+<!--        </template>-->

@@ -19,9 +19,9 @@
       <div class="title">{{item.title}}</div>
     </a>
   </div>
-  <p v-if="isload" style="text-align: center">
-    <font-awesome-icon icon="spinner" size="2x"/>
-  </p>
+  <div v-loading="isload" style="text-align: center; height: 200px">
+
+  </div>
 </div>
 </template>
 

@@ -16,6 +16,7 @@ const defineDirective = (app) => {
             observe.observe(el)
         },
         updated(el, binding){
+            //console.log("update", binding.value)
             el.src = binding.value
             el.onerror = () => {
                 el.src = errImage

@@ -4,12 +4,13 @@
       style="margin: 1rem"
   >
     <div :style="{width:'70rem', overflow:'hidden'}">
+
       <div class="col-rank" @click="jumpBili(item.bvid)">
         <img
             v-lazy="`${item.pic}@${412}w_${232}h_1e_1c.webp`"
-            :style="{width: videoWidth}"
-            alt="" class="image" >
 
+            :style="{width: videoWidth}"
+            alt="">
         <div class="col-info">
           <div class="col-title">{{item.title}}</div>
           <div class="col-data">
@@ -91,6 +92,7 @@ a{
 .col-rank{
   width: 100%;
   display: flex;
+  align-items:center;
   border: none;
   border-bottom:1px solid gray;
   padding-bottom: 5px;
