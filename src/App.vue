@@ -62,7 +62,6 @@ export default {
     }
   },
   mounted() {
-
     local._getVersion({time:new Date().getTime()}).then(res => {
       if(localStorage.version===undefined){
         localStorage.setItem("version", res.data.version)

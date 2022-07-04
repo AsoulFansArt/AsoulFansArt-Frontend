@@ -36,6 +36,14 @@ const navLinks = [
     icon:['fas', 'upload'],
     link:"/submit"
   },        {
+    name:"粉丝团数据",
+    icon:['fas', 'chart-line'],
+    link:"/fans/medal"
+  },{
+    name:"5.10时间线",
+    icon:['fas', 'history'],
+    link:"/asoul/history"
+  },{
     name:"个人中心",
     icon:['fas', 'user'],
     link:"/space"

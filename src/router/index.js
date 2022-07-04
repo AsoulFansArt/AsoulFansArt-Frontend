@@ -49,6 +49,11 @@ const routes = [
     name:'AsoulHistory',
     component:() => import('../views/AsoulHistory.vue')
   },
+  {
+    path: '/fans/medal',
+    name:'FansMedal',
+    component:() => import('../views/FansMedal.vue')
+  },
 ]
 
 const router = createRouter({

@@ -101,17 +101,17 @@ export default {
   height: 100%;
   position: relative;
 }
-.v-waterfall-item{
-  box-shadow: 0 0 8px rgba(0,0,0,.175)!important;
-  overflow: hidden;
-  transition: none !important;
-  z-index:0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 16px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-}
+//.v-waterfall-item{
+//  box-shadow: 0 0 8px rgba(0,0,0,.175)!important;
+//  overflow: hidden;
+//  transition: none !important;
+//  z-index:0;
+//  width: 100%;
+//  height: 100%;
+//  object-fit: cover;
+//  border-radius: 16px;
+//  background-repeat: no-repeat;
+//  background-size: cover;
+//  background-position: center center;
+//}
 </style>

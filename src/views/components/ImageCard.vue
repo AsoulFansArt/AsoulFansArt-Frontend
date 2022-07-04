@@ -1,17 +1,17 @@
 <template>
 
-  <div>
+  <el-card style="overflow: hidden;" shadow="hover" :body-style="{padding: 0}">
     <!-- 排名卡片 -->
     <div v-if="showRank" class="img-rank" :class="[imgIndex === 1?'img-rank-gold':imgIndex === 2?'img-rank-silver':imgIndex === 3?'img-rank-copper':'img-rank-normal']" >
       <div size="10" style="display: flex;justify-content: center">{{ imgIndex }}</div>
     </div>
     <!-- 图片数量卡片 -->
-    <div class="imgnums" v-if="img.pic_url.length>1">
+    <div class="img-nums" v-if="img.pic_url.length>1">
       <div><font-awesome-icon icon="clone"/> {{img.pic_url.length}}</div>
     </div>
 
-    <div style="overflow: hidden">
-      <div class="img-div" style="overflow: hidden" @click="jumpBili(img.dy_id, `https://t.bilibili.com/${img.dy_id}?tab=2`)" target="_blank">
+    <div style="overflow: hidden; width: 100%; border-bottom: 1px solid #e4e7ed; background: white; font-size: 0">
+      <div class="img-div" @click="jumpBili(img.dy_id, `https://t.bilibili.com/${img.dy_id}?tab=2`)" target="_blank">
         <!-- 图片懒加载 -->
         <el-image
             class="img-card image"
@@ -34,17 +34,16 @@
       </div>
     </div>
     <!-- 作者卡片 -->
-    <div style="display: flex; flex-wrap: nowrap; justify-content: space-between; align-items: center">
-      <div class="picowner">
+    <div class="img-action p-1">
+      <div class="img-owner">
         <img alt="" style="width: 32px; height: 32px; border-radius: 50%;margin-right: 1px; " :src="`${img.face}@64w_64h_1e_1c.webp`">
         <span class="owner-name" @click="$router.push({path:`/space/${img.uid}`})">{{img.name}}</span>
       </div>
-      <div class="art-star" @click="sendFavouriteArt(img.dy_id, img)" :class="isClick || img.isLike ? 'art-star-check':''">
+      <div class="img-art-star" @click="sendFavouriteArt(img.dy_id, img)" :class="isClick || img.isLike ? 'art-star-check':''">
         <font-awesome-icon icon="star"></font-awesome-icon>
       </div>
-
     </div>
-  </div>
+  </el-card>
 
 </template>
 
@@ -99,16 +98,24 @@ export default {
     jumpBili(id, url){
       window.open(`/pic/${id}`)
       //window.open(url)
-      if (localStorage.getItem("token").length > 10){
-        Api._addView({
-          art_id: id
-        })
-      }else{
+      try{
+        if (localStorage.getItem("token").length > 10){
+          Api._addView({
+            art_id: id
+          })
+        }else{
+          Api._tempView({
+            work_type: 1,
+            work_id: id
+          })
+        }
+      }catch (err){
         Api._tempView({
           work_type: 1,
           work_id: id
         })
       }
+
       // alert(dyID)
 
     },
@@ -156,6 +163,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+
 a{
   text-decoration: none;
   color: black;
@@ -163,8 +172,8 @@ a{
 .img-div{
   cursor: pointer;
   padding: 0;
-  //border-radius: 10px;
   overflow: hidden;
+  font-size: 0;
   &:hover{
     .image{
       transform: scale(1.1,1.1);
@@ -180,7 +189,7 @@ a{
 }
 .img-rank{
   position: absolute;
-  z-index: 90;
+  z-index: 39;
   top: 8px;
   left: 10px;
   border-radius: 50%;
@@ -204,9 +213,9 @@ a{
 .img-rank-copper{
   background: rgba(184,115,51,.9);
 }
-.imgnums{
+.img-nums{
   position: absolute;
-  z-index: 90;
+  z-index: 39;
   top: 8px;
   right: 10px;
   border-radius: .375rem;
@@ -215,18 +224,15 @@ a{
   font-size: x-small;
   padding: .35rem .375rem;
 }
-.picowner{
+
+.img-owner{
   display: flex;
   align-items: center;
-  margin-left: .5rem;
-  border-radius: .375rem;
-
   .owner-name{
     font-size: small;
-    font-weight: bold;
+    font-weight: bolder;
     cursor: pointer;
     color: gray;
-
     &:hover{
       color: black;
     }
@@ -234,7 +240,8 @@ a{
 
 
 }
-.art-star{
+
+.img-art-star{
   color: gray;
   margin-right: .5rem;
   &:hover{
@@ -245,7 +252,6 @@ a{
     color: #FC966E;
     cursor: pointer;
   }
-
 }
 .art-star-check{
   color: #FC966E;
@@ -262,30 +268,12 @@ a{
     transform: scale(1);
   }
 }
-//.img-card{
-//  box-shadow: 0 0 8px rgba(0,0,0,.175)!important;
-//  //border-radius: 16px;
-//  transition: transform .45s ease-in-out;
-//  &:hover{
-//    transform: scale(1.1,1.1);
-//    z-index: -1;
-//  }
-//}
 
+.img-action{
+  background: white;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center
+}
 </style>
-
-<!--        &lt;!&ndash; 加载前占位 &ndash;&gt;-->
-<!--        <template #placeholder>-->
-<!--          <div  class="image-slot">-->
-<!--            <div-->
-<!--                v-loading="true"-->
-<!--                element-loading-background="rgba(0,0,0,0.4)"-->
-<!--                :style="{height: img.height+'px',width:imageWidth + 'px',backgroundColor:img.color}"></div>-->
-<!--          </div>-->
-<!--        </template>-->
-<!--        &lt;!&ndash; 加载失败占位 &ndash;&gt;-->
-<!--        <template #error>-->
-<!--          <div  class="image-slot">-->
-<!--            <div :style="{height:img.height+'px',width:imageWidth + 'px',backgroundColor:img.color}"></div>-->
-<!--          </div>-->
-<!--        </template>-->

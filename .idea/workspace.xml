@@ -5,33 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b411b24-9c57-49e5-aa8a-d76076f9f11e" name="更改" comment="更改">
-      <change afterPath="$PROJECT_DIR$/public/timeline.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/version.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/AsoulHistory.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/PicDetail.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/components/Modal.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/components/Vwaterfall.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/FansMedal.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/components/StackedLine.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/links.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/links.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/timeline.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/timeline.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/account.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/account.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/util/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/http.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/lazyload.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/lazyload.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/local.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/local.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/AsoulHistory.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/AsoulHistory.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/MainPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MainPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Pic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Pic.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Video.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Video.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/account/Space.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/account/Space.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/Header.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/components/ImageCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/ImageCard.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/components/NavItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/NavItem.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/VideoCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/VideoCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/VideoGrid.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/VideoGrid.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/WaterfallPic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/WaterfallPic.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/Waterfall.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/Waterfall.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,15 +59,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2022.1.2\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\surface\Desktop\git\AsoulFansArt-Frontend\src\components" />
@@ -187,7 +178,16 @@
       <workItem from="1654853771115" duration="40000" />
       <workItem from="1655428922505" duration="2366000" />
       <workItem from="1655513085685" duration="3508000" />
-      <workItem from="1655598973544" duration="11076000" />
+      <workItem from="1655598973544" duration="11671000" />
+      <workItem from="1656153427840" duration="1622000" />
+      <workItem from="1656302823110" duration="2230000" />
+      <workItem from="1656397074413" duration="18609000" />
+      <workItem from="1656460492684" duration="7220000" />
+      <workItem from="1656548918251" duration="9949000" />
+      <workItem from="1656733164525" duration="2950000" />
+      <workItem from="1656829460442" duration="7080000" />
+      <workItem from="1656862053349" duration="10000" />
+      <workItem from="1656897808710" duration="706000" />
     </task>
     <servers />
   </component>

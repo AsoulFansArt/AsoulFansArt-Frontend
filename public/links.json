@@ -75,8 +75,12 @@
   "link": "https://app.asf.ink/",
   "icon": "./img/asfa.ico"
 },{
-  "name": "S1ASOUL讨论楼",
+  "name": "S1asoul讨论楼",
   "link": "https://bbs.saraba1st.com/2b/thread-2070127-1-1.html",
   "icon": "./img/s1.ico"
+},{
+  "name": "asoul雏菊组",
+  "link": "https://www.douban.com/group/727619/",
+  "icon": "./img/douban.ico"
 }
 ]

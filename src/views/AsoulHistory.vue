@@ -2,11 +2,11 @@
   <div style="display: flex; justify-content: center; height: auto; width: 100% " class="p-6">
     <el-timeline>
       <div style="font-weight: bold;" class="mb-2">
-        <p>为本次510节奏时间总结了时间线</p>
-        <p style="color: red">观前提醒：发出来是为了理性看待本次事件，请勿拿着不实信息去吵架和输出观点</p>
-        <p>• 蓝色绿色状态为证实信息</p>
-        <p>• 黄色为发帖本人的输出的信息</p>
-        <p>• 灰色为核中核信息，但是无法证实</p>
+        <p>整理了5.10珈乐毕业节奏相对完整的时间线，供大家参考</p>
+        <p>• 蓝色 - 官方相关已证实信息</p>
+        <p>• 绿色 - 珈乐中之人相关</p>
+        <p>• 黄色 - 间接已证实信息</p>
+        <p>• 灰色 - 造谣信息</p>
       </div>
       <el-timeline-item
           v-for="(activity, index) in activities"
@@ -19,6 +19,7 @@
           :timestamp="activity.timestamp"
       >
         <div v-html="activity.content"></div>
+        <span class="desc" v-if="activity.srcList">({{activity.srcList.length}}图)</span>
         <div>
           <el-image
               v-if="activity.url"

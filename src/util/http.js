@@ -255,6 +255,15 @@ const _getPicDetail = (id) =>{
     })
 }
 
+const _getFansMedalLog = (params) =>{
+    return Axios({
+        url:hosts +"/fans/medal/log",
+        method: "get",
+        params: params
+    })
+}
+
+
 export default {
     _regAccount,
     _accountLogin,
@@ -285,6 +294,9 @@ export default {
     _tempLogin,
     _tempView,
     _getRank,
+
+
+    _getFansMedalLog
 }
 
 
