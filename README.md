@@ -1,18 +1,19 @@
 # A-SoulFansArt-一个魂的二创
-网址:https://asoul.cloud  
+网址:https://asoulfanart.com\
 项目目前为二创收集,想要方便一个魂们浏览二创作品~  
 站内视频需跳转原地址,图片为缩略图,永远不会提供批量下载功能  
 互动是对UP们最大的支持, 看到喜欢的作品请给原作者支持(关注,点赞,投币,分享,评论等等)
 ***
 ### 关于A-SOUL
-A-SOUL是乐华娱乐于2020年11月23日公开的其旗下首个虚拟偶像团体，由5名成员组成。
+A-SOUL是乐华娱乐于2020年11月23日公开的其旗下首个虚拟偶像团体，由~~5~~名成员组成。
 
 A-SOUL_Official：https://space.bilibili.com/703007996  
-乃琳：https://space.bilibili.com/672342685  
-珈乐：https://space.bilibili.com/351609538  
-嘉然：https://space.bilibili.com/672328094  
-贝拉：https://space.bilibili.com/672353429  
-向晚：https://space.bilibili.com/672346917  
+* 乃琳：https://space.bilibili.com/672342685
+* 珈乐(毕业): https://space.bilibili.com/672328094
+  * 节奏时间线：https://asoulfanart.com/asoul/history
+* 嘉然：https://space.bilibili.com/672328094
+* 贝拉：https://space.bilibili.com/672353429
+* 向晚：https://space.bilibili.com/672346917
 ***
 **技术栈:**  
 新版:vue3+bulma+pwa
@@ -48,7 +49,6 @@ A-SOUL_Official：https://space.bilibili.com/703007996
   - views/Video.vue - 视频
   - views/Pic.vue - 图片
   - views/Article.vue - 专栏
-  - views/Meme.vue - 表情包大赛
   - views/Submit.vue - 提交作品
 
 ## 相关项目
