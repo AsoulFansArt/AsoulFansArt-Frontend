@@ -1,8 +1,7 @@
 <template>
 <div>
-  <div>
-    <el-image v-if="isMobile" src="https://message.biliimg.com/bfs/im/22ad7f7d6143031c1ae70004024e2162f82a3981.png"></el-image>
-    <el-image v-else src="https://message.biliimg.com/bfs/im/a982c01cccdf8f32e1a81254be8b3683b08bdfda.png"></el-image>
+  <div style="width: 100%; height: 100%">
+    <ImgGallery></ImgGallery>
   </div>
 
   <div class="icon-menu" ref="menuContainer">
@@ -66,9 +65,7 @@
 
     </div>
 
-<!--  <div>-->
-<!--    <el-image src="https://message.biliimg.com/bfs/im/0422b3339ac4b7ad302206d04940128f2fda68e5.png"></el-image>-->
-<!--  </div>-->
+
 
 
 
@@ -101,6 +98,9 @@ import {
   Upload,
   DataLine, Clock, Message
 } from '@element-plus/icons-vue'
+import ImgGallery from "@components/ImgGallery.vue"
+
+
 export default {
   name: "MainPage",
   components:{
@@ -111,7 +111,8 @@ export default {
     Modal,
     VideoCamera,
     Picture,
-    Upload
+    Upload,
+    ImgGallery
   },
   data(){
     return{

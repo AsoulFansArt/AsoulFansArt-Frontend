@@ -11,7 +11,7 @@
     </div>
 
     <div style="overflow: hidden; width: 100%; border-bottom: 1px solid #e4e7ed; background: white; font-size: 0">
-      <div class="img-div" @click="jumpBili(img.dy_id, `https://t.bilibili.com/${img.dy_id}?tab=2`)" target="_blank">
+      <div class="img-div" @click="jumpBili(img.dy_id, `https://t.bilibili.com/${img.dy_id}?tab=2`)">
         <!-- 图片懒加载 -->
         <el-image
             class="img-card image"

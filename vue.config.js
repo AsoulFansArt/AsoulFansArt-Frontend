@@ -1,4 +1,5 @@
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const webpack = require("webpack");
 const productionGzipExtensions = ['js', 'css']
 const isProduction = process.env.NODE_ENV === 'production'
@@ -29,8 +30,8 @@ module.exports = {
         test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
         threshold: 10240,
         minRatio: 0.8
-      })
-    ]
+      }),
+    ],
   },
   css: { //重点.
     extract: { // 打包后css文件名称添加时间戳
@@ -40,7 +41,7 @@ module.exports = {
   },
   filenameHashing: false,
   publicPath: "/",
-  outputDir: "dist",
+  outputDir: "newdist",
   assetsDir: "public",
   lintOnSave:false,
   runtimeCompiler: false,

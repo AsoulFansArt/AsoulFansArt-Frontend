@@ -5,14 +5,22 @@
   <div id="app">
       <Header></Header>
       <router-view></router-view>
-      <button class="add-button">将网站添加到桌面</button>
+      <el-button class="add-button">点击将网站添加到桌面</el-button>
   </div>
-
+  <amp-ad width="100vw" height="320"
+      type="adsense"
+      data-ad-client="ca-pub-7074634969717219"
+      data-ad-slot="3332100452"
+      data-auto-format="rspv"
+      data-full-width="">
+    <div overflow=""></div>
+  </amp-ad>
 </template>
 <script>
 import Header from "./views/components/Header";
 import Api from "./util/http";
 import local from "./util/local";
+import { ElNotification } from 'element-plus'
 
 export default {
   name: 'App',
@@ -22,13 +30,12 @@ export default {
   methods:{
     showNotice(content){
       setTimeout(() => {
-        this.$notify({
-          title: '公告',
-          dangerouslyUseHTMLString: true,
+        ElNotification({
+          title: '网站公告',
           message: content,
-          duration: 3000
-        }, 1000);
-      })
+          duration: 5000
+        });
+      }, 1000)
     },
     showPwaAddBut(){
       let deferredPrompt;

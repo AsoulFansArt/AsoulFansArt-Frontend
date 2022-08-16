@@ -415,7 +415,7 @@ export default {
         };
         this.rankImg(imgData);
         imgData.src =  `${moreList[i].img_src}${suffix}`;
-        console.log(imgData.src)
+        // console.log(imgData.src)
 
 
       }

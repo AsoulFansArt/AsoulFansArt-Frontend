@@ -1,31 +1,10 @@
 [  {
-  "name": "搜图姬",
-  "link": "https://pic.asoulfan.com/",
-  "icon": "./img/asf.svg"
- },
-  {
-  "name": "枝网查重",
-  "link": "https://asoulcnki.asia/",
-  "icon": "./img/zwcc.svg"
-  },
-  {
-    "name": "AsoulFan",
-    "link": "https://asoulfan.com/",
-    "icon": "./img/asf.svg"
-  },
-  {
     "name": "AsoulWorld",
     "link": "https://www.asoulworld.com/",
     "icon": "./img/aswd.png"
-  },
-  {
-    "name": "AsoulDB",
-    "link": "https://asdb.live/",
-    "icon": "./img/asf.svg"
-  },
-  {
-    "name": "Asoul动态提醒",
-    "link": "https://t.bilibili.com/594279841472379864/",
+  },{
+    "name": "AU都在溜什么",
+    "link": "https://online.loveava.top/",
     "icon": "./img/asdb.ico"
   },
   {
@@ -70,10 +49,6 @@
   "name": "评论区冲浪指南",
   "link": "https://wiki.asoul.org/",
   "icon": "./img/asdb.ico"
-},{
-  "name": "AsAsFans",
-  "link": "https://app.asf.ink/",
-  "icon": "./img/asfa.ico"
 },{
   "name": "S1asoul讨论楼",
   "link": "https://bbs.saraba1st.com/2b/thread-2070127-1-1.html",

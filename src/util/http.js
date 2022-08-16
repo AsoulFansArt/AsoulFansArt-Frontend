@@ -1,7 +1,7 @@
 import Axios from "axios";
 
-let hosts = 'https://api.asoul.cloud:8000'
-// hosts = 'http://192.168.68.162:8000'
+let hosts = 'https://api.asoulfanart.com:9000'
+//hosts = 'http://192.168.1.10:8000'
 Axios.defaults.withCredentials = true
 
 Axios.interceptors.request.use(
@@ -263,6 +263,14 @@ const _getFansMedalLog = (params) =>{
     })
 }
 
+const _getHomeInfo = (params) =>{
+    return Axios({
+        url:hosts +"/home",
+        method: "get",
+        params: params
+    })
+}
+
 
 export default {
     _regAccount,
@@ -272,6 +280,7 @@ export default {
     _addView,
     _getFavorites,
     _getViewHistory,
+    _getHomeInfo,
 
     _getBV,
     _getVideoPart,

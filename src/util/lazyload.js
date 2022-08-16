@@ -23,18 +23,7 @@ const defineDirective = (app) => {
             }
         }
     });
-    app.directive('infinite-scroll', {
-        mounted(el, binding, vnode){
-            infiniteScroll.bind(el, binding, vnode)
-        },
-        updated(el, binding, vnode){
-            infiniteScroll.unbind(el)
-            infiniteScroll.bind(el, binding, vnode)
-        },
-        beforeUnmount(el){
-            infiniteScroll.unbind(el)
-        }
-    })
+
 }
 
 export default {
